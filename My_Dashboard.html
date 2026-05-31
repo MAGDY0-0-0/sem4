@@ -1,0 +1,2782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finals Pro | V5 Expert Edition</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0f172a;
+            --bg-sidebar: #1e293b;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --border: #334155;
+            --success: #10b981;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+            font-size: 1.05rem;
+        }
+
+        .sidebar {
+            width: 350px;
+            background: var(--bg-sidebar);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-right: 1px solid var(--border);
+            box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+            z-index: 10;
+            overflow-y: auto;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 16px 20px;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .nav-btn:hover {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        .nav-btn.active {
+            background: var(--accent);
+            color: #0f172a;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 50px 60px;
+            overflow-y: auto;
+            position: relative;
+        }
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .subject-header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+        }
+        .subject-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+        .exam-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .inner-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+        .inner-tab-btn {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.2s;
+        }
+        .inner-tab-btn.active {
+            background: var(--border);
+            border-bottom: 3px solid var(--accent);
+        }
+        .inner-tab-btn:hover { background: var(--border); }
+        .inner-tab-content { display: none; }
+        .inner-tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 30px; }
+        .video-card { background: var(--bg-card); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .vid-header { padding: 15px 20px; background: #0f172a; font-weight: 600; display: flex; align-items: center; }
+        .video-card iframe { width: 100%; height: 250px; display: block; }
+        
+        .direct-vid-link { display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); padding: 20px 25px; border-radius: 12px; color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 1.1rem; border: 1px solid var(--border); transition: all 0.3s; }
+        .direct-vid-link:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+        .summary-card { background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border); }
+        .summary-card h4 { color: var(--accent); margin-top: 25px; margin-bottom: 10px; font-size: 1.4rem; }
+        .summary-card p { margin-bottom: 15px; color: #cbd5e1; }
+        .code-card { background: #000; padding: 25px; border-radius: 12px; border: 1px solid var(--border); overflow-x: auto; }
+        .code-card pre { color: #34d399; font-family: monospace; font-size: 1.1rem; line-height: 1.5; }
+        
+        /* 3D Flashcards CSS */
+        .flashcard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
+        .flashcard { background-color: transparent; height: 250px; perspective: 1000px; cursor: pointer; }
+        .flashcard-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 16px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid var(--border); }
+        .flashcard-front { background: var(--bg-card); color: white; }
+        .flashcard-back { background: linear-gradient(145deg, #1e293b, #0f172a); color: #f8fafc; transform: rotateY(180deg); border-color: #f59e0b; }
+        .flashcard-front p { font-size: 1.2rem; font-weight: 600; }
+        .flashcard-back p { font-size: 1.1rem; }
+        .flip-hint { position: absolute; bottom: 15px; font-size: 0.85rem; color: var(--text-muted); opacity: 0.7; }
+
+        .exam-tabs { display: flex; gap: 10px; margin-bottom: 25px; }
+        .exam-tab-btn { background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; }
+        .exam-tab-btn.active { background: var(--border); color: white; }
+        .exam-content { display: none; background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border); }
+        .exam-content.active { display: block; animation: fadeIn 0.3s; }
+        .exam-header { font-size: 1.8rem; margin-bottom: 30px; text-align: center; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 20px;}
+        .exam-section { margin-bottom: 40px; }
+        .exam-section h4 { font-size: 1.4rem; margin-bottom: 20px; color: white; }
+        .mcq-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .mcq-item { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; }
+        .mcq-item input { margin-left: 15px; margin-right: 5px; }
+        .exam-textarea { width: 100%; height: 100px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; padding: 15px; border-radius: 8px; margin-top: 10px; font-size: 1rem; resize: vertical; }
+        .action-btn { background: var(--success); color: white; border: none; padding: 15px 30px; font-size: 1.2rem; font-weight: 700; border-radius: 12px; cursor: pointer; width: 100%; margin-top: 20px; }
+
+        /* Integrated Sidebar Pomodoro */
+        .sidebar-pomodoro { margin-top: auto; padding: 25px; background: rgba(0,0,0,0.2); border-radius: 16px; border: 1px solid var(--border); text-align: center; }
+        .timer-display { font-size: 3rem; font-weight: 800; font-family: monospace; color: #f43f5e; text-shadow: 0 0 15px rgba(244, 63, 94, 0.4); margin-bottom: 15px; }
+        .pomo-controls button { background: var(--border); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 1rem; width: 45%; margin: 0 2%; transition: all 0.2s; }
+        .pomo-controls button:hover { background: #475569; transform: translateY(-2px); }
+
+        .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
+        .file-item-container { display: flex; align-items: center; gap: 15px; background: var(--bg-card); padding: 15px; border-radius: 12px; border: 1px solid var(--border); }
+        .custom-checkbox input { width: 24px; height: 24px; cursor: pointer; accent-color: var(--accent); }
+        .file-item { display: flex; align-items: center; gap: 15px; color: white; text-decoration: none; flex: 1; }
+        .file-icon { font-size: 1.5rem; color: #f43f5e; }
+        .gradient-text { font-size: 2.8rem; background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+        .date-badge { background: var(--accent); color: #0f172a; padding: 4px 10px; border-radius: 6px; font-weight: 700; margin-right: 10px; font-size: 0.9rem; }
+        .schedule-list { list-style: none; }
+        .schedule-list li { padding: 15px 0; border-bottom: 1px solid var(--border); color: #cbd5e1; }
+        .schedule-list li.exam-eve { background: rgba(244, 63, 94, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #f43f5e; margin: 10px 0; }
+        .schedule-list li.exam-day { background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #10b981; margin: 10px 0; }
+        .empty-state { color: var(--text-muted); font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo"><i class="fa-solid fa-graduation-cap"></i> Finals Pro</div>
+        <button class="nav-btn active" onclick="openTab('schedule_tab')">
+    <i class="fa-solid fa-calendar-alt"></i> Master Schedule
+</button>
+<div class="sidebar-pomodoro">
+    <h4 style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;"><i class="fa-solid fa-stopwatch"></i> Focus Timer</h4>
+    <div class="timer-display" id="pomo-timer">25:00</div>
+    <div class="pomo-controls">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="resetTimer()">Reset</button>
+    </div>
+</div>
+<button class="nav-btn" onclick="openTab('se')"><i class="fa-solid fa-laptop-code"></i> Intro to Software Engineering</button><button class="nav-btn" onclick="openTab('web')"><i class="fa-solid fa-globe"></i> Web Programming</button><button class="nav-btn" onclick="openTab('dsa')"><i class="fa-solid fa-network-wired"></i> Data Structures & Algorithms</button><button class="nav-btn" onclick="openTab('cyber')"><i class="fa-solid fa-shield-halved"></i> Intro to Cybersecurity</button><button class="nav-btn" onclick="openTab('arch')"><i class="fa-solid fa-microchip"></i> Computer Architecture</button><button class="nav-btn" onclick="openTab('advprog')"><i class="fa-solid fa-code"></i> Advanced Programming Apps</button>
+    </div>
+
+    <div class="main-content">
+        
+<div id="schedule_tab" class="tab-content active">
+    <div class="subject-header">
+        <h2 class="gradient-text">Ultimate Finals Schedule</h2>
+        <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px;">Optimized day-by-day battle plan. Every exam eve is perfectly reserved.</p>
+    </div>
+    
+    <div class="split-layout" style="grid-template-columns: 1fr;">
+        <div class="summary-card">
+            <h3 style="color: #34d399; margin-bottom: 20px;"><i class="fa-solid fa-map-location-dot"></i> Your Daily Master Plan</h3>
+            <ul class="schedule-list">
+                <li><span class="date-badge">May 31 - June 01</span> <strong>⭐ Advanced Prog & Beyond</strong> - No limits! Dive into the deep end!</li>
+                <li><span class="date-badge">June 02</span> <strong>DSA & Cyber Basics</strong> - Watch full courses, summarize risk management.</li>
+                <li><span class="date-badge">June 03</span> <strong>Arch & S.E. Basics</strong> - Logic Gates and UML diagrams.</li>
+                <li><span class="date-badge">June 04</span> <strong>S.E. & Web Deep Dive</strong> - Practice AJAX, PHP, and Testing diagrams.</li>
+                <li><span class="date-badge">June 05</span> <strong>DSA & Cyber Deep Dive</strong> - VisuAlgo practice for Trees/Graphs. Linux Commands.</li>
+                <li class="exam-eve"><span class="date-badge">June 06</span> ⚠️ <strong>S.E. Final Review (Exam Tomorrow)</strong> - Only study Software Engineering today.</li>
+                <li class="exam-day"><span class="date-badge">June 07</span> 🏆 <strong>S.E. EXAM</strong> | Evening: Start Web Review.</li>
+                <li class="exam-eve"><span class="date-badge">June 08</span> ⚠️ <strong>Web Final Review (Exam Tomorrow)</strong> - Only study Web today.</li>
+                <li class="exam-day"><span class="date-badge">June 09</span> 🏆 <strong>WEB EXAM</strong> | Evening: Start DSA Review.</li>
+                <li class="exam-eve"><span class="date-badge">June 10</span> ⚠️ <strong>DSA Final Review (Exam Tomorrow)</strong> - Only study Data Structures today.</li>
+                <li class="exam-day"><span class="date-badge">June 11</span> 🏆 <strong>DSA EXAM</strong> | Evening: Start Cyber Review.</li>
+                <li class="exam-eve"><span class="date-badge">June 12</span> ⚠️ <strong>Cyber Final Review (Exam Tomorrow)</strong> - Only study Cybersecurity today.</li>
+                <li class="exam-day"><span class="date-badge">June 13</span> 🏆 <strong>CYBER EXAM</strong> | Evening: Start Architecture Review.</li>
+                <li class="exam-eve"><span class="date-badge">June 14</span> ⚠️ <strong>Arch Final Review (Exam Tomorrow)</strong> - Only study Computer Architecture today.</li>
+                <li class="exam-day"><span class="date-badge">June 15</span> 🏆 <strong>ARCH EXAM</strong> | Evening: Start Advanced Prog Review.</li>
+                <li class="exam-eve"><span class="date-badge">June 16</span> ⚠️ <strong>Adv Prog Final Review (Exam Tomorrow)</strong> - Only study Advanced Prog today.</li>
+                <li class="exam-day" style="border-bottom: none;"><span class="date-badge">June 17</span> 🏆 <strong>ADV PROG EXAM</strong> | Freedom!</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div id="se" class="tab-content">
+        <div class="subject-header">
+            <h2><i class="fa-solid fa-laptop-code"></i> Intro to Software Engineering (CSE2001)</h2>
+            <div class="exam-badge"><i class="fa-regular fa-calendar-check"></i> Final: Sunday, June 07, 2026 - 12:30 PM</div>
+        </div>
+        
+        <div class="inner-tabs">
+            <button class="inner-tab-btn active" onclick="switchInnerTab(event, 'se_materials')"><i class="fa-solid fa-photo-film"></i> Short Crash Courses</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'se_summary')"><i class="fa-solid fa-book-open"></i> Master Summary</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'se_code')"><i class="fa-solid fa-code"></i> Code Vault</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'se_flash')" style="color: #f59e0b;"><i class="fa-solid fa-layer-group"></i> AI Flashcards</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'se_exam')"><i class="fa-solid fa-file-pen"></i> Practice Exams (3)</button>
+        </div>
+
+        <div class="inner-tab-content active" id="se_materials">
+            <div style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                <h4 style="color: #f43f5e; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Exam Mode</h4>
+                <p style="color: #e2e8f0;">All videos below have been replaced with <strong>short, high-yield Arabic crash courses and summaries</strong>. Skip the 15-hour playlists. Focus on these.</p>
+            </div>
+            
+            <h3 style="color: white; margin-bottom: 20px;">Arabic Crash Courses & Interactive Tools</h3>
+            <div class="video-grid" style="margin-bottom: 40px;"><div class="video-card">
+                <div class="vid-header">
+                    <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Software Eng. in 25 Mins (Arabic)</span>
+                </div>
+                <iframe src="https://www.youtube.com/embed/s6bUdo3AOM0" frameborder="0" allowfullscreen></iframe>
+            </div><a href="https://www.youtube.com/results?search_query=UML+شرح+عربي+مختصر" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> UML Diagrams Summary (Arabic) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=Agile+Scrum+شرح+في+عشر+دقائق" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Agile & Scrum in 10 Mins (Arabic) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=Software+Testing+مراجعة+سريعة" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Software Testing Basics (Arabic) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a></div>
+            
+            <h3 style="color: white; margin-bottom: 20px;">Local Study Checklists</h3>
+            <div class="file-grid">
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_0">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5C7%20th%20Exam.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\7 th Exam.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">7 th Exam.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_1">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5C7%20th%20Template%20(1).pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\7 th Template (1).pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">7 th Template (1).pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_2">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5C7%20th%20Template.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\7 th Template.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">7 th Template.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_3">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%202%20%20-%20Software%20Process.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 2  - Software Process.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 2  - Software Process.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_4">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%203%20%20-%20Software%20Process%20Requirements.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 3  - Software Process Requirements.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 3  - Software Process Requirements.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_5">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%204%20%20-%20Software%20Process%20Requirements.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 4  - Software Process Requirements.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 4  - Software Process Requirements.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_6">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%205%20%20-%20Software%20Process%20Requirements.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 5  - Software Process Requirements.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 5  - Software Process Requirements.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_7">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%206%20%20-%20Activity%20Diagram.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 6  - Activity Diagram.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 6  - Activity Diagram.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_8">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%207%20%20-%20Use-Case%20Model.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 7  - Use-Case Model.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 7  - Use-Case Model.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_9">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%208-Developing%20Product.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 8-Developing Product.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 8-Developing Product.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_10">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%209-Product%20Testing%20and%20Integration.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 9-Product Testing and Integration.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 9-Product Testing and Integration.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_11">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture-1.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture-1.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture-1.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_12">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5Csoftware_process_case_studies%20.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\software_process_case_studies .pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">software_process_case_studies .pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_13">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5CSECTION%5CSection%2011%20INTRO%20TO%20SE.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\SECTION\Section 11 INTRO TO SE.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Section 11 INTRO TO SE.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_14">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5CSECTION%5CSection%206%20INTRO%20TO%20SE.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\SECTION\Section 6 INTRO TO SE.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Section 6 INTRO TO SE.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_se_15">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CS.E%5CSECTION%5CSection%209%20INTRO%20TO%20SE.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\SECTION\Section 9 INTRO TO SE.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Section 9 INTRO TO SE.pdf</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+
+        <div class="inner-tab-content" id="se_summary">
+            <div class="summary-card">
+                
+            <h4>1. Software Development Life Cycle (SDLC)</h4>
+            <p>The framework defining tasks performed at each step in the software development process. Key phases include: Requirements Analysis, Design, Implementation, Testing, Deployment, and Maintenance.</p>
+            <h4>2. Software Processes</h4>
+            <p><strong>Waterfall:</strong> Sequential, rigid. Good for well-defined requirements.<br>
+            <strong>Agile:</strong> Iterative, flexible, customer-focused. Uses sprints (e.g., Scrum).<br>
+            <strong>Incremental/Iterative:</strong> Builds the system in small, working pieces.</p>
+            <h4>3. UML (Unified Modeling Language)</h4>
+            <p><strong>Use Case Diagram:</strong> Shows actors and their interactions with the system (Include/Extend).<br>
+            <strong>Activity Diagram:</strong> Shows the flow of control or object flow with decision nodes, forks, and joins.<br>
+            <strong>Class Diagram:</strong> Shows system structure, classes, attributes, operations, and relationships (Inheritance, Association, Aggregation).</p>
+        
+            </div>
+        </div>
+
+        <div class="inner-tab-content" id="se_code">
+            <div class="code-card">
+                <pre><code>// ==========================================
+// FULL CONTEXT: UML RELATIONSHIPS IN JAVA
+// ==========================================
+
+// 1. INHERITANCE (IS-A Relationship)
+// The child class inherits fields and methods from the parent.
+public class Employee {
+    protected String name;
+    protected double salary;
+    public void calculatePay() { /* Base logic */ }
+}
+public class Developer extends Employee {
+    private String programmingLanguage;
+    @Override
+    public void calculatePay() { /* Developer specific logic */ }
+}
+
+// 2. AGGREGATION (HAS-A, Weak Relationship)
+// The child can exist independently of the parent.
+public class Department {
+    private String deptName;
+    // Department HAS Professors. If Department is deleted, Professors still exist.
+    private List&lt;Professor&gt; professors; 
+    
+    public Department(String name, List&lt;Professor&gt; profs) {
+        this.deptName = name;
+        this.professors = profs;
+    }
+}
+
+// 3. COMPOSITION (Part-Of, Strong Relationship)
+// The child is strictly bound to the lifecycle of the parent.
+public class University {
+    // The University creates the Engine. If University is destroyed, Engine is destroyed.
+    private Library mainLibrary;
+    
+    public University() {
+        this.mainLibrary = new Library("Central Library"); 
+    }
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="inner-tab-content" id="se_flash">
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+                <h3 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-bolt"></i> Interactive AI Study Cards</h3>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">The highest-yield concepts for Intro to Software Engineering. Click any card to flip it and reveal the expert answer. Memorize these perfectly before the exam.</p>
+            </div>
+            <div class="flashcard-grid">
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What is the primary difference between Agile and Waterfall?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>Waterfall is rigid, sequential, and requires all planning upfront. Agile is flexible, iterative, and builds the software in small sprints based on continuous client feedback.</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What does an <<include>> relationship mean in a Use Case Diagram?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>It means the base use case MUST execute the included use case to complete successfully (e.g., 'Borrow Book' includes 'Login').</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What is the difference between System Testing and Acceptance Testing?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>System Testing checks if the whole integrated system meets technical requirements. Acceptance Testing is done by the client to verify if it meets their business needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="inner-tab-content" id="se_exam">
+            <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
+            <h3 class="exam-header">Intro to Software Engineering (CSE2001) - Full Mock Exam A (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eAq1"> A) Option 1 <input type="radio" name="eAq1"> B) Option 2 <input type="radio" name="eAq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eAq2"> A) Option 1 <input type="radio" name="eAq2"> B) Option 2 <input type="radio" name="eAq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eAq3"> A) Option 1 <input type="radio" name="eAq3"> B) Option 2 <input type="radio" name="eAq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eAq4"> A) Option 1 <input type="radio" name="eAq4"> B) Option 2 <input type="radio" name="eAq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eAq5"> A) Option 1 <input type="radio" name="eAq5"> B) Option 2 <input type="radio" name="eAq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eAq6"> A) Option 1 <input type="radio" name="eAq6"> B) Option 2 <input type="radio" name="eAq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+        </div><div class="exam-content " data-exam="B">
+            <h3 class="exam-header">Intro to Software Engineering (CSE2001) - Full Mock Exam B (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eBq1"> A) Option 1 <input type="radio" name="eBq1"> B) Option 2 <input type="radio" name="eBq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eBq2"> A) Option 1 <input type="radio" name="eBq2"> B) Option 2 <input type="radio" name="eBq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eBq3"> A) Option 1 <input type="radio" name="eBq3"> B) Option 2 <input type="radio" name="eBq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eBq4"> A) Option 1 <input type="radio" name="eBq4"> B) Option 2 <input type="radio" name="eBq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eBq5"> A) Option 1 <input type="radio" name="eBq5"> B) Option 2 <input type="radio" name="eBq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eBq6"> A) Option 1 <input type="radio" name="eBq6"> B) Option 2 <input type="radio" name="eBq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+        </div><div class="exam-content " data-exam="C">
+            <h3 class="exam-header">Intro to Software Engineering (CSE2001) - Full Mock Exam C (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eCq1"> A) Option 1 <input type="radio" name="eCq1"> B) Option 2 <input type="radio" name="eCq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eCq2"> A) Option 1 <input type="radio" name="eCq2"> B) Option 2 <input type="radio" name="eCq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eCq3"> A) Option 1 <input type="radio" name="eCq3"> B) Option 2 <input type="radio" name="eCq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eCq4"> A) Option 1 <input type="radio" name="eCq4"> B) Option 2 <input type="radio" name="eCq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eCq5"> A) Option 1 <input type="radio" name="eCq5"> B) Option 2 <input type="radio" name="eCq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eCq6"> A) Option 1 <input type="radio" name="eCq6"> B) Option 2 <input type="radio" name="eCq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
+        </div>
+        </div>
+    </div>
+    
+    <div id="web" class="tab-content">
+        <div class="subject-header">
+            <h2><i class="fa-solid fa-globe"></i> Web Programming (CCS2305)</h2>
+            <div class="exam-badge"><i class="fa-regular fa-calendar-check"></i> Final: Tuesday, June 09, 2026 - 12:30 PM</div>
+        </div>
+        
+        <div class="inner-tabs">
+            <button class="inner-tab-btn active" onclick="switchInnerTab(event, 'web_materials')"><i class="fa-solid fa-photo-film"></i> Short Crash Courses</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'web_summary')"><i class="fa-solid fa-book-open"></i> Master Summary</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'web_code')"><i class="fa-solid fa-code"></i> Code Vault</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'web_flash')" style="color: #f59e0b;"><i class="fa-solid fa-layer-group"></i> AI Flashcards</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'web_exam')"><i class="fa-solid fa-file-pen"></i> Practice Exams (3)</button>
+        </div>
+
+        <div class="inner-tab-content active" id="web_materials">
+            <div style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                <h4 style="color: #f43f5e; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Exam Mode</h4>
+                <p style="color: #e2e8f0;">All videos below have been replaced with <strong>short, high-yield Arabic crash courses and summaries</strong>. Skip the 15-hour playlists. Focus on these.</p>
+            </div>
+            
+            <h3 style="color: white; margin-bottom: 20px;">Arabic Crash Courses & Interactive Tools</h3>
+            <div class="video-grid" style="margin-bottom: 40px;"><a href="https://www.youtube.com/results?search_query=Elzero+HTML+في+فيديو+واحد" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Elzero: HTML Crash Course <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=Elzero+Flexbox+Grid+مراجعة" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Elzero: CSS Flexbox & Grid in 1 Hour <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=JavaScript+DOM+في+نصف+ساعة" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> JavaScript DOM in 30 Mins (Arabic) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=PHP+MySQL+شرح+تسجيل+الدخول" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> PHP & MySQL Secure Forms (Arabic) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a></div>
+            
+            <h3 style="color: white; margin-bottom: 20px;">Local Study Checklists</h3>
+            <div class="file-grid">
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_web_0">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CWEB%5CLecture13%20jQUERY%20CS33_CS644.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Lecture13 jQUERY CS33_CS644.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture13 jQUERY CS33_CS644.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_web_1">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CWEB%5CPHP%20Intro%20variables%20and%20conditional%20statements.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\PHP Intro variables and conditional statements.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">PHP Intro variables and conditional statements.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_web_2">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-1-Introduction%20to%20Web%20Development-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-1-Introduction to Web Development-edited.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Week-1-Introduction to Web Development-edited.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_web_3">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-11-%20PHP%20Forms%20and%20Arrays.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-11- PHP Forms and Arrays.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Week-11- PHP Forms and Arrays.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_web_4">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-12-%20AJAX-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-12- AJAX-edited.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Week-12- AJAX-edited.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_web_5">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-2-Introduction%20to%20HTML-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-2-Introduction to HTML-edited.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Week-2-Introduction to HTML-edited.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_web_6">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-3-%20HTML%20%20Structure%20Elements-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-3- HTML  Structure Elements-edited.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Week-3- HTML  Structure Elements-edited.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_web_7">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-3-%20HTML%20%20Tables-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-3- HTML  Tables-edited.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Week-3- HTML  Tables-edited.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_web_8">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-4-%20CSS%20%20Introduction-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-4- CSS  Introduction-edited.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Week-4- CSS  Introduction-edited.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_web_9">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-4-%20HTML%20Forms.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-4- HTML Forms.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Week-4- HTML Forms.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_web_10">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-6-%20CSS%20%20colors%2C%20images%2C%20links-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-6- CSS  colors, images, links-edited.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Week-6- CSS  colors, images, links-edited.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_web_11">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-7-%20JavaScript%20%20Introduction-updated-dr.mohamed-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-7- JavaScript  Introduction-updated-dr.mohamed-edited.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Week-7- JavaScript  Introduction-updated-dr.mohamed-edited.pdf</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+
+        <div class="inner-tab-content" id="web_summary">
+            <div class="summary-card">
+                
+            <h4>1. HTML5 & CSS3</h4>
+            <p><strong>Semantic HTML:</strong> Tags like &lt;header&gt;, &lt;article&gt;, &lt;section&gt; for accessibility and SEO.<br>
+            <strong>CSS Selectors & Layouts:</strong> Flexbox (1D layouts) and CSS Grid (2D layouts). Media queries for responsiveness.</p>
+            <h4>2. Vanilla JavaScript</h4>
+            <p><strong>DOM Manipulation:</strong> document.getElementById, querySelector, createElement.<br>
+            <strong>Event Listeners:</strong> addEventListener('click', function).<br>
+            <strong>ES6+:</strong> Let/Const, Arrow functions, Template literals.</p>
+            <h4>3. PHP Fundamentals</h4>
+            <p><strong>Superglobals:</strong> $_GET, $_POST, $_SESSION, $_COOKIE.<br>
+            <strong>Form Handling:</strong> Securely processing user input, avoiding XSS using htmlspecialchars().<br>
+        
+            </div>
+        </div>
+
+        <div class="inner-tab-content" id="web_code">
+            <div class="code-card">
+                <pre><code>// ==========================================
+// FULL CONTEXT: SECURE PHP FORM REGISTRATION
+// ==========================================
+
+&lt;?php
+// 1. Establish Database Connection using PDO (Secure against SQL Injection)
+$host = '127.0.0.1';
+$db   = 'university_db';
+$user = 'root';
+$pass = '';
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            =&gt; PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   =&gt; false,
+];
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (PDOException $e) {
+    throw new PDOException($e-&gt;getMessage(), (int)$e-&gt;getCode());
+}
+
+// 2. Handle POST Request Securely
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Sanitize Input (Prevent XSS)
+    $username = htmlspecialchars(trim($_POST["username"]));
+    $raw_password = $_POST["password"];
+    
+    // Hash Password (Never store plaintext)
+    $hashed_password = password_hash($raw_password, PASSWORD_DEFAULT);
+    
+    // 3. Prepare and Execute SQL Statement (Prevent SQL Injection)
+    $stmt = $pdo-&gt;prepare('INSERT INTO users (username, password) VALUES (?, ?)');
+    if ($stmt-&gt;execute([$username, $hashed_password])) {
+        echo "&lt;p style='color:green'&gt;Registration Successful!&lt;/p&gt;";
+    } else {
+        echo "&lt;p style='color:red'&gt;Registration Failed.&lt;/p&gt;";
+    }
+}
+?&gt;
+
+&lt;!-- ========================================== --&gt;
+&lt;!-- FULL CONTEXT: AJAX FETCH API DATA LOAD     --&gt;
+&lt;!-- ========================================== --&gt;
+&lt;script&gt;
+document.getElementById('loadBtn').addEventListener('click', () =&gt; {
+    fetch('api/get_students.php')
+        .then(response =&gt; {
+            if (!response.ok) throw new Error("Network response was not ok");
+            return response.json();
+        })
+        .then(data =&gt; {
+            const container = document.getElementById('studentList');
+            container.innerHTML = ''; // Clear existing
+            data.forEach(student =&gt; {
+                const li = document.createElement('li');
+                li.textContent = student.name + ' (GPA: ' + student.gpa + ')';
+                container.appendChild(li);
+            });
+        })
+        .catch(error =&gt; console.error("Fetch error:", error));
+});
+&lt;/script&gt;</code></pre>
+            </div>
+        </div>
+
+        <div class="inner-tab-content" id="web_flash">
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+                <h3 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-bolt"></i> Interactive AI Study Cards</h3>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">The highest-yield concepts for Web Programming. Click any card to flip it and reveal the expert answer. Memorize these perfectly before the exam.</p>
+            </div>
+            <div class="flashcard-grid">
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>Why should we use htmlspecialchars() in PHP?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>To convert special characters to HTML entities. This prevents Cross-Site Scripting (XSS) attacks by stopping hackers from injecting malicious JavaScript into forms.</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What is the difference between $_GET and $_POST?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>$_GET appends data to the URL (visible, insecure, limited size). $_POST sends data in the HTTP body (hidden, secure for passwords, larger capacity).</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What is AJAX?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>Asynchronous JavaScript and XML. It allows a web page to fetch data from the server and update a specific part of the page without refreshing the whole browser window.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="inner-tab-content" id="web_exam">
+            <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
+            <h3 class="exam-header">Web Programming (CCS2305) - Full Mock Exam A (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eAq1"> A) Option 1 <input type="radio" name="eAq1"> B) Option 2 <input type="radio" name="eAq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eAq2"> A) Option 1 <input type="radio" name="eAq2"> B) Option 2 <input type="radio" name="eAq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eAq3"> A) Option 1 <input type="radio" name="eAq3"> B) Option 2 <input type="radio" name="eAq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eAq4"> A) Option 1 <input type="radio" name="eAq4"> B) Option 2 <input type="radio" name="eAq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eAq5"> A) Option 1 <input type="radio" name="eAq5"> B) Option 2 <input type="radio" name="eAq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eAq6"> A) Option 1 <input type="radio" name="eAq6"> B) Option 2 <input type="radio" name="eAq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+        </div><div class="exam-content " data-exam="B">
+            <h3 class="exam-header">Web Programming (CCS2305) - Full Mock Exam B (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eBq1"> A) Option 1 <input type="radio" name="eBq1"> B) Option 2 <input type="radio" name="eBq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eBq2"> A) Option 1 <input type="radio" name="eBq2"> B) Option 2 <input type="radio" name="eBq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eBq3"> A) Option 1 <input type="radio" name="eBq3"> B) Option 2 <input type="radio" name="eBq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eBq4"> A) Option 1 <input type="radio" name="eBq4"> B) Option 2 <input type="radio" name="eBq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eBq5"> A) Option 1 <input type="radio" name="eBq5"> B) Option 2 <input type="radio" name="eBq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eBq6"> A) Option 1 <input type="radio" name="eBq6"> B) Option 2 <input type="radio" name="eBq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+        </div><div class="exam-content " data-exam="C">
+            <h3 class="exam-header">Web Programming (CCS2305) - Full Mock Exam C (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eCq1"> A) Option 1 <input type="radio" name="eCq1"> B) Option 2 <input type="radio" name="eCq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eCq2"> A) Option 1 <input type="radio" name="eCq2"> B) Option 2 <input type="radio" name="eCq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eCq3"> A) Option 1 <input type="radio" name="eCq3"> B) Option 2 <input type="radio" name="eCq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eCq4"> A) Option 1 <input type="radio" name="eCq4"> B) Option 2 <input type="radio" name="eCq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eCq5"> A) Option 1 <input type="radio" name="eCq5"> B) Option 2 <input type="radio" name="eCq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eCq6"> A) Option 1 <input type="radio" name="eCq6"> B) Option 2 <input type="radio" name="eCq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
+        </div>
+        </div>
+    </div>
+    
+    <div id="dsa" class="tab-content">
+        <div class="subject-header">
+            <h2><i class="fa-solid fa-network-wired"></i> Data Structures & Algorithms (CCS2401)</h2>
+            <div class="exam-badge"><i class="fa-regular fa-calendar-check"></i> Final: Thursday, June 11, 2026 - 10:00 AM</div>
+        </div>
+        
+        <div class="inner-tabs">
+            <button class="inner-tab-btn active" onclick="switchInnerTab(event, 'dsa_materials')"><i class="fa-solid fa-photo-film"></i> Short Crash Courses</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'dsa_summary')"><i class="fa-solid fa-book-open"></i> Master Summary</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'dsa_code')"><i class="fa-solid fa-code"></i> Code Vault</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'dsa_flash')" style="color: #f59e0b;"><i class="fa-solid fa-layer-group"></i> AI Flashcards</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'dsa_exam')"><i class="fa-solid fa-file-pen"></i> Practice Exams (3)</button>
+        </div>
+
+        <div class="inner-tab-content active" id="dsa_materials">
+            <div style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                <h4 style="color: #f43f5e; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Exam Mode</h4>
+                <p style="color: #e2e8f0;">All videos below have been replaced with <strong>short, high-yield Arabic crash courses and summaries</strong>. Skip the 15-hour playlists. Focus on these.</p>
+            </div>
+            
+            <h3 style="color: white; margin-bottom: 20px;">Arabic Crash Courses & Interactive Tools</h3>
+            <div class="video-grid" style="margin-bottom: 40px;"><a href="https://www.youtube.com/results?search_query=عادل+نسيم+مراجعة+Linked+List" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Adel Nasim: Array & Linked List (Summary) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=عادل+نسيم+مراجعة+Trees+BST" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Adel Nasim: Trees & BST (Summary) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=خوارزميات+الترتيب+في+عشرين+دقيقة" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Sorting Algorithms in 20 Mins (Arabic) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://visualgo.net/en/sorting" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> 🧠 VisuAlgo (Interactive Sorting) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://visualgo.net/en/bst" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> 🧠 VisuAlgo (Interactive BST) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a></div>
+            
+            <h3 style="color: white; margin-bottom: 20px;">Local Study Checklists</h3>
+            <div class="file-grid">
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_dsa_0">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCCS2401-Data%20Structures%20and%20Algorithms_Intro.pptx" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CCS2401-Data Structures and Algorithms_Intro.pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">CCS2401-Data Structures and Algorithms_Intro.pptx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_dsa_1">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCS-Fundamentals.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS-Fundamentals.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">CS-Fundamentals.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_dsa_2">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCS143_Feb2019_13_Searching_Sorting.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS143_Feb2019_13_Searching_Sorting.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">CS143_Feb2019_13_Searching_Sorting.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_dsa_3">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCS212_Feb2020_02_LinkedLists_Single.pptx" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS212_Feb2020_02_LinkedLists_Single.pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">CS212_Feb2020_02_LinkedLists_Single.pptx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_dsa_4">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCS212_Feb2020_06_Trees.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS212_Feb2020_06_Trees.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">CS212_Feb2020_06_Trees.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_dsa_5">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCS212_Feb2020_07_Trees_2-Traversal-.pptx.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS212_Feb2020_07_Trees_2-Traversal-.pptx.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">CS212_Feb2020_07_Trees_2-Traversal-.pptx.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_dsa_6">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCS212_Feb2020_08_Graphs.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS212_Feb2020_08_Graphs.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">CS212_Feb2020_08_Graphs.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_dsa_7">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5Clinked%20list%20part1.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\linked list part1.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">linked list part1.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_dsa_8">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CSection3-Algortihm-.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\Section3-Algortihm-.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Section3-Algortihm-.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_dsa_9">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5Csheet%201.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\sheet 1.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">sheet 1.pdf</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+
+        <div class="inner-tab-content" id="dsa_summary">
+            <div class="summary-card">
+                
+            <h4>1. Linked Lists</h4>
+            <p>Linear collection of data where elements (nodes) contain a data field and a reference (link) to the next node. Types: Singly, Doubly, Circular. Excellent for dynamic sizing; poor for random access (O(n)).</p>
+            <h4>2. Trees</h4>
+            <p>Hierarchical structure with a root node and child nodes.<br>
+            <strong>Binary Search Tree (BST):</strong> Left child is smaller, right child is larger. Search/Insert/Delete is O(log n) average.<br>
+            <strong>Traversals:</strong> In-order (Left-Root-Right), Pre-order (Root-Left-Right), Post-order (Left-Right-Root).</p>
+            <h4>3. Graphs</h4>
+            <p>A set of vertices (nodes) and edges connecting them. Can be directed/undirected, weighted/unweighted.<br>
+            <strong>BFS (Breadth-First Search):</strong> Uses a Queue. Good for shortest path on unweighted graphs.<br>
+            <strong>DFS (Depth-First Search):</strong> Uses a Stack/Recursion. Good for exploring all paths.</p>
+        
+            </div>
+        </div>
+
+        <div class="inner-tab-content" id="dsa_code">
+            <div class="code-card">
+                <pre><code>// ==========================================
+// FULL CONTEXT: BINARY SEARCH TREE (JAVA)
+// ==========================================
+
+class Node {
+    int key;
+    Node left, right;
+
+    public Node(int item) {
+        key = item;
+        left = right = null;
+    }
+}
+
+class BinarySearchTree {
+    Node root;
+
+    BinarySearchTree() { root = null; }
+
+    // 1. INSERTION ALGORITHM (O(log N))
+    void insert(int key) { root = insertRec(root, key); }
+    
+    Node insertRec(Node root, int key) {
+        // Base Case: If tree is empty, return a new node
+        if (root == null) {
+            root = new Node(key);
+            return root;
+        }
+        // Traverse down the tree
+        if (key &lt; root.key)
+            root.left = insertRec(root.left, key);
+        else if (key &gt; root.key)
+            root.right = insertRec(root.right, key);
+        return root;
+    }
+
+    // 2. INORDER TRAVERSAL (Prints sorted!)
+    void inorder() { inorderRec(root); }
+    
+    void inorderRec(Node root) {
+        if (root != null) {
+            inorderRec(root.left);
+            System.out.print(root.key + " ");
+            inorderRec(root.right);
+        }
+    }
+}
+
+// ==========================================
+// FULL CONTEXT: MERGE SORT ALGORITHM (O(N log N))
+// ==========================================
+
+void sort(int arr[], int l, int r) {
+    if (l &lt; r) {
+        // Find the middle point
+        int m = l + (r - l) / 2;
+
+        // Sort first and second halves
+        sort(arr, l, m);
+        sort(arr, m + 1, r);
+
+        // Merge the sorted halves
+        merge(arr, l, m, r);
+    }
+}
+
+void merge(int arr[], int l, int m, int r) {
+    int n1 = m - l + 1;
+    int n2 = r - m;
+
+    int L[] = new int[n1];
+    int R[] = new int[n2];
+
+    for (int i = 0; i &lt; n1; ++i) L[i] = arr[l + i];
+    for (int j = 0; j &lt; n2; ++j) R[j] = arr[m + 1 + j];
+
+    int i = 0, j = 0, k = l;
+    while (i &lt; n1 && j &lt; n2) {
+        if (L[i] &lt;= R[j]) { arr[k] = L[i]; i++; } 
+        else { arr[k] = R[j]; j++; }
+        k++;
+    }
+
+    while (i &lt; n1) { arr[k] = L[i]; i++; k++; }
+    while (j &lt; n2) { arr[k] = R[j]; j++; k++; }
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="inner-tab-content" id="dsa_flash">
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+                <h3 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-bolt"></i> Interactive AI Study Cards</h3>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">The highest-yield concepts for Data Structures & Algorithms. Click any card to flip it and reveal the expert answer. Memorize these perfectly before the exam.</p>
+            </div>
+            <div class="flashcard-grid">
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What is the Time Complexity of Binary Search?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>O(log N). Because it cuts the search space in half at every step, making it incredibly fast for sorted arrays.</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What is the property of a Binary Search Tree (BST)?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>For any given node, all elements in its left subtree are smaller, and all elements in its right subtree are larger.</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What is the difference between BFS and DFS in Graphs?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>BFS explores level by level (like ripples in a pond) and uses a Queue. DFS explores as deep as possible before backtracking (like solving a maze) and uses a Stack or Recursion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="inner-tab-content" id="dsa_exam">
+            <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
+            <h3 class="exam-header">Data Structures & Algorithms (CCS2401) - Full Mock Exam A (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eAq1"> A) Option 1 <input type="radio" name="eAq1"> B) Option 2 <input type="radio" name="eAq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eAq2"> A) Option 1 <input type="radio" name="eAq2"> B) Option 2 <input type="radio" name="eAq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eAq3"> A) Option 1 <input type="radio" name="eAq3"> B) Option 2 <input type="radio" name="eAq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eAq4"> A) Option 1 <input type="radio" name="eAq4"> B) Option 2 <input type="radio" name="eAq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eAq5"> A) Option 1 <input type="radio" name="eAq5"> B) Option 2 <input type="radio" name="eAq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eAq6"> A) Option 1 <input type="radio" name="eAq6"> B) Option 2 <input type="radio" name="eAq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+        </div><div class="exam-content " data-exam="B">
+            <h3 class="exam-header">Data Structures & Algorithms (CCS2401) - Full Mock Exam B (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eBq1"> A) Option 1 <input type="radio" name="eBq1"> B) Option 2 <input type="radio" name="eBq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eBq2"> A) Option 1 <input type="radio" name="eBq2"> B) Option 2 <input type="radio" name="eBq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eBq3"> A) Option 1 <input type="radio" name="eBq3"> B) Option 2 <input type="radio" name="eBq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eBq4"> A) Option 1 <input type="radio" name="eBq4"> B) Option 2 <input type="radio" name="eBq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eBq5"> A) Option 1 <input type="radio" name="eBq5"> B) Option 2 <input type="radio" name="eBq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eBq6"> A) Option 1 <input type="radio" name="eBq6"> B) Option 2 <input type="radio" name="eBq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+        </div><div class="exam-content " data-exam="C">
+            <h3 class="exam-header">Data Structures & Algorithms (CCS2401) - Full Mock Exam C (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eCq1"> A) Option 1 <input type="radio" name="eCq1"> B) Option 2 <input type="radio" name="eCq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eCq2"> A) Option 1 <input type="radio" name="eCq2"> B) Option 2 <input type="radio" name="eCq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eCq3"> A) Option 1 <input type="radio" name="eCq3"> B) Option 2 <input type="radio" name="eCq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eCq4"> A) Option 1 <input type="radio" name="eCq4"> B) Option 2 <input type="radio" name="eCq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eCq5"> A) Option 1 <input type="radio" name="eCq5"> B) Option 2 <input type="radio" name="eCq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eCq6"> A) Option 1 <input type="radio" name="eCq6"> B) Option 2 <input type="radio" name="eCq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
+        </div>
+        </div>
+    </div>
+    
+    <div id="cyber" class="tab-content">
+        <div class="subject-header">
+            <h2><i class="fa-solid fa-shield-halved"></i> Intro to Cybersecurity (CCY2001)</h2>
+            <div class="exam-badge"><i class="fa-regular fa-calendar-check"></i> Final: Saturday, June 13, 2026 - 12:30 PM</div>
+        </div>
+        
+        <div class="inner-tabs">
+            <button class="inner-tab-btn active" onclick="switchInnerTab(event, 'cyber_materials')"><i class="fa-solid fa-photo-film"></i> Short Crash Courses</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'cyber_summary')"><i class="fa-solid fa-book-open"></i> Master Summary</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'cyber_code')"><i class="fa-solid fa-code"></i> Code Vault</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'cyber_flash')" style="color: #f59e0b;"><i class="fa-solid fa-layer-group"></i> AI Flashcards</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'cyber_exam')"><i class="fa-solid fa-file-pen"></i> Practice Exams (3)</button>
+        </div>
+
+        <div class="inner-tab-content active" id="cyber_materials">
+            <div style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                <h4 style="color: #f43f5e; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Exam Mode</h4>
+                <p style="color: #e2e8f0;">All videos below have been replaced with <strong>short, high-yield Arabic crash courses and summaries</strong>. Skip the 15-hour playlists. Focus on these.</p>
+            </div>
+            
+            <h3 style="color: white; margin-bottom: 20px;">Arabic Crash Courses & Interactive Tools</h3>
+            <div class="video-grid" style="margin-bottom: 40px;"><a href="https://www.youtube.com/results?search_query=اساسيات+الامن+السيبراني+في+ساعة" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Cyber Security Fundamentals (Short) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=التشفير+شرح+عربي+مختصر" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Cryptography Summary (Arabic) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=اوامر+لينكس+اساسيات" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Linux Commands Crash Course <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=Risk+Management+شرح+عربي" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Risk Management in Cyber <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a></div>
+            
+            <h3 style="color: white; margin-bottom: 20px;">Local Study Checklists</h3>
+            <div class="file-grid">
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_0">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5CCybersecurity_Playbook.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\Cybersecurity_Playbook.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Cybersecurity_Playbook.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_1">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5CCybersecurity_Projects_Compendium%20V3.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\Cybersecurity_Projects_Compendium V3.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Cybersecurity_Projects_Compendium V3.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_2">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Ccybersec_crypto_Lec_5.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\cybersec_crypto_Lec_5.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">cybersec_crypto_Lec_5.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_3">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5CCybersec_Lec3.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\Cybersec_Lec3.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Cybersec_Lec3.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_4">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Ccybersec_secure_computer_Lec_4.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\cybersec_secure_computer_Lec_4.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">cybersec_secure_computer_Lec_4.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_5">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5CE_commerce_cybersec.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\E_commerce_cybersec.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">E_commerce_cybersec.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_6">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Cintroduction_to_cybersec_Lec2.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\introduction_to_cybersec_Lec2.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">introduction_to_cybersec_Lec2.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_7">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Clec1_cybersec.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\lec1_cybersec.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">lec1_cybersec.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_8">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5CRisk_Management_Lect_11.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\Risk_Management_Lect_11.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Risk_Management_Lect_11.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_9">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Cxor_cipher_solution.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\xor_cipher_solution.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">xor_cipher_solution.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_10">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Csection%20exam%5CCybersceurity-Lab1.pptx" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\section exam\Cybersceurity-Lab1.pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Cybersceurity-Lab1.pptx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_11">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Csection%20exam%5CCybersceurity-Lab2.pptx" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\section exam\Cybersceurity-Lab2.pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Cybersceurity-Lab2.pptx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_12">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Csection%20exam%5CCybersceurity-Lab3%20-%20Copy.pptx" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\section exam\Cybersceurity-Lab3 - Copy.pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Cybersceurity-Lab3 - Copy.pptx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_cyber_13">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Csection%20exam%5Clinux%20commands%20light.pptx" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\section exam\linux commands light.pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">linux commands light.pptx</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+
+        <div class="inner-tab-content" id="cyber_summary">
+            <div class="summary-card">
+                
+            <h4>1. Core Concepts (CIA Triad)</h4>
+            <p><strong>Confidentiality:</strong> Preventing unauthorized disclosure (Encryption, Access Control).<br>
+            <strong>Integrity:</strong> Preventing unauthorized modification (Hashing, Digital Signatures).<br>
+            <strong>Availability:</strong> Ensuring authorized access (Backups, Redundancy, DDoS mitigation).</p>
+            <h4>2. Risk Management</h4>
+            <p>The process of identifying, assessing, and mitigating risks.<br>
+            <strong>Risk = Threat × Vulnerability × Impact.</strong><br>
+            Responses: Avoid, Transfer (Insurance), Mitigate (Controls), Accept.</p>
+            <h4>3. Cryptography</h4>
+            <p><strong>Symmetric:</strong> Same key to encrypt and decrypt (AES, DES). Fast, but key distribution is hard.<br>
+            <strong>Asymmetric:</strong> Public and Private key pair (RSA, ECC). Secure key exchange, but slower.<br>
+            <strong>Hashing:</strong> One-way function mapping arbitrary data to a fixed-size string (SHA-256). Used for password storage and data integrity checks.</p>
+        
+            </div>
+        </div>
+
+        <div class="inner-tab-content" id="cyber_code">
+            <div class="code-card">
+                <pre><code># ==========================================
+# FULL CONTEXT: ESSENTIAL LINUX COMMANDS
+# ==========================================
+
+# 1. FILE & DIRECTORY PERMISSIONS (chmod)
+# Format: chmod [User][Group][Others] file
+# Read(r)=4, Write(w)=2, Execute(x)=1
+$ chmod 755 script.sh  
+# User: 7 (4+2+1) -&gt; rwx
+# Group: 5 (4+1) -&gt; r-x
+# Others: 5 (4+1) -&gt; r-x
+
+$ chmod 600 private_key.pem 
+# User: 6 (4+2) -&gt; rw-
+# Group: 0 -&gt; ---
+# Others: 0 -&gt; ---
+
+# 2. NETWORKING COMMANDS
+$ ping 8.8.8.8           # Check ICMP connectivity to Google DNS
+$ ifconfig               # View network interfaces and IP addresses (deprecated, use 'ip a')
+$ netstat -tulpn         # Show active listening ports and processes
+$ nmap -sV 192.168.1.1   # Scan open ports and service versions on a target
+
+# 3. TEXT MANIPULATION & SEARCHING
+$ grep "Failed password" /var/log/auth.log   # Find SSH brute force attempts
+$ cat /etc/passwd | cut -d: -f1              # List all user accounts on the system</code></pre>
+            </div>
+        </div>
+
+        <div class="inner-tab-content" id="cyber_flash">
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+                <h3 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-bolt"></i> Interactive AI Study Cards</h3>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">The highest-yield concepts for Intro to Cybersecurity. Click any card to flip it and reveal the expert answer. Memorize these perfectly before the exam.</p>
+            </div>
+            <div class="flashcard-grid">
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What are the three pillars of the CIA Triad?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>1. Confidentiality (Encryption). 2. Integrity (Hashing). 3. Availability (Backups/DDoS Protection).</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>How does Asymmetric Cryptography work?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>It uses two keys. A Public Key (shared with everyone) is used to encrypt messages. A Private Key (kept secret) is used to decrypt them. It solves the key-sharing problem of symmetric encryption.</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What does the command 'chmod 755' do in Linux?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>It sets permissions. 7 (Read+Write+Execute) for the Owner. 5 (Read+Execute) for the Group. 5 (Read+Execute) for Others.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="inner-tab-content" id="cyber_exam">
+            <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
+            <h3 class="exam-header">Intro to Cybersecurity (CCY2001) - Full Mock Exam A (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eAq1"> A) Option 1 <input type="radio" name="eAq1"> B) Option 2 <input type="radio" name="eAq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eAq2"> A) Option 1 <input type="radio" name="eAq2"> B) Option 2 <input type="radio" name="eAq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eAq3"> A) Option 1 <input type="radio" name="eAq3"> B) Option 2 <input type="radio" name="eAq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eAq4"> A) Option 1 <input type="radio" name="eAq4"> B) Option 2 <input type="radio" name="eAq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eAq5"> A) Option 1 <input type="radio" name="eAq5"> B) Option 2 <input type="radio" name="eAq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eAq6"> A) Option 1 <input type="radio" name="eAq6"> B) Option 2 <input type="radio" name="eAq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+        </div><div class="exam-content " data-exam="B">
+            <h3 class="exam-header">Intro to Cybersecurity (CCY2001) - Full Mock Exam B (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eBq1"> A) Option 1 <input type="radio" name="eBq1"> B) Option 2 <input type="radio" name="eBq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eBq2"> A) Option 1 <input type="radio" name="eBq2"> B) Option 2 <input type="radio" name="eBq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eBq3"> A) Option 1 <input type="radio" name="eBq3"> B) Option 2 <input type="radio" name="eBq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eBq4"> A) Option 1 <input type="radio" name="eBq4"> B) Option 2 <input type="radio" name="eBq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eBq5"> A) Option 1 <input type="radio" name="eBq5"> B) Option 2 <input type="radio" name="eBq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eBq6"> A) Option 1 <input type="radio" name="eBq6"> B) Option 2 <input type="radio" name="eBq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+        </div><div class="exam-content " data-exam="C">
+            <h3 class="exam-header">Intro to Cybersecurity (CCY2001) - Full Mock Exam C (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eCq1"> A) Option 1 <input type="radio" name="eCq1"> B) Option 2 <input type="radio" name="eCq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eCq2"> A) Option 1 <input type="radio" name="eCq2"> B) Option 2 <input type="radio" name="eCq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eCq3"> A) Option 1 <input type="radio" name="eCq3"> B) Option 2 <input type="radio" name="eCq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eCq4"> A) Option 1 <input type="radio" name="eCq4"> B) Option 2 <input type="radio" name="eCq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eCq5"> A) Option 1 <input type="radio" name="eCq5"> B) Option 2 <input type="radio" name="eCq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eCq6"> A) Option 1 <input type="radio" name="eCq6"> B) Option 2 <input type="radio" name="eCq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
+        </div>
+        </div>
+    </div>
+    
+    <div id="arch" class="tab-content">
+        <div class="subject-header">
+            <h2><i class="fa-solid fa-microchip"></i> Computer Architecture (CCS2103)</h2>
+            <div class="exam-badge"><i class="fa-regular fa-calendar-check"></i> Final: Monday, June 15, 2026 - 12:30 PM</div>
+        </div>
+        
+        <div class="inner-tabs">
+            <button class="inner-tab-btn active" onclick="switchInnerTab(event, 'arch_materials')"><i class="fa-solid fa-photo-film"></i> Short Crash Courses</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'arch_summary')"><i class="fa-solid fa-book-open"></i> Master Summary</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'arch_code')"><i class="fa-solid fa-code"></i> Code Vault</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'arch_flash')" style="color: #f59e0b;"><i class="fa-solid fa-layer-group"></i> AI Flashcards</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'arch_exam')"><i class="fa-solid fa-file-pen"></i> Practice Exams (3)</button>
+        </div>
+
+        <div class="inner-tab-content active" id="arch_materials">
+            <div style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                <h4 style="color: #f43f5e; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Exam Mode</h4>
+                <p style="color: #e2e8f0;">All videos below have been replaced with <strong>short, high-yield Arabic crash courses and summaries</strong>. Skip the 15-hour playlists. Focus on these.</p>
+            </div>
+            
+            <h3 style="color: white; margin-bottom: 20px;">Arabic Crash Courses & Interactive Tools</h3>
+            <div class="video-grid" style="margin-bottom: 40px;"><a href="https://www.youtube.com/results?search_query=البوابات+المنطقية+شرح+عربي" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Logic Gates & Boolean Algebra (Arabic) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=Ghassan+Bati+Fetch+Execute+Cycle" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Ghassan Bati: Fetch Execute Cycle <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=Registers+معمارية+الحاسوب+عربي" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Registers & Assembly Basics <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=معمارية+الحاسوب+مراجعة+شاملة" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Architecture Summary in 30 Mins <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a></div>
+            
+            <h3 style="color: white; margin-bottom: 20px;">Local Study Checklists</h3>
+            <div class="file-grid">
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_0">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Cbook.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\book.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">book.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_1">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5CCA_Sheet_2.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\CA_Sheet_2.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">CA_Sheet_2.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_2">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Cch%205%20(1).pptx" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\ch 5 (1).pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">ch 5 (1).pptx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_3">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5CCh07_ECOA3e_Alia.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch07_ECOA3e_Alia.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Ch07_ECOA3e_Alia.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_4">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5CCh1_CA.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch1_CA.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Ch1_CA.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_5">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5CCh4_CA%20(2).pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch4_CA (2).pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Ch4_CA (2).pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_6">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5CCh4_CA%20(2).ppt" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch4_CA (2).ppt">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Ch4_CA (2).ppt</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_7">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5CCh6_CA.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch6_CA.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Ch6_CA.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_8">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CCA_Sheet_2.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\CA_Sheet_2.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">CA_Sheet_2.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_9">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSection%2005%20..%20Chapter%2004%20-%20MARIE%20An%20Introduction%20to%20a%20Simple%20Computer%20-%20Part%202.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Section 05 .. Chapter 04 - MARIE An Introduction to a Simple Computer - Part 2.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Section 05 .. Chapter 04 - MARIE An Introduction to a Simple Computer - Part 2.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_10">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSection%2005..%20Example%20RTN%20Tables.docx" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Section 05.. Example RTN Tables.docx">
+                    <div class="file-icon"><i class="fa-solid fa-file-word"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Section 05.. Example RTN Tables.docx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_11">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5Csheet%20%231.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\sheet #1.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">sheet #1.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_12">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSheet%20%233.docx" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet #3.docx">
+                    <div class="file-icon"><i class="fa-solid fa-file-word"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Sheet #3.docx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_13">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSheet%20%233_Ans.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet #3_Ans.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Sheet #3_Ans.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_14">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSheet_2%20-%20Solved.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet_2 - Solved.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Sheet_2 - Solved.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_15">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSheet_2.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet_2.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Sheet_2.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_arch_16">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSheet_3.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet_3.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Sheet_3.pdf</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+
+        <div class="inner-tab-content" id="arch_summary">
+            <div class="summary-card">
+                
+            <h4>1. Digital Logic & Gates</h4>
+            <p><strong>AND:</strong> Output 1 only if both inputs are 1.<br>
+            <strong>OR:</strong> Output 1 if at least one input is 1.<br>
+            <strong>NOT:</strong> Inverts the input.<br>
+            <strong>XOR:</strong> Output 1 if inputs are different. Essential for binary addition.</p>
+            <h4>2. Combinational vs. Sequential Logic</h4>
+            <p><strong>Combinational:</strong> Output depends solely on the current input (e.g., Adders, Multiplexers, Decoders). No memory.<br>
+            <strong>Sequential:</strong> Output depends on current input AND past state (e.g., Flip-flops, Registers, Counters). Has memory and usually requires a clock.</p>
+            <h4>3. MARIE Architecture & RTN</h4>
+            <p>A simple accumulator-based architecture. <br>
+            <strong>Registers:</strong> AC (Accumulator), PC (Program Counter), IR (Instruction Register), MAR (Memory Address Register), MBR (Memory Buffer Register).</p>
+        
+            </div>
+        </div>
+
+        <div class="inner-tab-content" id="arch_code">
+            <div class="code-card">
+                <pre><code>// ==========================================
+// FULL CONTEXT: CPU FETCH-DECODE-EXECUTE RTN
+// ==========================================
+
+// THE UNIVERSAL FETCH CYCLE (Executes before EVERY instruction)
+MAR &lt;- PC          // Step 1: Copy Program Counter to Memory Address Register
+MBR &lt;- M[MAR]      // Step 2: Fetch the actual instruction from Memory into Buffer Register
+IR &lt;- MBR          // Step 3: Move instruction from Buffer to Instruction Register
+PC &lt;- PC + 1       // Step 4: Increment PC to point to the NEXT instruction
+
+// ------------------------------------------
+// THE EXECUTE CYCLES (Depends on Opcode in IR)
+// ------------------------------------------
+
+// Instruction: LOAD X (Load memory value at address X into Accumulator)
+MAR &lt;- X           // Address X sent to MAR
+MBR &lt;- M[MAR]      // Data fetched from Memory at address X into MBR
+AC &lt;- MBR          // Data moved from MBR into Accumulator
+
+// Instruction: ADD X (Add memory value at X to Accumulator)
+MAR &lt;- X           // Address X sent to MAR
+MBR &lt;- M[MAR]      // Data fetched into MBR
+AC &lt;- AC + MBR     // Accumulator is updated with the sum
+
+// Instruction: STORE X (Store Accumulator value into Memory at address X)
+MAR &lt;- X           // Address X sent to MAR
+MBR &lt;- AC          // Accumulator data moved to Buffer Register
+M[MAR] &lt;- MBR      // Buffer data written to Memory at address X
+
+// Instruction: JUMP X (Unconditional branch to address X)
+PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pre>
+            </div>
+        </div>
+
+        <div class="inner-tab-content" id="arch_flash">
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+                <h3 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-bolt"></i> Interactive AI Study Cards</h3>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">The highest-yield concepts for Computer Architecture. Click any card to flip it and reveal the expert answer. Memorize these perfectly before the exam.</p>
+            </div>
+            <div class="flashcard-grid">
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What is the difference between Combinational and Sequential Logic?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>Combinational logic has no memory; output depends purely on current inputs (e.g., Adder). Sequential logic has memory and a clock; output depends on inputs and past state (e.g., Registers).</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What are the 4 steps of the Fetch Cycle in RTN?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>1. MAR <- PCn2. MBR <- M[MAR]n3. IR <- MBRn4. PC <- PC + 1</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What is the role of the Program Counter (PC)?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>It is a specialized register that holds the memory address of the NEXT instruction to be fetched and executed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="inner-tab-content" id="arch_exam">
+            <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
+            <h3 class="exam-header">Computer Architecture (CCS2103) - Full Mock Exam A (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eAq1"> A) Option 1 <input type="radio" name="eAq1"> B) Option 2 <input type="radio" name="eAq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eAq2"> A) Option 1 <input type="radio" name="eAq2"> B) Option 2 <input type="radio" name="eAq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eAq3"> A) Option 1 <input type="radio" name="eAq3"> B) Option 2 <input type="radio" name="eAq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eAq4"> A) Option 1 <input type="radio" name="eAq4"> B) Option 2 <input type="radio" name="eAq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eAq5"> A) Option 1 <input type="radio" name="eAq5"> B) Option 2 <input type="radio" name="eAq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eAq6"> A) Option 1 <input type="radio" name="eAq6"> B) Option 2 <input type="radio" name="eAq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+        </div><div class="exam-content " data-exam="B">
+            <h3 class="exam-header">Computer Architecture (CCS2103) - Full Mock Exam B (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eBq1"> A) Option 1 <input type="radio" name="eBq1"> B) Option 2 <input type="radio" name="eBq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eBq2"> A) Option 1 <input type="radio" name="eBq2"> B) Option 2 <input type="radio" name="eBq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eBq3"> A) Option 1 <input type="radio" name="eBq3"> B) Option 2 <input type="radio" name="eBq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eBq4"> A) Option 1 <input type="radio" name="eBq4"> B) Option 2 <input type="radio" name="eBq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eBq5"> A) Option 1 <input type="radio" name="eBq5"> B) Option 2 <input type="radio" name="eBq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eBq6"> A) Option 1 <input type="radio" name="eBq6"> B) Option 2 <input type="radio" name="eBq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+        </div><div class="exam-content " data-exam="C">
+            <h3 class="exam-header">Computer Architecture (CCS2103) - Full Mock Exam C (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eCq1"> A) Option 1 <input type="radio" name="eCq1"> B) Option 2 <input type="radio" name="eCq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eCq2"> A) Option 1 <input type="radio" name="eCq2"> B) Option 2 <input type="radio" name="eCq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eCq3"> A) Option 1 <input type="radio" name="eCq3"> B) Option 2 <input type="radio" name="eCq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eCq4"> A) Option 1 <input type="radio" name="eCq4"> B) Option 2 <input type="radio" name="eCq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eCq5"> A) Option 1 <input type="radio" name="eCq5"> B) Option 2 <input type="radio" name="eCq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eCq6"> A) Option 1 <input type="radio" name="eCq6"> B) Option 2 <input type="radio" name="eCq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
+        </div>
+        </div>
+    </div>
+    
+    <div id="advprog" class="tab-content">
+        <div class="subject-header">
+            <h2><i class="fa-solid fa-code"></i> Advanced Programming Apps (CCS2304)</h2>
+            <div class="exam-badge"><i class="fa-regular fa-calendar-check"></i> Final: Wednesday, June 17, 2026 - 12:30 PM</div>
+        </div>
+        
+        <div class="inner-tabs">
+            <button class="inner-tab-btn active" onclick="switchInnerTab(event, 'advprog_materials')"><i class="fa-solid fa-photo-film"></i> Short Crash Courses</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'advprog_summary')"><i class="fa-solid fa-book-open"></i> Master Summary</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'advprog_code')"><i class="fa-solid fa-code"></i> Code Vault</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'advprog_flash')" style="color: #f59e0b;"><i class="fa-solid fa-layer-group"></i> AI Flashcards</button>
+            <button class="inner-tab-btn" onclick="switchInnerTab(event, 'advprog_exam')"><i class="fa-solid fa-file-pen"></i> Practice Exams (3)</button>
+        </div>
+
+        <div class="inner-tab-content active" id="advprog_materials">
+            <div style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                <h4 style="color: #f43f5e; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Exam Mode</h4>
+                <p style="color: #e2e8f0;">All videos below have been replaced with <strong>short, high-yield Arabic crash courses and summaries</strong>. Skip the 15-hour playlists. Focus on these.</p>
+            </div>
+            
+            <h3 style="color: white; margin-bottom: 20px;">Arabic Crash Courses & Interactive Tools</h3>
+            <div class="video-grid" style="margin-bottom: 40px;"><a href="https://www.youtube.com/results?search_query=Java+Exceptions+Threads+عادل+نسيم" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Java Exceptions & Threads (Crash) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=Java+JDBC+شرح+سريع" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Java JDBC Database Crash Course <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=MVC+Design+Pattern+عربي" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> MVC Architecture Explained <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a><a href="https://www.youtube.com/results?search_query=Java+Socket+Programming+عربي" target="_blank" class="direct-vid-link">
+                <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> Java Network Programming (Sockets) <i class="fa-solid fa-arrow-right arrow-icon"></i>
+            </a></div>
+            
+            <h3 style="color: white; margin-bottom: 20px;">Local Study Checklists</h3>
+            <div class="file-grid">
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_advprog_0">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLec%231%20revision.pdf" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lec#1 revision.pdf">
+                    <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lec#1 revision.pdf</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_advprog_1">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLecture%2003%20-%20Exception%20Handling.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 03 - Exception Handling.pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 03 - Exception Handling.pptx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_advprog_2">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLecture%2004%20-%20JavaFX%20Part1.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 04 - JavaFX Part1.pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 04 - JavaFX Part1.pptx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_advprog_3">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLecture%2005%20-%20JavaFX%20Part2.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 05 - JavaFX Part2.pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 05 - JavaFX Part2.pptx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_advprog_4">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLecture%2010%20-%20Java%20JDBC.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 10 - Java JDBC.pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 10 - Java JDBC.pptx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_advprog_5">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLecture%2011%20-The_MVC_Blueprint.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 11 -The_MVC_Blueprint.pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 11 -The_MVC_Blueprint.pptx</span>
+                    </div>
+                </a>
+            </div>
+        
+            <div class="file-item-container">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="chk_file_advprog_6">
+                    <span class="checkmark"></span>
+                </label>
+                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLecture%209%20-%20Networking.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 9 - Networking.pptx">
+                    <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
+                    <div class="file-details">
+                        <span class="file-name">Lecture 9 - Networking.pptx</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+
+        <div class="inner-tab-content" id="advprog_summary">
+            <div class="summary-card">
+                
+            <h4>1. Exception Handling</h4>
+            <p>Exceptions handle runtime errors gracefully without crashing the app. <br>
+            <strong>Keywords:</strong> try (code that might fail), catch (handles the error), finally (executes regardless of outcome), throw (explicitly triggers an exception), throws (method signature warning).</p>
+            <h4>2. Threading & Concurrency</h4>
+            <p>Allows a program to perform multiple tasks simultaneously.<br>
+            Can be implemented by: 1) Extending the <code>Thread</code> class, or 2) Implementing the <code>Runnable</code> interface (preferred).<br>
+            <code>start()</code> begins execution, <code>join()</code> waits for a thread to finish.</p>
+            <h4>3. MVC (Model-View-Controller)</h4>
+            <p>A design pattern that separates application logic.<br>
+            <strong>Model:</strong> Data and business logic.<br>
+            <strong>View:</strong> The GUI (User Interface).<br>
+            <strong>Controller:</strong> Handles user input from the View, interacts with the Model, and updates the View.</p>
+            <h4>4. Java JDBC</h4>
+            <p>Java Database Connectivity. API for executing SQL queries.<br>
+            Steps: 1. Connect (DriverManager). 2. Create Statement (Statement or PreparedStatement). 3. Execute Query. 4. Process ResultSet. 5. Close Connection.</p>
+        
+            </div>
+        </div>
+
+        <div class="inner-tab-content" id="advprog_code">
+            <div class="code-card">
+                <pre><code>// ==========================================
+// FULL CONTEXT: MULTI-THREADING (RUNNABLE)
+// ==========================================
+
+// Implementing Runnable is preferred over extending Thread
+// because Java only supports single inheritance.
+class MyTask implements Runnable {
+    private String threadName;
+    
+    public MyTask(String name) {
+        this.threadName = name;
+    }
+
+    @Override
+    public void run() {
+        try {
+            for(int i = 5; i &gt; 0; i--) {
+                System.out.println("Thread: " + threadName + ", " + i);
+                Thread.sleep(1000); // Pause for 1 second
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Thread " + threadName + " interrupted.");
+        }
+        System.out.println("Thread " + threadName + " exiting.");
+    }
+}
+
+public class Main {
+    public static void main(String args[]) {
+        MyTask task1 = new MyTask("Alpha");
+        MyTask task2 = new MyTask("Beta");
+        
+        Thread t1 = new Thread(task1);
+        Thread t2 = new Thread(task2);
+        
+        t1.start(); // This calls the run() method asynchronously
+        t2.start(); 
+        
+        try {
+            t1.join(); // Main thread waits for t1 to finish
+            t2.join(); // Main thread waits for t2 to finish
+        } catch (Exception e) {
+            System.out.println("Main interrupted.");
+        }
+        System.out.println("Main thread ending.");
+    }
+}
+
+// ==========================================
+// FULL CONTEXT: CUSTOM EXCEPTIONS
+// ==========================================
+
+// Creating a custom checked exception
+class InsufficientFundsException extends Exception {
+    private double amount;
+    
+    public InsufficientFundsException(double amount) {
+        this.amount = amount;
+    }
+    
+    public double getAmount() {
+        return amount;
+    }
+}
+
+class BankAccount {
+    private double balance;
+    
+    // The throws keyword warns callers they must handle this!
+    public void withdraw(double amount) throws InsufficientFundsException {
+        if(amount &gt; balance) {
+            // Actively throwing the exception
+            throw new InsufficientFundsException(amount - balance);
+        }
+        balance -= amount;
+    }
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="inner-tab-content" id="advprog_flash">
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+                <h3 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-bolt"></i> Interactive AI Study Cards</h3>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">The highest-yield concepts for Advanced Programming Apps. Click any card to flip it and reveal the expert answer. Memorize these perfectly before the exam.</p>
+            </div>
+            <div class="flashcard-grid">
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>What is the difference between 'throw' and 'throws'?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>'throw' is used inside a method to actually trigger an exception object. 'throws' is used in the method signature to warn callers that the method might throw exceptions.</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>How do you implement Multithreading in Java?</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>You can either extend the 'Thread' class or implement the 'Runnable' interface. Implementing 'Runnable' is highly preferred because Java doesn't support multiple class inheritance.</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: #38bdf8; margin-bottom: 15px;"></i>
+                        <p>Explain the MVC Pattern briefly.</p>
+                        <span class="flip-hint">Click to flip</span>
+                    </div>
+                    <div class="flashcard-back">
+                        <i class="fa-solid fa-lightbulb" style="font-size: 2rem; color: #f59e0b; margin-bottom: 15px;"></i>
+                        <p>Model: Handles data and database logic. View: The User Interface. Controller: Listens to user inputs from the View, updates the Model, and refreshes the View.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="inner-tab-content" id="advprog_exam">
+            <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
+            <h3 class="exam-header">Advanced Programming Apps (CCS2304) - Full Mock Exam A (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eAq1"> A) Option 1 <input type="radio" name="eAq1"> B) Option 2 <input type="radio" name="eAq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eAq2"> A) Option 1 <input type="radio" name="eAq2"> B) Option 2 <input type="radio" name="eAq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eAq3"> A) Option 1 <input type="radio" name="eAq3"> B) Option 2 <input type="radio" name="eAq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eAq4"> A) Option 1 <input type="radio" name="eAq4"> B) Option 2 <input type="radio" name="eAq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eAq5"> A) Option 1 <input type="radio" name="eAq5"> B) Option 2 <input type="radio" name="eAq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eAq6"> A) Option 1 <input type="radio" name="eAq6"> B) Option 2 <input type="radio" name="eAq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+        </div><div class="exam-content " data-exam="B">
+            <h3 class="exam-header">Advanced Programming Apps (CCS2304) - Full Mock Exam B (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eBq1"> A) Option 1 <input type="radio" name="eBq1"> B) Option 2 <input type="radio" name="eBq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eBq2"> A) Option 1 <input type="radio" name="eBq2"> B) Option 2 <input type="radio" name="eBq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eBq3"> A) Option 1 <input type="radio" name="eBq3"> B) Option 2 <input type="radio" name="eBq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eBq4"> A) Option 1 <input type="radio" name="eBq4"> B) Option 2 <input type="radio" name="eBq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eBq5"> A) Option 1 <input type="radio" name="eBq5"> B) Option 2 <input type="radio" name="eBq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eBq6"> A) Option 1 <input type="radio" name="eBq6"> B) Option 2 <input type="radio" name="eBq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+        </div><div class="exam-content " data-exam="C">
+            <h3 class="exam-header">Advanced Programming Apps (CCS2304) - Full Mock Exam C (40 Pts)</h3>
+            <div class="exam-section">
+                <h4>Part 1: Multiple Choice (12 Points)</h4>
+                <div class="mcq-grid">
+                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eCq1"> A) Option 1 <input type="radio" name="eCq1"> B) Option 2 <input type="radio" name="eCq1"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eCq2"> A) Option 1 <input type="radio" name="eCq2"> B) Option 2 <input type="radio" name="eCq2"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eCq3"> A) Option 1 <input type="radio" name="eCq3"> B) Option 2 <input type="radio" name="eCq3"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eCq4"> A) Option 1 <input type="radio" name="eCq4"> B) Option 2 <input type="radio" name="eCq4"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eCq5"> A) Option 1 <input type="radio" name="eCq5"> B) Option 2 <input type="radio" name="eCq5"> C) Option 3</div>
+                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eCq6"> A) Option 1 <input type="radio" name="eCq6"> B) Option 2 <input type="radio" name="eCq6"> C) Option 3</div>
+                </div>
+            </div>
+            <div class="exam-section">
+                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
+                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
+                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
+                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
+            </div>
+            <div class="exam-section">
+                <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
+                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
+        </div>
+        </div>
+    </div>
+    
+    </div>
+
+    <script>
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            
+            // Find the button that was clicked to open this tab, or default to home
+            const btn = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+            if(btn) btn.classList.add('active');
+        }
+
+        function switchInnerTab(e, tabId) {
+            const container = e.currentTarget.closest('.tab-content');
+            container.querySelectorAll('.inner-tab-content').forEach(el => el.classList.remove('active'));
+            container.querySelectorAll('.inner-tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            e.currentTarget.classList.add('active');
+        }
+
+        function switchExam(e, btn, variant) {
+            const container = btn.closest('.inner-tab-content');
+            container.querySelectorAll('.exam-content').forEach(el => el.classList.remove('active'));
+            container.querySelectorAll('.exam-tab-btn').forEach(el => el.classList.remove('active'));
+            container.querySelector('.exam-content[data-exam="' + variant + '"]').classList.add('active');
+            btn.classList.add('active');
+        }
+
+        let time = 1500;
+        let pomoInterval = null;
+        function updateDisplay() {
+            let m = Math.floor(time / 60).toString().padStart(2, '0');
+            let s = (time % 60).toString().padStart(2, '0');
+            document.getElementById('pomo-timer').innerText = m + ":" + s;
+        }
+        function startTimer() {
+            if(pomoInterval) return;
+            pomoInterval = setInterval(() => {
+                time--; updateDisplay();
+                if(time <= 0) {
+                    clearInterval(pomoInterval);
+                    pomoInterval = null;
+                    playArcadeSound();
+                    alert("Pomodoro Complete! Take a break.");
+                }
+            }, 1000);
+        }
+        function resetTimer() { clearInterval(pomoInterval); pomoInterval = null; time = 1500; updateDisplay(); }
+        
+        function playArcadeSound() {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(440, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.1, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.5);
+        }
+    </script>
+</body>
+</html>
