@@ -7,216 +7,93 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-main: #0f172a;
-            --bg-sidebar: #1e293b;
-            --bg-card: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-            --accent-hover: #0ea5e9;
-            --border: #334155;
-            --success: #10b981;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-            line-height: 1.8;
-            letter-spacing: 0.3px;
-            font-size: 1.05rem;
-        }
-
-        .sidebar {
-            width: 350px;
-            background: var(--bg-sidebar);
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            border-right: 1px solid var(--border);
-            box-shadow: 4px 0 15px rgba(0,0,0,0.2);
-            z-index: 10;
-            overflow-y: auto;
-        }
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
-            text-align: center;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .nav-btn {
-            background: transparent;
-            color: var(--text-muted);
-            border: none;
-            padding: 16px 20px;
-            text-align: left;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .nav-btn:hover {
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent);
-            transform: translateX(5px);
-        }
-        .nav-btn.active {
-            background: var(--accent);
-            color: #0f172a;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
-        }
-
-        .main-content {
-            flex: 1;
-            padding: 50px 60px;
-            overflow-y: auto;
-            position: relative;
-        }
-        .tab-content { display: none; animation: fadeIn 0.4s ease; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .subject-header {
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--border);
-        }
-        .subject-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
-        .exam-badge {
-            display: inline-block;
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--success);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .inner-tabs {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 15px;
-        }
-        .inner-tab-btn {
-            background: var(--bg-card);
-            color: var(--text-main);
-            border: 1px solid var(--border);
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.2s;
-        }
-        .inner-tab-btn.active {
-            background: var(--border);
-            border-bottom: 3px solid var(--accent);
-        }
-        .inner-tab-btn:hover { background: var(--border); }
-        .inner-tab-content { display: none; }
-        .inner-tab-content.active { display: block; animation: fadeIn 0.3s ease; }
-
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 30px; }
-        .video-card { background: var(--bg-card); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .vid-header { padding: 15px 20px; background: #0f172a; font-weight: 600; display: flex; align-items: center; }
-        .video-card iframe { width: 100%; height: 250px; display: block; }
-        
-        .direct-vid-link { display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); padding: 20px 25px; border-radius: 12px; color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 1.1rem; border: 1px solid var(--border); transition: all 0.3s; }
-        .direct-vid-link:hover { border-color: var(--accent); transform: translateY(-3px); }
-
-        .summary-card { background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border); }
-        .summary-card h4 { color: var(--accent); margin-top: 25px; margin-bottom: 10px; font-size: 1.4rem; }
-        .summary-card p { margin-bottom: 15px; color: #cbd5e1; }
-        .code-card { background: #000; padding: 25px; border-radius: 12px; border: 1px solid var(--border); overflow-x: auto; }
-        .code-card pre { color: #34d399; font-family: monospace; font-size: 1.1rem; line-height: 1.5; }
-        
-        /* 3D Flashcards CSS */
-        .flashcard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
-        .flashcard { background-color: transparent; height: 250px; perspective: 1000px; cursor: pointer; }
-        .flashcard-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
-        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
-        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 16px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid var(--border); }
-        .flashcard-front { background: var(--bg-card); color: white; }
-        .flashcard-back { background: linear-gradient(145deg, #1e293b, #0f172a); color: #f8fafc; transform: rotateY(180deg); border-color: #f59e0b; }
-        .flashcard-front p { font-size: 1.2rem; font-weight: 600; }
-        .flashcard-back p { font-size: 1.1rem; }
-        .flip-hint { position: absolute; bottom: 15px; font-size: 0.85rem; color: var(--text-muted); opacity: 0.7; }
-
-        .exam-tabs { display: flex; gap: 10px; margin-bottom: 25px; }
-        .exam-tab-btn { background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; }
-        .exam-tab-btn.active { background: var(--border); color: white; }
-        .exam-content { display: none; background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid var(--border); }
-        .exam-content.active { display: block; animation: fadeIn 0.3s; }
-        .exam-header { font-size: 1.8rem; margin-bottom: 30px; text-align: center; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 20px;}
-        .exam-section { margin-bottom: 40px; }
-        .exam-section h4 { font-size: 1.4rem; margin-bottom: 20px; color: white; }
-        .mcq-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .mcq-item { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; }
-        .mcq-item input { margin-left: 15px; margin-right: 5px; }
-        .exam-textarea { width: 100%; height: 100px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; padding: 15px; border-radius: 8px; margin-top: 10px; font-size: 1rem; resize: vertical; }
-        .action-btn { background: var(--success); color: white; border: none; padding: 15px 30px; font-size: 1.2rem; font-weight: 700; border-radius: 12px; cursor: pointer; width: 100%; margin-top: 20px; }
-
-        /* Integrated Sidebar Pomodoro */
-        .sidebar-pomodoro { margin-top: auto; padding: 25px; background: rgba(0,0,0,0.2); border-radius: 16px; border: 1px solid var(--border); text-align: center; }
-        .timer-display { font-size: 3rem; font-weight: 800; font-family: monospace; color: #f43f5e; text-shadow: 0 0 15px rgba(244, 63, 94, 0.4); margin-bottom: 15px; }
-        .pomo-controls button { background: var(--border); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 1rem; width: 45%; margin: 0 2%; transition: all 0.2s; }
-        .pomo-controls button:hover { background: #475569; transform: translateY(-2px); }
-
-        .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
-        .file-item-container { display: flex; align-items: center; gap: 15px; background: var(--bg-card); padding: 15px; border-radius: 12px; border: 1px solid var(--border); }
-        .custom-checkbox input { width: 24px; height: 24px; cursor: pointer; accent-color: var(--accent); }
-        .file-item { display: flex; align-items: center; gap: 15px; color: white; text-decoration: none; flex: 1; }
-        .file-icon { font-size: 1.5rem; color: #f43f5e; }
-        .gradient-text { font-size: 2.8rem; background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
-        .date-badge { background: var(--accent); color: #0f172a; padding: 4px 10px; border-radius: 6px; font-weight: 700; margin-right: 10px; font-size: 0.9rem; }
-        .schedule-list { list-style: none; }
-        .schedule-list li { padding: 15px 0; border-bottom: 1px solid var(--border); color: #cbd5e1; }
-        .schedule-list li.exam-eve { background: rgba(244, 63, 94, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #f43f5e; margin: 10px 0; }
-        .schedule-list li.exam-day { background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #10b981; margin: 10px 0; }
-        .empty-state { color: var(--text-muted); font-style: italic; }
-
-        .custom-checkbox { position: relative; display: flex; align-items: center; cursor: pointer; }
-        .custom-checkbox input { position: absolute; opacity: 0; width: 0; height: 0; }
-        .checkmark {
-            width: 24px; height: 24px; border-radius: 6px;
-            background: rgba(56, 189, 248, 0.1);
-            border: 2px solid var(--border);
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.2s; flex-shrink: 0;
-        }
-        .custom-checkbox input:checked ~ .checkmark {
-            background: var(--accent);
-            border-color: var(--accent);
-        }
-        .custom-checkbox input:checked ~ .checkmark::after {
-            content: '✓';
-            color: #0f172a;
-            font-size: 14px;
-            font-weight: 900;
-        }
-        .split-layout { display: grid; gap: 30px; }
+        :root { --bg-main:#0f172a;--bg-sidebar:#1e293b;--bg-card:#1e293b;--text-main:#f8fafc;--text-muted:#94a3b8;--accent:#38bdf8;--accent-hover:#0ea5e9;--border:#334155;--success:#10b981; }
+        * { box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif; }
+        body { background-color:var(--bg-main);color:var(--text-main);display:flex;height:100vh;overflow:hidden;line-height:1.8;letter-spacing:0.3px;font-size:1.05rem; }
+        .sidebar { width:350px;background:var(--bg-sidebar);padding:40px 20px;display:flex;flex-direction:column;gap:15px;border-right:1px solid var(--border);box-shadow:4px 0 15px rgba(0,0,0,0.2);z-index:10;overflow-y:auto; }
+        .logo { font-size:1.8rem;font-weight:800;color:white;text-align:center;margin-bottom:30px;letter-spacing:1px;background:linear-gradient(90deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent; }
+        .nav-btn { background:transparent;color:var(--text-muted);border:none;padding:16px 20px;text-align:left;font-size:1.1rem;font-weight:600;cursor:pointer;border-radius:12px;transition:all 0.3s ease;display:flex;align-items:center;gap:15px; }
+        .nav-btn:hover { background:rgba(56,189,248,0.1);color:var(--accent);transform:translateX(5px); }
+        .nav-btn.active { background:var(--accent);color:#0f172a;box-shadow:0 4px 15px rgba(56,189,248,0.4); }
+        .main-content { flex:1;padding:50px 60px;overflow-y:auto;position:relative; }
+        .tab-content { display:none;animation:fadeIn 0.4s ease; }
+        .tab-content.active { display:block; }
+        @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+        .subject-header { margin-bottom:40px;padding-bottom:20px;border-bottom:2px solid var(--border); }
+        .subject-header h2 { font-size:2.5rem;font-weight:800;margin-bottom:10px; }
+        .exam-badge { display:inline-block;background:rgba(16,185,129,0.15);color:var(--success);padding:8px 16px;border-radius:20px;font-weight:600;font-size:1.1rem;border:1px solid rgba(16,185,129,0.3); }
+        .inner-tabs { display:flex;gap:15px;margin-bottom:30px;border-bottom:1px solid var(--border);padding-bottom:15px; }
+        .inner-tab-btn { background:var(--bg-card);color:var(--text-main);border:1px solid var(--border);padding:12px 24px;border-radius:8px;cursor:pointer;font-weight:600;font-size:1.05rem;transition:all 0.2s; }
+        .inner-tab-btn.active { background:var(--border);border-bottom:3px solid var(--accent); }
+        .inner-tab-btn:hover { background:var(--border); }
+        .inner-tab-content { display:none; }
+        .inner-tab-content.active { display:block;animation:fadeIn 0.3s ease; }
+        /* VIDEO THUMBNAIL CARDS */
+        .video-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:28px; }
+        .video-card { background:var(--bg-card);border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 10px 30px rgba(0,0,0,0.3);transition:transform 0.25s,box-shadow 0.25s; }
+        .video-card:hover { transform:translateY(-5px);box-shadow:0 20px 45px rgba(0,0,0,0.5); }
+        .vid-header { padding:14px 20px;background:#0f172a;font-weight:600;display:flex;align-items:center; }
+        .vid-title { font-size:0.95rem;color:#e2e8f0; }
+        .vid-thumb-wrap { position:relative;display:block;overflow:hidden;aspect-ratio:16/9;background:#000;cursor:pointer;text-decoration:none; }
+        .vid-thumb { width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.35s,filter 0.35s;filter:brightness(0.88); }
+        .vid-thumb-wrap:hover .vid-thumb { transform:scale(1.05);filter:brightness(0.5); }
+        .play-btn-overlay { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4.5rem;color:rgba(255,255,255,0.9);opacity:0.8;transition:opacity 0.25s,transform 0.25s;pointer-events:none; }
+        .vid-thumb-wrap:hover .play-btn-overlay { opacity:1;transform:scale(1.15); }
+        .vid-open-label { position:absolute;bottom:12px;right:14px;font-size:0.78rem;font-weight:700;color:#fff;background:rgba(0,0,0,0.7);padding:5px 12px;border-radius:20px;opacity:0;transition:opacity 0.25s;pointer-events:none;letter-spacing:0.5px; }
+        .vid-thumb-wrap:hover .vid-open-label { opacity:1; }
+        .direct-vid-link { display:flex;justify-content:space-between;align-items:center;background:var(--bg-card);padding:20px 25px;border-radius:12px;color:var(--text-main);text-decoration:none;font-weight:600;font-size:1.1rem;border:1px solid var(--border);transition:all 0.3s; }
+        .direct-vid-link:hover { border-color:var(--accent);transform:translateY(-3px); }
+        .summary-card { background:var(--bg-card);padding:40px;border-radius:16px;border:1px solid var(--border); }
+        .summary-card h4 { color:var(--accent);margin-top:25px;margin-bottom:10px;font-size:1.4rem; }
+        .summary-card p { margin-bottom:15px;color:#cbd5e1; }
+        .code-card { background:#000;padding:25px;border-radius:12px;border:1px solid var(--border);overflow-x:auto; }
+        .code-card pre { color:#34d399;font-family:monospace;font-size:1.1rem;line-height:1.5; }
+        .flashcard-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:30px; }
+        .flashcard { background-color:transparent;height:250px;perspective:1000px;cursor:pointer; }
+        .flashcard-inner { position:relative;width:100%;height:100%;text-align:center;transition:transform 0.6s;transform-style:preserve-3d; }
+        .flashcard.flipped .flashcard-inner { transform:rotateY(180deg); }
+        .flashcard-front,.flashcard-back { position:absolute;width:100%;height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:30px;box-shadow:0 10px 30px rgba(0,0,0,0.3);border:1px solid var(--border); }
+        .flashcard-front { background:var(--bg-card);color:white; }
+        .flashcard-back { background:linear-gradient(145deg,#1e293b,#0f172a);color:#f8fafc;transform:rotateY(180deg);border-color:#f59e0b; }
+        .flashcard-front p { font-size:1.2rem;font-weight:600; }
+        .flashcard-back p { font-size:1.1rem; }
+        .flip-hint { position:absolute;bottom:15px;font-size:0.85rem;color:var(--text-muted);opacity:0.7; }
+        .exam-tabs { display:flex;gap:10px;margin-bottom:25px; }
+        .exam-tab-btn { background:transparent;color:var(--text-muted);border:1px solid var(--border);padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:600;font-size:1rem; }
+        .exam-tab-btn.active { background:var(--border);color:white; }
+        .exam-content { display:none;background:var(--bg-card);padding:40px;border-radius:16px;border:1px solid var(--border); }
+        .exam-content.active { display:block;animation:fadeIn 0.3s; }
+        .exam-header { font-size:1.8rem;margin-bottom:30px;text-align:center;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:20px; }
+        .exam-section { margin-bottom:40px; }
+        .exam-section h4 { font-size:1.4rem;margin-bottom:20px;color:white; }
+        .mcq-grid { display:grid;grid-template-columns:1fr;gap:15px; }
+        .mcq-item { background:rgba(0,0,0,0.2);padding:20px;border-radius:8px; }
+        .mcq-item input { margin-left:15px;margin-right:5px; }
+        .exam-textarea { width:100%;height:100px;background:rgba(0,0,0,0.3);border:1px solid var(--border);color:white;padding:15px;border-radius:8px;margin-top:10px;font-size:1rem;resize:vertical; }
+        .action-btn { background:var(--success);color:white;border:none;padding:15px 30px;font-size:1.2rem;font-weight:700;border-radius:12px;cursor:pointer;width:100%;margin-top:20px; }
+        .sidebar-pomodoro { margin-top:auto;padding:25px;background:rgba(0,0,0,0.2);border-radius:16px;border:1px solid var(--border);text-align:center; }
+        .timer-display { font-size:3rem;font-weight:800;font-family:monospace;color:#f43f5e;text-shadow:0 0 15px rgba(244,63,94,0.4);margin-bottom:15px; }
+        .pomo-controls button { background:var(--border);color:white;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;font-weight:700;font-size:1rem;width:45%;margin:0 2%;transition:all 0.2s; }
+        .pomo-controls button:hover { background:#475569;transform:translateY(-2px); }
+        .file-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px; }
+        .file-item-container { display:flex;align-items:center;gap:15px;background:var(--bg-card);padding:15px;border-radius:12px;border:1px solid var(--border); }
+        .custom-checkbox { position:relative;display:flex;align-items:center;cursor:pointer; }
+        .custom-checkbox input { position:absolute;opacity:0;width:0;height:0; }
+        .checkmark { width:24px;height:24px;border-radius:6px;background:rgba(56,189,248,0.1);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0; }
+        .custom-checkbox input:checked ~ .checkmark { background:var(--accent);border-color:var(--accent); }
+        .custom-checkbox input:checked ~ .checkmark::after { content:'✓';color:#0f172a;font-size:14px;font-weight:900; }
+        .file-item { display:flex;align-items:center;gap:15px;color:white;text-decoration:none;flex:1; }
+        .file-icon { font-size:1.5rem;color:#f43f5e; }
+        .gradient-text { font-size:2.8rem;background:linear-gradient(90deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800; }
+        .date-badge { background:var(--accent);color:#0f172a;padding:4px 10px;border-radius:6px;font-weight:700;margin-right:10px;font-size:0.9rem; }
+        .schedule-list { list-style:none; }
+        .schedule-list li { padding:15px 0;border-bottom:1px solid var(--border);color:#cbd5e1; }
+        .schedule-list li.exam-eve { background:rgba(244,63,94,0.1);padding:15px;border-radius:8px;border-left:4px solid #f43f5e;margin:10px 0; }
+        .schedule-list li.exam-day { background:rgba(16,185,129,0.1);padding:15px;border-radius:8px;border-left:4px solid #10b981;margin:10px 0; }
+        .empty-state { color:var(--text-muted);font-style:italic; }
     </style>
 </head>
 <body>
-
     <div class="sidebar">
         <div class="logo"><i class="fa-solid fa-graduation-cap"></i> Finals Pro</div>
         <button class="nav-btn active" onclick="openTab('schedule_tab')">
@@ -232,7 +109,6 @@
 </div>
 <button class="nav-btn" onclick="openTab('se')"><i class="fa-solid fa-laptop-code"></i> Intro to Software Engineering</button><button class="nav-btn" onclick="openTab('web')"><i class="fa-solid fa-globe"></i> Web Programming</button><button class="nav-btn" onclick="openTab('dsa')"><i class="fa-solid fa-network-wired"></i> Data Structures & Algorithms</button><button class="nav-btn" onclick="openTab('cyber')"><i class="fa-solid fa-shield-halved"></i> Intro to Cybersecurity</button><button class="nav-btn" onclick="openTab('arch')"><i class="fa-solid fa-microchip"></i> Computer Architecture</button><button class="nav-btn" onclick="openTab('advprog')"><i class="fa-solid fa-code"></i> Advanced Programming Apps</button>
     </div>
-
     <div class="main-content">
         
 <div id="schedule_tab" class="tab-content active">
@@ -272,7 +148,6 @@
             <h2><i class="fa-solid fa-laptop-code"></i> Intro to Software Engineering (CSE2001)</h2>
             <div class="exam-badge"><i class="fa-regular fa-calendar-check"></i> Final: Sunday, June 07, 2026 - 12:30 PM</div>
         </div>
-        
         <div class="inner-tabs">
             <button class="inner-tab-btn active" onclick="switchInnerTab(event, 'se_materials')"><i class="fa-solid fa-photo-film"></i> Short Crash Courses</button>
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'se_summary')"><i class="fa-solid fa-book-open"></i> Master Summary</button>
@@ -280,36 +155,49 @@
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'se_flash')" style="color: #f59e0b;"><i class="fa-solid fa-layer-group"></i> AI Flashcards</button>
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'se_exam')"><i class="fa-solid fa-file-pen"></i> Practice Exams (3)</button>
         </div>
-
         <div class="inner-tab-content active" id="se_materials">
-            <div style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+            <div style="background: rgba(244,63,94,0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
                 <h4 style="color: #f43f5e; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Exam Mode</h4>
-                <p style="color: #e2e8f0;">All videos below have been replaced with <strong>short, high-yield Arabic crash courses and summaries</strong>. Skip the 15-hour playlists. Focus on these.</p>
+                <p style="color: #e2e8f0;">All videos below are <strong>short, high-yield crash courses</strong> from top channels. Click a thumbnail to watch on YouTube.</p>
             </div>
-            
-            <h3 style="color: white; margin-bottom: 20px;">Arabic Crash Courses & Interactive Tools</h3>
+            <h3 style="color: white; margin-bottom: 20px;">Crash Courses &amp; Interactive Tools</h3>
             <div class="video-grid" style="margin-bottom: 40px;"><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>🇸🇦 هندسة البرمجيات (Arabic - GeekHood)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/PdER1jZ9nVI" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=PdER1jZ9nVI" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/PdER1jZ9nVI/hqdefault.jpg" alt="🇸🇦 هندسة البرمجيات (Arabic - GeekHood)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Software Engineering - Crash Course CS</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/FZhlF9yP-u8" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=FZhlF9yP-u8" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/FZhlF9yP-u8/hqdefault.jpg" alt="Software Engineering - Crash Course CS" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Agile vs Waterfall (Hussein Nasser)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/V4-H3g5zG6I" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=V4-H3g5zG6I" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/V4-H3g5zG6I/hqdefault.jpg" alt="Agile vs Waterfall (Hussein Nasser)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>All UML Diagrams in 10 Minutes</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/k56y5ZGF93s" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=k56y5ZGF93s" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/k56y5ZGF93s/hqdefault.jpg" alt="All UML Diagrams in 10 Minutes" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div></div>
-            
             <h3 style="color: white; margin-bottom: 20px;">Local Study Checklists</h3>
             <div class="file-grid">
             <div class="file-item-container">
@@ -317,7 +205,7 @@
                     <input type="checkbox" id="chk_file_se_0">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5C7%20th%20Exam.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\7 th Exam.pdf">
+                <a href="file:///D%3A/semester%204/S.E/7%20th%20Exam.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\7 th Exam.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">7 th Exam.pdf</span>
@@ -330,7 +218,7 @@
                     <input type="checkbox" id="chk_file_se_1">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5C7%20th%20Template%20(1).pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\7 th Template (1).pdf">
+                <a href="file:///D%3A/semester%204/S.E/7%20th%20Template%20(1).pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\7 th Template (1).pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">7 th Template (1).pdf</span>
@@ -343,7 +231,7 @@
                     <input type="checkbox" id="chk_file_se_2">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5C7%20th%20Template.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\7 th Template.pdf">
+                <a href="file:///D%3A/semester%204/S.E/7%20th%20Template.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\7 th Template.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">7 th Template.pdf</span>
@@ -356,7 +244,7 @@
                     <input type="checkbox" id="chk_file_se_3">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%202%20%20-%20Software%20Process.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 2  - Software Process.pdf">
+                <a href="file:///D%3A/semester%204/S.E/Lecture%202%20%20-%20Software%20Process.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 2  - Software Process.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 2  - Software Process.pdf</span>
@@ -369,7 +257,7 @@
                     <input type="checkbox" id="chk_file_se_4">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%203%20%20-%20Software%20Process%20Requirements.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 3  - Software Process Requirements.pdf">
+                <a href="file:///D%3A/semester%204/S.E/Lecture%203%20%20-%20Software%20Process%20Requirements.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 3  - Software Process Requirements.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 3  - Software Process Requirements.pdf</span>
@@ -382,7 +270,7 @@
                     <input type="checkbox" id="chk_file_se_5">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%204%20%20-%20Software%20Process%20Requirements.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 4  - Software Process Requirements.pdf">
+                <a href="file:///D%3A/semester%204/S.E/Lecture%204%20%20-%20Software%20Process%20Requirements.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 4  - Software Process Requirements.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 4  - Software Process Requirements.pdf</span>
@@ -395,7 +283,7 @@
                     <input type="checkbox" id="chk_file_se_6">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%205%20%20-%20Software%20Process%20Requirements.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 5  - Software Process Requirements.pdf">
+                <a href="file:///D%3A/semester%204/S.E/Lecture%205%20%20-%20Software%20Process%20Requirements.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 5  - Software Process Requirements.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 5  - Software Process Requirements.pdf</span>
@@ -408,7 +296,7 @@
                     <input type="checkbox" id="chk_file_se_7">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%206%20%20-%20Activity%20Diagram.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 6  - Activity Diagram.pdf">
+                <a href="file:///D%3A/semester%204/S.E/Lecture%206%20%20-%20Activity%20Diagram.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 6  - Activity Diagram.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 6  - Activity Diagram.pdf</span>
@@ -421,7 +309,7 @@
                     <input type="checkbox" id="chk_file_se_8">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%207%20%20-%20Use-Case%20Model.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 7  - Use-Case Model.pdf">
+                <a href="file:///D%3A/semester%204/S.E/Lecture%207%20%20-%20Use-Case%20Model.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 7  - Use-Case Model.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 7  - Use-Case Model.pdf</span>
@@ -434,7 +322,7 @@
                     <input type="checkbox" id="chk_file_se_9">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%208-Developing%20Product.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 8-Developing Product.pdf">
+                <a href="file:///D%3A/semester%204/S.E/Lecture%208-Developing%20Product.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 8-Developing Product.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 8-Developing Product.pdf</span>
@@ -447,7 +335,7 @@
                     <input type="checkbox" id="chk_file_se_10">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture%209-Product%20Testing%20and%20Integration.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 9-Product Testing and Integration.pdf">
+                <a href="file:///D%3A/semester%204/S.E/Lecture%209-Product%20Testing%20and%20Integration.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture 9-Product Testing and Integration.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 9-Product Testing and Integration.pdf</span>
@@ -460,7 +348,7 @@
                     <input type="checkbox" id="chk_file_se_11">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5CLecture-1.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture-1.pdf">
+                <a href="file:///D%3A/semester%204/S.E/Lecture-1.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\Lecture-1.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture-1.pdf</span>
@@ -473,7 +361,7 @@
                     <input type="checkbox" id="chk_file_se_12">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5Csoftware_process_case_studies%20.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\software_process_case_studies .pdf">
+                <a href="file:///D%3A/semester%204/S.E/software_process_case_studies%20.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\software_process_case_studies .pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">software_process_case_studies .pdf</span>
@@ -486,7 +374,7 @@
                     <input type="checkbox" id="chk_file_se_13">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5CSECTION%5CSection%2011%20INTRO%20TO%20SE.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\SECTION\Section 11 INTRO TO SE.pdf">
+                <a href="file:///D%3A/semester%204/S.E/SECTION/Section%2011%20INTRO%20TO%20SE.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\SECTION\Section 11 INTRO TO SE.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Section 11 INTRO TO SE.pdf</span>
@@ -499,7 +387,7 @@
                     <input type="checkbox" id="chk_file_se_14">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5CSECTION%5CSection%206%20INTRO%20TO%20SE.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\SECTION\Section 6 INTRO TO SE.pdf">
+                <a href="file:///D%3A/semester%204/S.E/SECTION/Section%206%20INTRO%20TO%20SE.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\SECTION\Section 6 INTRO TO SE.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Section 6 INTRO TO SE.pdf</span>
@@ -512,7 +400,7 @@
                     <input type="checkbox" id="chk_file_se_15">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CS.E%5CSECTION%5CSection%209%20INTRO%20TO%20SE.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\SECTION\Section 9 INTRO TO SE.pdf">
+                <a href="file:///D%3A/semester%204/S.E/SECTION/Section%209%20INTRO%20TO%20SE.pdf" target="_blank" class="file-item" title="D:\semester 4\S.E\SECTION\Section 9 INTRO TO SE.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Section 9 INTRO TO SE.pdf</span>
@@ -521,10 +409,8 @@
             </div>
         </div>
         </div>
-
         <div class="inner-tab-content" id="se_summary">
             <div class="summary-card">
-                
 <ul style='margin-left: 20px; list-style-type: disc; margin-bottom: 20px;'><li style='margin-bottom: 8px;'>1. Software Engineering is the systematic application of engineering principles to the development, operation, and maintenance of software.
 2. The Software Development Life Cycle (SDLC) includes Requirements, Design, Implementation, Testing, Deployment, and Maintenance.
 3. Waterfall Model: A linear, sequential approach. Good for well-understood requirements, bad for changing environments.
@@ -575,10 +461,8 @@
 48. Test-Driven Development (TDD): Writing tests before writing the code that makes the tests pass.
 49. Software Evolution: The process of updating software to adapt to changing environments and requirements over its lifecycle.
 50. Ethics in SE: Software engineers must adhere to professional codes of ethics (e.g., ACM/IEEE) ensuring public safety and confidentiality.</li></ul>
-        
-            </div>
         </div>
-
+        </div>
         <div class="inner-tab-content" id="se_code">
             <div class="code-card">
                 <pre><code>// ==========================================
@@ -623,11 +507,10 @@ public class University {
 }</code></pre>
             </div>
         </div>
-
         <div class="inner-tab-content" id="se_flash">
-            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+            <div style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
                 <h3 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-bolt"></i> Interactive AI Study Cards</h3>
-                <p style="color: #cbd5e1; font-size: 1.1rem;">The highest-yield concepts for Intro to Software Engineering. Click any card to flip it and reveal the expert answer. Memorize these perfectly before the exam.</p>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">Click any card to flip it and reveal the expert answer.</p>
             </div>
             <div class="flashcard-grid">
             <div class="flashcard" onclick="this.classList.toggle('flipped')">
@@ -841,7 +724,6 @@ public class University {
             </div>
         </div>
         </div>
-
         <div class="inner-tab-content" id="se_exam">
             <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
                 <h3 class="exam-header">Intro to Software Engineering (CSE2001) - Full Mock Exam A (40 Pts)</h3>
@@ -918,7 +800,6 @@ public class University {
             <h2><i class="fa-solid fa-globe"></i> Web Programming (CCS2305)</h2>
             <div class="exam-badge"><i class="fa-regular fa-calendar-check"></i> Final: Tuesday, June 09, 2026 - 12:30 PM</div>
         </div>
-        
         <div class="inner-tabs">
             <button class="inner-tab-btn active" onclick="switchInnerTab(event, 'web_materials')"><i class="fa-solid fa-photo-film"></i> Short Crash Courses</button>
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'web_summary')"><i class="fa-solid fa-book-open"></i> Master Summary</button>
@@ -926,41 +807,58 @@ public class University {
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'web_flash')" style="color: #f59e0b;"><i class="fa-solid fa-layer-group"></i> AI Flashcards</button>
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'web_exam')"><i class="fa-solid fa-file-pen"></i> Practice Exams (3)</button>
         </div>
-
         <div class="inner-tab-content active" id="web_materials">
-            <div style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+            <div style="background: rgba(244,63,94,0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
                 <h4 style="color: #f43f5e; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Exam Mode</h4>
-                <p style="color: #e2e8f0;">All videos below have been replaced with <strong>short, high-yield Arabic crash courses and summaries</strong>. Skip the 15-hour playlists. Focus on these.</p>
+                <p style="color: #e2e8f0;">All videos below are <strong>short, high-yield crash courses</strong> from top channels. Click a thumbnail to watch on YouTube.</p>
             </div>
-            
-            <h3 style="color: white; margin-bottom: 20px;">Arabic Crash Courses & Interactive Tools</h3>
+            <h3 style="color: white; margin-bottom: 20px;">Crash Courses &amp; Interactive Tools</h3>
             <div class="video-grid" style="margin-bottom: 40px;"><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>🇸🇦 PHP 8 بالعربي - Elzero Web School</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/Dk8T-R11b6s" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=Dk8T-R11b6s" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/Dk8T-R11b6s/hqdefault.jpg" alt="🇸🇦 PHP 8 بالعربي - Elzero Web School" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>PHP Crash Course (Traversy Media)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/TAGzZ5Y7d40" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=TAGzZ5Y7d40" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/TAGzZ5Y7d40/hqdefault.jpg" alt="PHP Crash Course (Traversy Media)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>JS DOM Manipulation Full Course</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/y17MRr04a9I" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=y17MRr04a9I" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/y17MRr04a9I/hqdefault.jpg" alt="JS DOM Manipulation Full Course" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>CSS Flexbox Crash Course (Traversy)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/JJSoZW24v6w" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=JJSoZW24v6w" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/JJSoZW24v6w/hqdefault.jpg" alt="CSS Flexbox Crash Course (Traversy)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Fetch API / AJAX Intro (Traversy)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/Oive66jrwBs" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=Oive66jrwBs" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/Oive66jrwBs/hqdefault.jpg" alt="Fetch API / AJAX Intro (Traversy)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div></div>
-            
             <h3 style="color: white; margin-bottom: 20px;">Local Study Checklists</h3>
             <div class="file-grid">
             <div class="file-item-container">
@@ -968,7 +866,7 @@ public class University {
                     <input type="checkbox" id="chk_file_web_0">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CWEB%5CLecture13%20jQUERY%20CS33_CS644.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Lecture13 jQUERY CS33_CS644.pdf">
+                <a href="file:///D%3A/semester%204/WEB/Lecture13%20jQUERY%20CS33_CS644.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Lecture13 jQUERY CS33_CS644.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture13 jQUERY CS33_CS644.pdf</span>
@@ -981,7 +879,7 @@ public class University {
                     <input type="checkbox" id="chk_file_web_1">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CWEB%5CPHP%20Intro%20variables%20and%20conditional%20statements.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\PHP Intro variables and conditional statements.pdf">
+                <a href="file:///D%3A/semester%204/WEB/PHP%20Intro%20variables%20and%20conditional%20statements.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\PHP Intro variables and conditional statements.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">PHP Intro variables and conditional statements.pdf</span>
@@ -994,7 +892,7 @@ public class University {
                     <input type="checkbox" id="chk_file_web_2">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-1-Introduction%20to%20Web%20Development-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-1-Introduction to Web Development-edited.pdf">
+                <a href="file:///D%3A/semester%204/WEB/Week-1-Introduction%20to%20Web%20Development-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-1-Introduction to Web Development-edited.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Week-1-Introduction to Web Development-edited.pdf</span>
@@ -1007,7 +905,7 @@ public class University {
                     <input type="checkbox" id="chk_file_web_3">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-11-%20PHP%20Forms%20and%20Arrays.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-11- PHP Forms and Arrays.pdf">
+                <a href="file:///D%3A/semester%204/WEB/Week-11-%20PHP%20Forms%20and%20Arrays.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-11- PHP Forms and Arrays.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Week-11- PHP Forms and Arrays.pdf</span>
@@ -1020,7 +918,7 @@ public class University {
                     <input type="checkbox" id="chk_file_web_4">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-12-%20AJAX-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-12- AJAX-edited.pdf">
+                <a href="file:///D%3A/semester%204/WEB/Week-12-%20AJAX-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-12- AJAX-edited.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Week-12- AJAX-edited.pdf</span>
@@ -1033,7 +931,7 @@ public class University {
                     <input type="checkbox" id="chk_file_web_5">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-2-Introduction%20to%20HTML-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-2-Introduction to HTML-edited.pdf">
+                <a href="file:///D%3A/semester%204/WEB/Week-2-Introduction%20to%20HTML-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-2-Introduction to HTML-edited.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Week-2-Introduction to HTML-edited.pdf</span>
@@ -1046,7 +944,7 @@ public class University {
                     <input type="checkbox" id="chk_file_web_6">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-3-%20HTML%20%20Structure%20Elements-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-3- HTML  Structure Elements-edited.pdf">
+                <a href="file:///D%3A/semester%204/WEB/Week-3-%20HTML%20%20Structure%20Elements-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-3- HTML  Structure Elements-edited.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Week-3- HTML  Structure Elements-edited.pdf</span>
@@ -1059,7 +957,7 @@ public class University {
                     <input type="checkbox" id="chk_file_web_7">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-3-%20HTML%20%20Tables-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-3- HTML  Tables-edited.pdf">
+                <a href="file:///D%3A/semester%204/WEB/Week-3-%20HTML%20%20Tables-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-3- HTML  Tables-edited.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Week-3- HTML  Tables-edited.pdf</span>
@@ -1072,7 +970,7 @@ public class University {
                     <input type="checkbox" id="chk_file_web_8">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-4-%20CSS%20%20Introduction-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-4- CSS  Introduction-edited.pdf">
+                <a href="file:///D%3A/semester%204/WEB/Week-4-%20CSS%20%20Introduction-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-4- CSS  Introduction-edited.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Week-4- CSS  Introduction-edited.pdf</span>
@@ -1085,7 +983,7 @@ public class University {
                     <input type="checkbox" id="chk_file_web_9">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-4-%20HTML%20Forms.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-4- HTML Forms.pdf">
+                <a href="file:///D%3A/semester%204/WEB/Week-4-%20HTML%20Forms.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-4- HTML Forms.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Week-4- HTML Forms.pdf</span>
@@ -1098,7 +996,7 @@ public class University {
                     <input type="checkbox" id="chk_file_web_10">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-6-%20CSS%20%20colors%2C%20images%2C%20links-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-6- CSS  colors, images, links-edited.pdf">
+                <a href="file:///D%3A/semester%204/WEB/Week-6-%20CSS%20%20colors%2C%20images%2C%20links-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-6- CSS  colors, images, links-edited.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Week-6- CSS  colors, images, links-edited.pdf</span>
@@ -1111,7 +1009,7 @@ public class University {
                     <input type="checkbox" id="chk_file_web_11">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CWEB%5CWeek-7-%20JavaScript%20%20Introduction-updated-dr.mohamed-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-7- JavaScript  Introduction-updated-dr.mohamed-edited.pdf">
+                <a href="file:///D%3A/semester%204/WEB/Week-7-%20JavaScript%20%20Introduction-updated-dr.mohamed-edited.pdf" target="_blank" class="file-item" title="D:\semester 4\WEB\Week-7- JavaScript  Introduction-updated-dr.mohamed-edited.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Week-7- JavaScript  Introduction-updated-dr.mohamed-edited.pdf</span>
@@ -1120,10 +1018,8 @@ public class University {
             </div>
         </div>
         </div>
-
         <div class="inner-tab-content" id="web_summary">
             <div class="summary-card">
-                
 <ul style='margin-left: 20px; list-style-type: disc; margin-bottom: 20px;'><li style='margin-bottom: 8px;'>1. The World Wide Web relies on the client-server model. The client (browser) sends HTTP requests, and the server returns HTTP responses.
 2. HTML (HyperText Markup Language) defines the structure and content of a web page using elements and tags.
 3. HTML5 introduced semantic elements like `&lt;header&gt;`, `&lt;footer&gt;`, `&lt;article&gt;`, and `&lt;nav&gt;` to improve accessibility and SEO.
@@ -1174,10 +1070,8 @@ public class University {
 48. Hoisting in JS: Variable and function declarations are moved to the top of their scope before code execution.
 49. PHP Object-Oriented Programming supports Classes, Objects, Inheritance (`extends`), and Access Modifiers (`public`, `private`, `protected`).
 50. Web Hosting involves placing your HTML/CSS/JS and PHP files on a server (like Apache or Nginx) connected to the internet.</li></ul>
-        
-            </div>
         </div>
-
+        </div>
         <div class="inner-tab-content" id="web_code">
             <div class="code-card">
                 <pre><code>// ==========================================
@@ -1248,11 +1142,10 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
 &lt;/script&gt;</code></pre>
             </div>
         </div>
-
         <div class="inner-tab-content" id="web_flash">
-            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+            <div style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
                 <h3 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-bolt"></i> Interactive AI Study Cards</h3>
-                <p style="color: #cbd5e1; font-size: 1.1rem;">The highest-yield concepts for Web Programming. Click any card to flip it and reveal the expert answer. Memorize these perfectly before the exam.</p>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">Click any card to flip it and reveal the expert answer.</p>
             </div>
             <div class="flashcard-grid">
             <div class="flashcard" onclick="this.classList.toggle('flipped')">
@@ -1466,7 +1359,6 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
             </div>
         </div>
         </div>
-
         <div class="inner-tab-content" id="web_exam">
             <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
                 <h3 class="exam-header">Web Programming (CCS2305) - Full Mock Exam A (40 Pts)</h3>
@@ -1543,7 +1435,6 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
             <h2><i class="fa-solid fa-network-wired"></i> Data Structures & Algorithms (CCS2401)</h2>
             <div class="exam-badge"><i class="fa-regular fa-calendar-check"></i> Final: Thursday, June 11, 2026 - 10:00 AM</div>
         </div>
-        
         <div class="inner-tabs">
             <button class="inner-tab-btn active" onclick="switchInnerTab(event, 'dsa_materials')"><i class="fa-solid fa-photo-film"></i> Short Crash Courses</button>
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'dsa_summary')"><i class="fa-solid fa-book-open"></i> Master Summary</button>
@@ -1551,45 +1442,62 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'dsa_flash')" style="color: #f59e0b;"><i class="fa-solid fa-layer-group"></i> AI Flashcards</button>
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'dsa_exam')"><i class="fa-solid fa-file-pen"></i> Practice Exams (3)</button>
         </div>
-
         <div class="inner-tab-content active" id="dsa_materials">
-            <div style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+            <div style="background: rgba(244,63,94,0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
                 <h4 style="color: #f43f5e; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Exam Mode</h4>
-                <p style="color: #e2e8f0;">All videos below have been replaced with <strong>short, high-yield Arabic crash courses and summaries</strong>. Skip the 15-hour playlists. Focus on these.</p>
+                <p style="color: #e2e8f0;">All videos below are <strong>short, high-yield crash courses</strong> from top channels. Click a thumbnail to watch on YouTube.</p>
             </div>
-            
-            <h3 style="color: white; margin-bottom: 20px;">Arabic Crash Courses & Interactive Tools</h3>
+            <h3 style="color: white; margin-bottom: 20px;">Crash Courses &amp; Interactive Tools</h3>
             <div class="video-grid" style="margin-bottom: 40px;"><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Data Structures - Easy to Advanced (freeCodeCamp)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/RBSGKlAaaHQ" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=RBSGKlAaaHQ" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/RBSGKlAaaHQ/hqdefault.jpg" alt="Data Structures - Easy to Advanced (freeCodeCamp)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Big O Notation Explained (CS Dojo)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/D6xGVHC4IfA" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=D6xGVHC4IfA" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/D6xGVHC4IfA/hqdefault.jpg" alt="Big O Notation Explained (CS Dojo)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Intro to Linked List (mycodeschool)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/NobHlGUjV3g" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=NobHlGUjV3g" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/NobHlGUjV3g/hqdefault.jpg" alt="Intro to Linked List (mycodeschool)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>15 Sorting Algorithms in 6 Minutes (Visual)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/kPRA0W1kECg" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=kPRA0W1kECg" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/kPRA0W1kECg/hqdefault.jpg" alt="15 Sorting Algorithms in 6 Minutes (Visual)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Algorithms Intro (Abdul Bari)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/0IAPZzGSbME" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=0IAPZzGSbME" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/0IAPZzGSbME/hqdefault.jpg" alt="Algorithms Intro (Abdul Bari)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><a href="https://visualgo.net/en/sorting" target="_blank" class="direct-vid-link">
                 <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> 🧠 VisuAlgo Interactive Sorting <i class="fa-solid fa-arrow-right arrow-icon"></i>
             </a><a href="https://visualgo.net/en/bst" target="_blank" class="direct-vid-link">
                 <i class="fa-brands fa-youtube" style="color: #f43f5e;"></i> 🧠 VisuAlgo Interactive BST <i class="fa-solid fa-arrow-right arrow-icon"></i>
             </a></div>
-            
             <h3 style="color: white; margin-bottom: 20px;">Local Study Checklists</h3>
             <div class="file-grid">
             <div class="file-item-container">
@@ -1597,7 +1505,7 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
                     <input type="checkbox" id="chk_file_dsa_0">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCCS2401-Data%20Structures%20and%20Algorithms_Intro.pptx" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CCS2401-Data Structures and Algorithms_Intro.pptx">
+                <a href="file:///D%3A/semester%204/DATA%20STRUCTURE/CCS2401-Data%20Structures%20and%20Algorithms_Intro.pptx" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CCS2401-Data Structures and Algorithms_Intro.pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">CCS2401-Data Structures and Algorithms_Intro.pptx</span>
@@ -1610,7 +1518,7 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
                     <input type="checkbox" id="chk_file_dsa_1">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCS-Fundamentals.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS-Fundamentals.pdf">
+                <a href="file:///D%3A/semester%204/DATA%20STRUCTURE/CS-Fundamentals.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS-Fundamentals.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">CS-Fundamentals.pdf</span>
@@ -1623,7 +1531,7 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
                     <input type="checkbox" id="chk_file_dsa_2">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCS143_Feb2019_13_Searching_Sorting.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS143_Feb2019_13_Searching_Sorting.pdf">
+                <a href="file:///D%3A/semester%204/DATA%20STRUCTURE/CS143_Feb2019_13_Searching_Sorting.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS143_Feb2019_13_Searching_Sorting.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">CS143_Feb2019_13_Searching_Sorting.pdf</span>
@@ -1636,7 +1544,7 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
                     <input type="checkbox" id="chk_file_dsa_3">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCS212_Feb2020_02_LinkedLists_Single.pptx" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS212_Feb2020_02_LinkedLists_Single.pptx">
+                <a href="file:///D%3A/semester%204/DATA%20STRUCTURE/CS212_Feb2020_02_LinkedLists_Single.pptx" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS212_Feb2020_02_LinkedLists_Single.pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">CS212_Feb2020_02_LinkedLists_Single.pptx</span>
@@ -1649,7 +1557,7 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
                     <input type="checkbox" id="chk_file_dsa_4">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCS212_Feb2020_06_Trees.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS212_Feb2020_06_Trees.pdf">
+                <a href="file:///D%3A/semester%204/DATA%20STRUCTURE/CS212_Feb2020_06_Trees.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS212_Feb2020_06_Trees.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">CS212_Feb2020_06_Trees.pdf</span>
@@ -1662,7 +1570,7 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
                     <input type="checkbox" id="chk_file_dsa_5">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCS212_Feb2020_07_Trees_2-Traversal-.pptx.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS212_Feb2020_07_Trees_2-Traversal-.pptx.pdf">
+                <a href="file:///D%3A/semester%204/DATA%20STRUCTURE/CS212_Feb2020_07_Trees_2-Traversal-.pptx.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS212_Feb2020_07_Trees_2-Traversal-.pptx.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">CS212_Feb2020_07_Trees_2-Traversal-.pptx.pdf</span>
@@ -1675,7 +1583,7 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
                     <input type="checkbox" id="chk_file_dsa_6">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CCS212_Feb2020_08_Graphs.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS212_Feb2020_08_Graphs.pdf">
+                <a href="file:///D%3A/semester%204/DATA%20STRUCTURE/CS212_Feb2020_08_Graphs.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\CS212_Feb2020_08_Graphs.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">CS212_Feb2020_08_Graphs.pdf</span>
@@ -1688,7 +1596,7 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
                     <input type="checkbox" id="chk_file_dsa_7">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5Clinked%20list%20part1.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\linked list part1.pdf">
+                <a href="file:///D%3A/semester%204/DATA%20STRUCTURE/linked%20list%20part1.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\linked list part1.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">linked list part1.pdf</span>
@@ -1701,7 +1609,7 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
                     <input type="checkbox" id="chk_file_dsa_8">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5CSection3-Algortihm-.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\Section3-Algortihm-.pdf">
+                <a href="file:///D%3A/semester%204/DATA%20STRUCTURE/Section3-Algortihm-.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\Section3-Algortihm-.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Section3-Algortihm-.pdf</span>
@@ -1714,7 +1622,7 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
                     <input type="checkbox" id="chk_file_dsa_9">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CDATA%20STRUCTURE%5Csheet%201.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\sheet 1.pdf">
+                <a href="file:///D%3A/semester%204/DATA%20STRUCTURE/sheet%201.pdf" target="_blank" class="file-item" title="D:\semester 4\DATA STRUCTURE\sheet 1.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">sheet 1.pdf</span>
@@ -1723,10 +1631,8 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
             </div>
         </div>
         </div>
-
         <div class="inner-tab-content" id="dsa_summary">
             <div class="summary-card">
-                
 <ul style='margin-left: 20px; list-style-type: disc; margin-bottom: 20px;'><li style='margin-bottom: 8px;'>1. Data Structures organize data in memory for efficient access, modification, and storage. Algorithms are the step-by-step procedures that operate on them.
 2. Big O Notation measures algorithm efficiency: O(1) Constant, O(log n) Logarithmic, O(n) Linear, O(n log n) Linearithmic, O(n²) Quadratic.
 3. Arrays: Fixed-size, contiguous memory blocks. Access by index is O(1). Insertion/Deletion in the middle is O(n).
@@ -1777,10 +1683,8 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
 48. Stable Sort: Maintains the relative order of equal elements. Merge Sort and Insertion Sort are stable.
 49. In-place Sort: Uses O(1) extra space. Quick Sort and Bubble Sort are in-place.
 50. VisuAlgo (visualgo.net): Interactive visualizer for all data structures and sorting algorithms. USE IT to understand BST, Linked Lists, and Sorting visually.</li></ul>
-        
-            </div>
         </div>
-
+        </div>
         <div class="inner-tab-content" id="dsa_code">
             <div class="code-card">
                 <pre><code>// ==========================================
@@ -1871,11 +1775,10 @@ void merge(int arr[], int l, int m, int r) {
 }</code></pre>
             </div>
         </div>
-
         <div class="inner-tab-content" id="dsa_flash">
-            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+            <div style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
                 <h3 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-bolt"></i> Interactive AI Study Cards</h3>
-                <p style="color: #cbd5e1; font-size: 1.1rem;">The highest-yield concepts for Data Structures & Algorithms. Click any card to flip it and reveal the expert answer. Memorize these perfectly before the exam.</p>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">Click any card to flip it and reveal the expert answer.</p>
             </div>
             <div class="flashcard-grid">
             <div class="flashcard" onclick="this.classList.toggle('flipped')">
@@ -2089,7 +1992,6 @@ void merge(int arr[], int l, int m, int r) {
             </div>
         </div>
         </div>
-
         <div class="inner-tab-content" id="dsa_exam">
             <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
                 <h3 class="exam-header">Data Structures & Algorithms (CCS2401) - Full Mock Exam A (40 Pts)</h3>
@@ -2166,7 +2068,6 @@ void merge(int arr[], int l, int m, int r) {
             <h2><i class="fa-solid fa-shield-halved"></i> Intro to Cybersecurity (CCY2001)</h2>
             <div class="exam-badge"><i class="fa-regular fa-calendar-check"></i> Final: Saturday, June 13, 2026 - 12:30 PM</div>
         </div>
-        
         <div class="inner-tabs">
             <button class="inner-tab-btn active" onclick="switchInnerTab(event, 'cyber_materials')"><i class="fa-solid fa-photo-film"></i> Short Crash Courses</button>
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'cyber_summary')"><i class="fa-solid fa-book-open"></i> Master Summary</button>
@@ -2174,41 +2075,58 @@ void merge(int arr[], int l, int m, int r) {
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'cyber_flash')" style="color: #f59e0b;"><i class="fa-solid fa-layer-group"></i> AI Flashcards</button>
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'cyber_exam')"><i class="fa-solid fa-file-pen"></i> Practice Exams (3)</button>
         </div>
-
         <div class="inner-tab-content active" id="cyber_materials">
-            <div style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+            <div style="background: rgba(244,63,94,0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
                 <h4 style="color: #f43f5e; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Exam Mode</h4>
-                <p style="color: #e2e8f0;">All videos below have been replaced with <strong>short, high-yield Arabic crash courses and summaries</strong>. Skip the 15-hour playlists. Focus on these.</p>
+                <p style="color: #e2e8f0;">All videos below are <strong>short, high-yield crash courses</strong> from top channels. Click a thumbnail to watch on YouTube.</p>
             </div>
-            
-            <h3 style="color: white; margin-bottom: 20px;">Arabic Crash Courses & Interactive Tools</h3>
+            <h3 style="color: white; margin-bottom: 20px;">Crash Courses &amp; Interactive Tools</h3>
             <div class="video-grid" style="margin-bottom: 40px;"><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Cybersecurity Full Course for Beginners</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/U_P23SqJaDc" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=U_P23SqJaDc" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/U_P23SqJaDc/hqdefault.jpg" alt="Cybersecurity Full Course for Beginners" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>AES Encryption Explained (Computerphile)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/gq83m5QJ_mE" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=gq83m5QJ_mE" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/gq83m5QJ_mE/hqdefault.jpg" alt="AES Encryption Explained (Computerphile)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>How HTTPS Works (TLS Explained)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/AlE5X1NlHgg" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=AlE5X1NlHgg" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/AlE5X1NlHgg/hqdefault.jpg" alt="How HTTPS Works (TLS Explained)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Ethical Hacking Full Course (freeCodeCamp)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/3Kq1z-CRU64" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=3Kq1z-CRU64" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/3Kq1z-CRU64/hqdefault.jpg" alt="Ethical Hacking Full Course (freeCodeCamp)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Hacker's Roadmap 2025 (NetworkChuck)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/5xWnmUEi1Qw" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=5xWnmUEi1Qw" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/5xWnmUEi1Qw/hqdefault.jpg" alt="Hacker's Roadmap 2025 (NetworkChuck)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div></div>
-            
             <h3 style="color: white; margin-bottom: 20px;">Local Study Checklists</h3>
             <div class="file-grid">
             <div class="file-item-container">
@@ -2216,7 +2134,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_0">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5CCybersecurity_Playbook.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\Cybersecurity_Playbook.pdf">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/Cybersecurity_Playbook.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\Cybersecurity_Playbook.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Cybersecurity_Playbook.pdf</span>
@@ -2229,7 +2147,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_1">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5CCybersecurity_Projects_Compendium%20V3.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\Cybersecurity_Projects_Compendium V3.pdf">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/Cybersecurity_Projects_Compendium%20V3.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\Cybersecurity_Projects_Compendium V3.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Cybersecurity_Projects_Compendium V3.pdf</span>
@@ -2242,7 +2160,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_2">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Ccybersec_crypto_Lec_5.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\cybersec_crypto_Lec_5.pdf">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/cybersec_crypto_Lec_5.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\cybersec_crypto_Lec_5.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">cybersec_crypto_Lec_5.pdf</span>
@@ -2255,7 +2173,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_3">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5CCybersec_Lec3.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\Cybersec_Lec3.pdf">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/Cybersec_Lec3.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\Cybersec_Lec3.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Cybersec_Lec3.pdf</span>
@@ -2268,7 +2186,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_4">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Ccybersec_secure_computer_Lec_4.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\cybersec_secure_computer_Lec_4.pdf">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/cybersec_secure_computer_Lec_4.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\cybersec_secure_computer_Lec_4.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">cybersec_secure_computer_Lec_4.pdf</span>
@@ -2281,7 +2199,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_5">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5CE_commerce_cybersec.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\E_commerce_cybersec.pdf">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/E_commerce_cybersec.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\E_commerce_cybersec.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">E_commerce_cybersec.pdf</span>
@@ -2294,7 +2212,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_6">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Cintroduction_to_cybersec_Lec2.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\introduction_to_cybersec_Lec2.pdf">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/introduction_to_cybersec_Lec2.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\introduction_to_cybersec_Lec2.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">introduction_to_cybersec_Lec2.pdf</span>
@@ -2307,7 +2225,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_7">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Clec1_cybersec.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\lec1_cybersec.pdf">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/lec1_cybersec.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\lec1_cybersec.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">lec1_cybersec.pdf</span>
@@ -2320,7 +2238,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_8">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5CRisk_Management_Lect_11.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\Risk_Management_Lect_11.pdf">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/Risk_Management_Lect_11.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\Risk_Management_Lect_11.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Risk_Management_Lect_11.pdf</span>
@@ -2333,7 +2251,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_9">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Cxor_cipher_solution.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\xor_cipher_solution.pdf">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/xor_cipher_solution.pdf" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\xor_cipher_solution.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">xor_cipher_solution.pdf</span>
@@ -2346,7 +2264,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_10">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Csection%20exam%5CCybersceurity-Lab1.pptx" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\section exam\Cybersceurity-Lab1.pptx">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/section%20exam/Cybersceurity-Lab1.pptx" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\section exam\Cybersceurity-Lab1.pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">Cybersceurity-Lab1.pptx</span>
@@ -2359,7 +2277,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_11">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Csection%20exam%5CCybersceurity-Lab2.pptx" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\section exam\Cybersceurity-Lab2.pptx">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/section%20exam/Cybersceurity-Lab2.pptx" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\section exam\Cybersceurity-Lab2.pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">Cybersceurity-Lab2.pptx</span>
@@ -2372,7 +2290,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_12">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Csection%20exam%5CCybersceurity-Lab3%20-%20Copy.pptx" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\section exam\Cybersceurity-Lab3 - Copy.pptx">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/section%20exam/Cybersceurity-Lab3%20-%20Copy.pptx" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\section exam\Cybersceurity-Lab3 - Copy.pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">Cybersceurity-Lab3 - Copy.pptx</span>
@@ -2385,7 +2303,7 @@ void merge(int arr[], int l, int m, int r) {
                     <input type="checkbox" id="chk_file_cyber_13">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CINTRO%20CYBER%5Csection%20exam%5Clinux%20commands%20light.pptx" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\section exam\linux commands light.pptx">
+                <a href="file:///D%3A/semester%204/INTRO%20CYBER/section%20exam/linux%20commands%20light.pptx" target="_blank" class="file-item" title="D:\semester 4\INTRO CYBER\section exam\linux commands light.pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">linux commands light.pptx</span>
@@ -2394,10 +2312,8 @@ void merge(int arr[], int l, int m, int r) {
             </div>
         </div>
         </div>
-
         <div class="inner-tab-content" id="cyber_summary">
             <div class="summary-card">
-                
 <ul style='margin-left: 20px; list-style-type: disc; margin-bottom: 20px;'><li style='margin-bottom: 8px;'>1. Cybersecurity is the practice of protecting systems, networks, and programs from digital attacks, damage, or unauthorized access.
 2. CIA Triad: The three core principles of cybersecurity — Confidentiality (only authorized access), Integrity (data is accurate and unaltered), Availability (systems are accessible when needed).
 3. Authentication: Verifying the identity of a user (e.g., password, fingerprint). Authorization: Granting access rights after authentication.
@@ -2448,10 +2364,8 @@ void merge(int arr[], int l, int m, int r) {
 48. Ransomware Defense: Regular backups (3-2-1 rule), email filtering, endpoint protection, user training.
 49. Biometric Authentication: Uses physical characteristics (fingerprint, face, iris). Convenient but cannot be changed if compromised.
 50. Cybersecurity Frameworks: NIST Cybersecurity Framework (Identify, Protect, Detect, Respond, Recover). ISO 27001 for information security management.</li></ul>
-        
-            </div>
         </div>
-
+        </div>
         <div class="inner-tab-content" id="cyber_code">
             <div class="code-card">
                 <pre><code># ==========================================
@@ -2482,11 +2396,10 @@ $ grep "Failed password" /var/log/auth.log   # Find SSH brute force attempts
 $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the system</code></pre>
             </div>
         </div>
-
         <div class="inner-tab-content" id="cyber_flash">
-            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+            <div style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
                 <h3 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-bolt"></i> Interactive AI Study Cards</h3>
-                <p style="color: #cbd5e1; font-size: 1.1rem;">The highest-yield concepts for Intro to Cybersecurity. Click any card to flip it and reveal the expert answer. Memorize these perfectly before the exam.</p>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">Click any card to flip it and reveal the expert answer.</p>
             </div>
             <div class="flashcard-grid">
             <div class="flashcard" onclick="this.classList.toggle('flipped')">
@@ -2700,7 +2613,6 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
             </div>
         </div>
         </div>
-
         <div class="inner-tab-content" id="cyber_exam">
             <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
                 <h3 class="exam-header">Intro to Cybersecurity (CCY2001) - Full Mock Exam A (40 Pts)</h3>
@@ -2777,7 +2689,6 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
             <h2><i class="fa-solid fa-microchip"></i> Computer Architecture (CCS2103)</h2>
             <div class="exam-badge"><i class="fa-regular fa-calendar-check"></i> Final: Monday, June 15, 2026 - 12:30 PM</div>
         </div>
-        
         <div class="inner-tabs">
             <button class="inner-tab-btn active" onclick="switchInnerTab(event, 'arch_materials')"><i class="fa-solid fa-photo-film"></i> Short Crash Courses</button>
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'arch_summary')"><i class="fa-solid fa-book-open"></i> Master Summary</button>
@@ -2785,41 +2696,58 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'arch_flash')" style="color: #f59e0b;"><i class="fa-solid fa-layer-group"></i> AI Flashcards</button>
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'arch_exam')"><i class="fa-solid fa-file-pen"></i> Practice Exams (3)</button>
         </div>
-
         <div class="inner-tab-content active" id="arch_materials">
-            <div style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+            <div style="background: rgba(244,63,94,0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
                 <h4 style="color: #f43f5e; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Exam Mode</h4>
-                <p style="color: #e2e8f0;">All videos below have been replaced with <strong>short, high-yield Arabic crash courses and summaries</strong>. Skip the 15-hour playlists. Focus on these.</p>
+                <p style="color: #e2e8f0;">All videos below are <strong>short, high-yield crash courses</strong> from top channels. Click a thumbnail to watch on YouTube.</p>
             </div>
-            
-            <h3 style="color: white; margin-bottom: 20px;">Arabic Crash Courses & Interactive Tools</h3>
+            <h3 style="color: white; margin-bottom: 20px;">Crash Courses &amp; Interactive Tools</h3>
             <div class="video-grid" style="margin-bottom: 40px;"><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>⭐ MARIE Assembly (Neso Academy)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/dkGXVMRNhD8" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=dkGXVMRNhD8" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/dkGXVMRNhD8/hqdefault.jpg" alt="⭐ MARIE Assembly (Neso Academy)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>CPU Fetch-Decode-Execute Cycle Explained</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/jFDMZpkUWCw" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=jFDMZpkUWCw" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/jFDMZpkUWCw/hqdefault.jpg" alt="CPU Fetch-Decode-Execute Cycle Explained" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Logic Gates & Boolean Algebra (Neso Academy)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/KJgolNMfNlI" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=KJgolNMfNlI" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/KJgolNMfNlI/hqdefault.jpg" alt="Logic Gates & Boolean Algebra (Neso Academy)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>How Computer Memory Works (Crash Course CS)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/XETZoRYdtkw" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=XETZoRYdtkw" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/XETZoRYdtkw/hqdefault.jpg" alt="How Computer Memory Works (Crash Course CS)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>RISC vs CISC (Simply Explained)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/g16wZWKcao4" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=g16wZWKcao4" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/g16wZWKcao4/hqdefault.jpg" alt="RISC vs CISC (Simply Explained)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div></div>
-            
             <h3 style="color: white; margin-bottom: 20px;">Local Study Checklists</h3>
             <div class="file-grid">
             <div class="file-item-container">
@@ -2827,7 +2755,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_0">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Cbook.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\book.pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/book.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\book.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">book.pdf</span>
@@ -2840,7 +2768,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_1">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5CCA_Sheet_2.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\CA_Sheet_2.pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/CA_Sheet_2.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\CA_Sheet_2.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">CA_Sheet_2.pdf</span>
@@ -2853,7 +2781,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_2">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Cch%205%20(1).pptx" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\ch 5 (1).pptx">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/ch%205%20(1).pptx" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\ch 5 (1).pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">ch 5 (1).pptx</span>
@@ -2866,7 +2794,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_3">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5CCh07_ECOA3e_Alia.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch07_ECOA3e_Alia.pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/Ch07_ECOA3e_Alia.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch07_ECOA3e_Alia.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Ch07_ECOA3e_Alia.pdf</span>
@@ -2879,7 +2807,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_4">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5CCh1_CA.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch1_CA.pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/Ch1_CA.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch1_CA.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Ch1_CA.pdf</span>
@@ -2892,7 +2820,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_5">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5CCh4_CA%20(2).pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch4_CA (2).pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/Ch4_CA%20(2).pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch4_CA (2).pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Ch4_CA (2).pdf</span>
@@ -2905,7 +2833,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_6">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5CCh4_CA%20(2).ppt" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch4_CA (2).ppt">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/Ch4_CA%20(2).ppt" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch4_CA (2).ppt">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">Ch4_CA (2).ppt</span>
@@ -2918,7 +2846,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_7">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5CCh6_CA.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch6_CA.pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/Ch6_CA.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\Ch6_CA.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Ch6_CA.pdf</span>
@@ -2931,7 +2859,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_8">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CCA_Sheet_2.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\CA_Sheet_2.pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/sec/CA_Sheet_2.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\CA_Sheet_2.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">CA_Sheet_2.pdf</span>
@@ -2944,7 +2872,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_9">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSection%2005%20..%20Chapter%2004%20-%20MARIE%20An%20Introduction%20to%20a%20Simple%20Computer%20-%20Part%202.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Section 05 .. Chapter 04 - MARIE An Introduction to a Simple Computer - Part 2.pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/sec/Section%2005%20..%20Chapter%2004%20-%20MARIE%20An%20Introduction%20to%20a%20Simple%20Computer%20-%20Part%202.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Section 05 .. Chapter 04 - MARIE An Introduction to a Simple Computer - Part 2.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Section 05 .. Chapter 04 - MARIE An Introduction to a Simple Computer - Part 2.pdf</span>
@@ -2957,7 +2885,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_10">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSection%2005..%20Example%20RTN%20Tables.docx" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Section 05.. Example RTN Tables.docx">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/sec/Section%2005..%20Example%20RTN%20Tables.docx" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Section 05.. Example RTN Tables.docx">
                     <div class="file-icon"><i class="fa-solid fa-file-word"></i></div>
                     <div class="file-details">
                         <span class="file-name">Section 05.. Example RTN Tables.docx</span>
@@ -2970,7 +2898,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_11">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5Csheet%20%231.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\sheet #1.pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/sec/sheet%20%231.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\sheet #1.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">sheet #1.pdf</span>
@@ -2983,7 +2911,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_12">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSheet%20%233.docx" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet #3.docx">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/sec/Sheet%20%233.docx" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet #3.docx">
                     <div class="file-icon"><i class="fa-solid fa-file-word"></i></div>
                     <div class="file-details">
                         <span class="file-name">Sheet #3.docx</span>
@@ -2996,7 +2924,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_13">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSheet%20%233_Ans.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet #3_Ans.pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/sec/Sheet%20%233_Ans.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet #3_Ans.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Sheet #3_Ans.pdf</span>
@@ -3009,7 +2937,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_14">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSheet_2%20-%20Solved.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet_2 - Solved.pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/sec/Sheet_2%20-%20Solved.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet_2 - Solved.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Sheet_2 - Solved.pdf</span>
@@ -3022,7 +2950,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_15">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSheet_2.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet_2.pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/sec/Sheet_2.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet_2.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Sheet_2.pdf</span>
@@ -3035,7 +2963,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
                     <input type="checkbox" id="chk_file_arch_16">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CCOMPUTER%20ARCHITECTURE%5Csec%5CSheet_3.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet_3.pdf">
+                <a href="file:///D%3A/semester%204/COMPUTER%20ARCHITECTURE/sec/Sheet_3.pdf" target="_blank" class="file-item" title="D:\semester 4\COMPUTER ARCHITECTURE\sec\Sheet_3.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Sheet_3.pdf</span>
@@ -3044,10 +2972,8 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
             </div>
         </div>
         </div>
-
         <div class="inner-tab-content" id="arch_summary">
             <div class="summary-card">
-                
 <ul style='margin-left: 20px; list-style-type: disc; margin-bottom: 20px;'><li style='margin-bottom: 8px;'>1. Computer Architecture defines the functional structure of a computer system: how hardware components work together to execute programs.
 2. Von Neumann Architecture: The foundational model. A single shared memory holds BOTH instructions and data. Includes CPU, Memory, and I/O.
 3. Harvard Architecture: Separate memory and buses for instructions and data, allowing simultaneous access. Used in modern CPUs and microcontrollers.
@@ -3098,10 +3024,8 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
 48. Bus: Shared communication pathway connecting CPU, memory, and I/O. Types: Data Bus, Address Bus, Control Bus.
 49. Clock Speed (GHz): Number of clock cycles per second. Higher clock = more instructions per second.
 50. Moore's Law: Observation that transistor count on a chip doubles approximately every two years, leading to exponential growth in computing power.</li></ul>
-        
-            </div>
         </div>
-
+        </div>
         <div class="inner-tab-content" id="arch_code">
             <div class="code-card">
                 <pre><code>// ==========================================
@@ -3137,11 +3061,10 @@ M[MAR] &lt;- MBR      // Buffer data written to Memory at address X
 PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pre>
             </div>
         </div>
-
         <div class="inner-tab-content" id="arch_flash">
-            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+            <div style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
                 <h3 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-bolt"></i> Interactive AI Study Cards</h3>
-                <p style="color: #cbd5e1; font-size: 1.1rem;">The highest-yield concepts for Computer Architecture. Click any card to flip it and reveal the expert answer. Memorize these perfectly before the exam.</p>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">Click any card to flip it and reveal the expert answer.</p>
             </div>
             <div class="flashcard-grid">
             <div class="flashcard" onclick="this.classList.toggle('flipped')">
@@ -3355,7 +3278,6 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
             </div>
         </div>
         </div>
-
         <div class="inner-tab-content" id="arch_exam">
             <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
                 <h3 class="exam-header">Computer Architecture (CCS2103) - Full Mock Exam A (40 Pts)</h3>
@@ -3440,7 +3362,6 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
             <h2><i class="fa-solid fa-code"></i> Advanced Programming Apps (CCS2304)</h2>
             <div class="exam-badge"><i class="fa-regular fa-calendar-check"></i> Final: Wednesday, June 17, 2026 - 12:30 PM</div>
         </div>
-        
         <div class="inner-tabs">
             <button class="inner-tab-btn active" onclick="switchInnerTab(event, 'advprog_materials')"><i class="fa-solid fa-photo-film"></i> Short Crash Courses</button>
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'advprog_summary')"><i class="fa-solid fa-book-open"></i> Master Summary</button>
@@ -3448,41 +3369,58 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'advprog_flash')" style="color: #f59e0b;"><i class="fa-solid fa-layer-group"></i> AI Flashcards</button>
             <button class="inner-tab-btn" onclick="switchInnerTab(event, 'advprog_exam')"><i class="fa-solid fa-file-pen"></i> Practice Exams (3)</button>
         </div>
-
         <div class="inner-tab-content active" id="advprog_materials">
-            <div style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+            <div style="background: rgba(244,63,94,0.1); border-left: 4px solid #f43f5e; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
                 <h4 style="color: #f43f5e; margin-bottom: 5px;"><i class="fa-solid fa-triangle-exclamation"></i> Emergency Exam Mode</h4>
-                <p style="color: #e2e8f0;">All videos below have been replaced with <strong>short, high-yield Arabic crash courses and summaries</strong>. Skip the 15-hour playlists. Focus on these.</p>
+                <p style="color: #e2e8f0;">All videos below are <strong>short, high-yield crash courses</strong> from top channels. Click a thumbnail to watch on YouTube.</p>
             </div>
-            
-            <h3 style="color: white; margin-bottom: 20px;">Arabic Crash Courses & Interactive Tools</h3>
+            <h3 style="color: white; margin-bottom: 20px;">Crash Courses &amp; Interactive Tools</h3>
             <div class="video-grid" style="margin-bottom: 40px;"><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Java OOP Full Course (Bro Code)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/xk4_1vDrzzo" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=xk4_1vDrzzo" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/xk4_1vDrzzo/hqdefault.jpg" alt="Java OOP Full Course (Bro Code)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Java Exception Handling (Alex Lee)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/1XAfapkBQjk" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=1XAfapkBQjk" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/1XAfapkBQjk/hqdefault.jpg" alt="Java Exception Handling (Alex Lee)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Java Multithreading (Coding with John)</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/r_MbozD32eo" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=r_MbozD32eo" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/r_MbozD32eo/hqdefault.jpg" alt="Java Multithreading (Coding with John)" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>Java JDBC MySQL Full Tutorial</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/e8g9eNnFMm0" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=e8g9eNnFMm0" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/e8g9eNnFMm0/hqdefault.jpg" alt="Java JDBC MySQL Full Tutorial" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div><div class="video-card">
                 <div class="vid-header">
                     <span class="vid-title"><i class="fa-brands fa-youtube" style="color: #f43f5e; margin-right: 8px;"></i>MVC Design Pattern Explained</span>
                 </div>
-                <iframe src="https://www.youtube.com/embed/DUg2SWWK18I" frameborder="0" allowfullscreen></iframe>
+                <a href="https://www.youtube.com/watch?v=DUg2SWWK18I" target="_blank" class="vid-thumb-wrap">
+                    <img src="https://img.youtube.com/vi/DUg2SWWK18I/hqdefault.jpg" alt="MVC Design Pattern Explained" class="vid-thumb">
+                    <div class="play-btn-overlay"><i class="fa-solid fa-circle-play"></i></div>
+                    <div class="vid-open-label">Watch on YouTube &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
             </div></div>
-            
             <h3 style="color: white; margin-bottom: 20px;">Local Study Checklists</h3>
             <div class="file-grid">
             <div class="file-item-container">
@@ -3490,7 +3428,7 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
                     <input type="checkbox" id="chk_file_advprog_0">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLec%231%20revision.pdf" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lec#1 revision.pdf">
+                <a href="file:///D%3A/semester%204/ADVANCED%20PROG/Lec%231%20revision.pdf" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lec#1 revision.pdf">
                     <div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lec#1 revision.pdf</span>
@@ -3503,7 +3441,7 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
                     <input type="checkbox" id="chk_file_advprog_1">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLecture%2003%20-%20Exception%20Handling.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 03 - Exception Handling.pptx">
+                <a href="file:///D%3A/semester%204/ADVANCED%20PROG/Lecture%2003%20-%20Exception%20Handling.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 03 - Exception Handling.pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 03 - Exception Handling.pptx</span>
@@ -3516,7 +3454,7 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
                     <input type="checkbox" id="chk_file_advprog_2">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLecture%2004%20-%20JavaFX%20Part1.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 04 - JavaFX Part1.pptx">
+                <a href="file:///D%3A/semester%204/ADVANCED%20PROG/Lecture%2004%20-%20JavaFX%20Part1.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 04 - JavaFX Part1.pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 04 - JavaFX Part1.pptx</span>
@@ -3529,7 +3467,7 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
                     <input type="checkbox" id="chk_file_advprog_3">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLecture%2005%20-%20JavaFX%20Part2.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 05 - JavaFX Part2.pptx">
+                <a href="file:///D%3A/semester%204/ADVANCED%20PROG/Lecture%2005%20-%20JavaFX%20Part2.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 05 - JavaFX Part2.pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 05 - JavaFX Part2.pptx</span>
@@ -3542,7 +3480,7 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
                     <input type="checkbox" id="chk_file_advprog_4">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLecture%2010%20-%20Java%20JDBC.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 10 - Java JDBC.pptx">
+                <a href="file:///D%3A/semester%204/ADVANCED%20PROG/Lecture%2010%20-%20Java%20JDBC.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 10 - Java JDBC.pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 10 - Java JDBC.pptx</span>
@@ -3555,7 +3493,7 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
                     <input type="checkbox" id="chk_file_advprog_5">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLecture%2011%20-The_MVC_Blueprint.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 11 -The_MVC_Blueprint.pptx">
+                <a href="file:///D%3A/semester%204/ADVANCED%20PROG/Lecture%2011%20-The_MVC_Blueprint.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 11 -The_MVC_Blueprint.pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 11 -The_MVC_Blueprint.pptx</span>
@@ -3568,7 +3506,7 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
                     <input type="checkbox" id="chk_file_advprog_6">
                     <span class="checkmark"></span>
                 </label>
-                <a href="file:///D%3A%5Csemester%204%5CADVANCED%20PROG%5CLecture%209%20-%20Networking.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 9 - Networking.pptx">
+                <a href="file:///D%3A/semester%204/ADVANCED%20PROG/Lecture%209%20-%20Networking.pptx" target="_blank" class="file-item" title="D:\semester 4\ADVANCED PROG\Lecture 9 - Networking.pptx">
                     <div class="file-icon"><i class="fa-solid fa-file-powerpoint"></i></div>
                     <div class="file-details">
                         <span class="file-name">Lecture 9 - Networking.pptx</span>
@@ -3577,10 +3515,8 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
             </div>
         </div>
         </div>
-
         <div class="inner-tab-content" id="advprog_summary">
             <div class="summary-card">
-                
 <ul style='margin-left: 20px; list-style-type: disc; margin-bottom: 20px;'><li style='margin-bottom: 8px;'>1. Java is a strongly-typed, object-oriented programming language that runs on the Java Virtual Machine (JVM), making it platform-independent ("Write Once, Run Anywhere").
 2. OOP Pillars in Java: Encapsulation (hiding data with private fields + getters/setters), Inheritance (extends keyword), Polymorphism (overriding/overloading), Abstraction (abstract classes/interfaces).
 3. Classes and Objects: A Class is a blueprint. An Object is an instance of a class, created with the new keyword.
@@ -3631,10 +3567,8 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
 48. Networking in Java: Socket and ServerSocket classes for TCP communication. URL and HttpURLConnection for HTTP requests.
 49. Java Annotations: Metadata added to code with @. Built-in: @Override, @Deprecated, @SuppressWarnings. Custom annotations also possible.
 50. Java Memory Management: Automatic Garbage Collection (GC) reclaims memory from objects no longer referenced. Stack holds primitives/references; Heap holds objects.</li></ul>
-        
-            </div>
         </div>
-
+        </div>
         <div class="inner-tab-content" id="advprog_code">
             <div class="code-card">
                 <pre><code>// ==========================================
@@ -3716,11 +3650,10 @@ class BankAccount {
 }</code></pre>
             </div>
         </div>
-
         <div class="inner-tab-content" id="advprog_flash">
-            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
+            <div style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
                 <h3 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-bolt"></i> Interactive AI Study Cards</h3>
-                <p style="color: #cbd5e1; font-size: 1.1rem;">The highest-yield concepts for Advanced Programming Apps. Click any card to flip it and reveal the expert answer. Memorize these perfectly before the exam.</p>
+                <p style="color: #cbd5e1; font-size: 1.1rem;">Click any card to flip it and reveal the expert answer.</p>
             </div>
             <div class="flashcard-grid">
             <div class="flashcard" onclick="this.classList.toggle('flipped')">
@@ -3766,7 +3699,6 @@ class BankAccount {
             </div>
         </div>
         </div>
-
         <div class="inner-tab-content" id="advprog_exam">
             <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
                 <h3 class="exam-header">Advanced Programming Apps (CCS2304) - Full Mock Exam A (40 Pts)</h3>
@@ -3851,77 +3783,64 @@ class BankAccount {
     </div>
     
     </div>
-
     <script>
-        function openTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            
-            // Find the button that was clicked to open this tab, or default to home
-            const btn = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.getAttribute('onclick').includes(tabId));
-            if(btn) btn.classList.add('active');
+        function openTab(id) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            const el = document.getElementById(id);
+            if (el) el.classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active');
+            });
         }
-
-        function switchInnerTab(e, tabId) {
-            const container = e.currentTarget.closest('.tab-content');
-            container.querySelectorAll('.inner-tab-content').forEach(el => el.classList.remove('active'));
-            container.querySelectorAll('.inner-tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            e.currentTarget.classList.add('active');
+        function switchInnerTab(e, id) {
+            const parent = e.target.closest('.tab-content');
+            parent.querySelectorAll('.inner-tab-btn').forEach(b => b.classList.remove('active'));
+            parent.querySelectorAll('.inner-tab-content').forEach(c => c.classList.remove('active'));
+            e.target.classList.add('active');
+            document.getElementById(id).classList.add('active');
         }
-
-        function switchExam(e, btn, variant) {
-            const container = btn.closest('.inner-tab-content');
-            container.querySelectorAll('.exam-content').forEach(el => el.classList.remove('active'));
-            container.querySelectorAll('.exam-tab-btn').forEach(el => el.classList.remove('active'));
-            container.querySelector('.exam-content[data-exam="' + variant + '"]').classList.add('active');
-            btn.classList.add('active');
+        function switchExamTab(e, id) {
+            const parent = e.target.closest('.inner-tab-content');
+            parent.querySelectorAll('.exam-tab-btn').forEach(b => b.classList.remove('active'));
+            parent.querySelectorAll('.exam-content').forEach(c => c.classList.remove('active'));
+            e.target.classList.add('active');
+            document.getElementById(id).classList.add('active');
         }
-
-        let time = 1500;
-        let pomoInterval = null;
-        function updateDisplay() {
-            let m = Math.floor(time / 60).toString().padStart(2, '0');
-            let s = (time % 60).toString().padStart(2, '0');
-            document.getElementById('pomo-timer').innerText = m + ":" + s;
-        }
+        document.querySelectorAll('.flashcard').forEach(card => {
+            card.addEventListener('click', () => card.classList.toggle('flipped'));
+        });
+        let timerInterval, timeLeft = 25 * 60, running = false;
         function startTimer() {
-            if(pomoInterval) return;
-            pomoInterval = setInterval(() => {
-                time--; updateDisplay();
-                if(time <= 0) {
-                    clearInterval(pomoInterval);
-                    pomoInterval = null;
-                    playArcadeSound();
-                    alert("Pomodoro Complete! Take a break.");
-                }
+            if (running) return;
+            running = true;
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) { clearInterval(timerInterval); running = false; playSound(); timeLeft = 25 * 60; }
+                let m = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+                let s = String(timeLeft % 60).padStart(2, '0');
+                document.getElementById('pomo-timer').innerText = m + ':' + s;
             }, 1000);
         }
-        function resetTimer() { clearInterval(pomoInterval); pomoInterval = null; time = 1500; updateDisplay(); }
-        
-        function playArcadeSound() {
+        function resetTimer() {
+            clearInterval(timerInterval); running = false; timeLeft = 25 * 60;
+            document.getElementById('pomo-timer').innerText = '25:00';
+        }
+        function playSound() {
             const ctx = new (window.AudioContext || window.webkitAudioContext)();
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
-            osc.type = 'square';
             osc.frequency.setValueAtTime(440, ctx.currentTime);
             osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1);
             gain.gain.setValueAtTime(0.1, ctx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start();
-            osc.stop(ctx.currentTime + 0.5);
+            osc.connect(gain); gain.connect(ctx.destination);
+            osc.start(); osc.stop(ctx.currentTime + 0.5);
         }
-
-        // Save checkbox state
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.file-item-container input[type="checkbox"]').forEach(cb => {
                 if (localStorage.getItem(cb.id) === 'true') cb.checked = true;
-                cb.addEventListener('change', () => {
-                    localStorage.setItem(cb.id, cb.checked);
-                });
+                cb.addEventListener('change', () => localStorage.setItem(cb.id, cb.checked));
             });
         });
     </script>
