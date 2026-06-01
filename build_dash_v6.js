@@ -24,7 +24,8 @@ const subjectsData = {
             {title: "Agile & Scrum in 10 Minutes", id: "9TycLR0TqFA", embed: true},
             {title: "Software Testing Basics", id: "bKdOclW1b0Q", embed: true}
         ],
-        summary: `\n<ul><li>1. Software Engineering is the systematic application of engineering principles to the development, operation, and maintenance of software.
+        summary: `
+<ul><li>1. Software Engineering is the systematic application of engineering principles to the development, operation, and maintenance of software.
 2. The Software Development Life Cycle (SDLC) includes Requirements, Design, Implementation, Testing, Deployment, and Maintenance.
 3. Waterfall Model: A linear, sequential approach. Good for well-understood requirements, bad for changing environments.
 4. Agile Methodology: Iterative and incremental development. Focuses on customer collaboration and responding to change.
@@ -73,7 +74,8 @@ const subjectsData = {
 47. Pair Programming: Agile technique where two programmers work together at one workstation.
 48. Test-Driven Development (TDD): Writing tests before writing the code that makes the tests pass.
 49. Software Evolution: The process of updating software to adapt to changing environments and requirements over its lifecycle.
-50. Ethics in SE: Software engineers must adhere to professional codes of ethics (e.g., ACM/IEEE) ensuring public safety and confidentiality.</li></ul>\n        `,
+50. Ethics in SE: Software engineers must adhere to professional codes of ethics (e.g., ACM/IEEE) ensuring public safety and confidentiality.</li></ul>
+        `,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: UML RELATIONSHIPS IN JAVA
@@ -128,7 +130,8 @@ public class University {
             {title: "PHP in 100 Seconds (Fireship)", id: "a7_WFUlFS94", embed: true},
             {title: "HTML Crash Course (Elzero - Arabic)", id: "q4jYm3FihgQ", embed: true}
         ],
-        summary: `\n<ul><li>1. The World Wide Web relies on the client-server model. The client (browser) sends HTTP requests, and the server returns HTTP responses.
+        summary: `
+<ul><li>1. The World Wide Web relies on the client-server model. The client (browser) sends HTTP requests, and the server returns HTTP responses.
 2. HTML (HyperText Markup Language) defines the structure and content of a web page using elements and tags.
 3. HTML5 introduced semantic elements like \`&lt;header&gt;\`, \`&lt;footer&gt;\`, \`&lt;article&gt;\`, and \`&lt;nav&gt;\` to improve accessibility and SEO.
 4. CSS (Cascading Style Sheets) controls the presentation and layout of HTML elements.
@@ -177,7 +180,8 @@ public class University {
 47. Event Bubbling: When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up.
 48. Hoisting in JS: Variable and function declarations are moved to the top of their scope before code execution.
 49. PHP Object-Oriented Programming supports Classes, Objects, Inheritance (\`extends\`), and Access Modifiers (\`public\`, \`private\`, \`protected\`).
-50. Web Hosting involves placing your HTML/CSS/JS and PHP files on a server (like Apache or Nginx) connected to the internet.</li></ul>\n        `,
+50. Web Hosting involves placing your HTML/CSS/JS and PHP files on a server (like Apache or Nginx) connected to the internet.</li></ul>
+        `,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: SECURE PHP FORM REGISTRATION
@@ -258,7 +262,9 @@ document.getElementById('loadBtn').addEventListener('click', () => {
             {title: "🧠 VisuAlgo (Interactive Sorting)", url: "https://visualgo.net/en/sorting", embed: "link"},
             {title: "🧠 VisuAlgo (Interactive BST)", url: "https://visualgo.net/en/bst", embed: "link"}
         ],
-        summary: `\n\n        `,
+        summary: `
+
+        `,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: BINARY SEARCH TREE (JAVA)
@@ -358,7 +364,9 @@ void merge(int arr[], int l, int m, int r) {
             {title: "Linux Basics", id: "sWbUDq4S6Y8", embed: true},
             {title: "Risk Management", id: "p0E6sLwUeY8", embed: true} 
         ],
-        summary: `\n\n        `,
+        summary: `
+
+        `,
         codeVault: `
 # ==========================================
 # FULL CONTEXT: ESSENTIAL LINUX COMMANDS
@@ -398,7 +406,9 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
             {title: "Registers and RAM", id: "fpnE6UAfbtU", embed: true},
             {title: "Fetch-Execute Cycle", id: "cNN_tTXABUA", embed: true}
         ],
-        summary: `\n\n        `,
+        summary: `
+
+        `,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: CPU FETCH-DECODE-EXECUTE RTN
@@ -443,7 +453,9 @@ PC <- X            // Simply overwrite the Program Counter with X!
             {title: "Java JDBC Database", id: "e8g9eNnFMm0", embed: true},
             {title: "Java Threads in 10 Minutes", id: "WvA1e4y7o3I", embed: true}
         ],
-        summary: `\n\n        `,
+        summary: `
+
+        `,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: MULTI-THREADING (RUNNABLE)
@@ -598,7 +610,8 @@ function getFlashcardsData(id) {
   {"q": "What is Cyclomatic Complexity?", "a": "A software metric used to measure the logical complexity of a program, counting the number of linearly independent paths."},
   {"q": "What is the purpose of a Sequence Diagram?", "a": "To show how objects interact with each other in a specific sequential order over time."},
   {"q": "What is Continuous Integration (CI)?", "a": "A practice where developers frequently merge code changes into a central repository, followed by automated builds and tests."}
-\n],
+
+],
         web: [
   {"q": "What is the CSS Box Model?", "a": "A conceptual box wrapping every HTML element, consisting of margins, borders, padding, and the actual content."},
   {"q": "What is the difference between ID and Class in CSS?", "a": "An ID (#) is unique and can only be used once per page. A Class (.) can be used on multiple elements."},
@@ -615,7 +628,8 @@ function getFlashcardsData(id) {
   {"q": "What is JSON?", "a": "JavaScript Object Notation. A lightweight, text-based data format used heavily for transmitting data between client and server."},
   {"q": "Explain Event Bubbling in JavaScript.", "a": "When an event occurs on a child element, it triggers the child's event handler, and then bubbles up to trigger the parents' handlers."},
   {"q": "What is the difference between PHP `include` and `require`?", "a": "Both load a file, but if the file is missing, `include` throws a warning and continues execution, while `require` throws a fatal error and stops execution."}
-\n],
+
+],
         dsa: [
   {"q": "Why is a swap function ineffective when passing variables by value?", "a": "It only manipulates local copies of the variables, leaving the original variables in the calling function unchanged."},
   {"q": "What is the primary purpose of the `&` and `*` operators in C/C++ pointer operations?", "a": "`&` retrieves the memory address of a variable, while `*` dereferences a pointer to access or modify the value at that address."},
@@ -632,7 +646,8 @@ function getFlashcardsData(id) {
   {"q": "What is a critical edge case to evaluate when attempting to delete an element from a Linked List?", "a": "Checking if the list is completely empty (`head == NULL`) to avoid a segmentation fault."},
   {"q": "How would one iterate through a Linked List to count its elements?", "a": "Initialize a pointer `p` to `head` and a counter to 0. Use a `while(p != NULL)` loop, incrementing the counter and setting `p = p->next` each iteration."},
   {"q": "What is the process for concatenating two Single Linked Lists?", "a": "Traverse the first list to its final node, and assign its `next` pointer to the `head` of the second list."}
-\n],
+
+],
         cyber: [
   {"q": "How do you securely SSH into 'bandit.labs.overthewire.org' as 'bandit0' on port 2220?", "a": "ssh bandit0@bandit.labs.overthewire.org -p 2220"},
   {"q": "What command reads a file named '-file07' without the shell misinterpreting it as an argument flag?", "a": "cat ./-file07"},
@@ -649,7 +664,8 @@ function getFlashcardsData(id) {
   {"q": "Which command streams the newest appended lines of a file dynamically?", "a": "tail -f filename"},
   {"q": "How do you output the human-readable total disk usage size of a specific directory?", "a": "du -sh directory_name/"},
   {"q": "What syntax redirects both standard output and standard error to the same file?", "a": "command > out.txt 2>&1"}
-\n],
+
+],
         arch: [
   {"q": "How does a Big Endian machine represent the 32-bit hexadecimal value 0x12345678 in byte-addressable memory?", "a": "It stores the most significant byte (0x12) at the lowest memory address, followed by 0x34, 0x56, and 0x78 at consecutively higher addresses."},
   {"q": "What is the primary advantage of Little Endian architecture when converting a 32-bit integer to a 16-bit integer?", "a": "The conversion does not require any address arithmetic; the 16-bit integer simply occupies the same base address as the 32-bit integer."},
@@ -666,7 +682,8 @@ function getFlashcardsData(id) {
   {"q": "In Indirect Addressing mode, what does the address field of the instruction explicitly contain?", "a": "It contains the memory address of a pointer, which in turn holds the effective address of the actual operand."},
   {"q": "What is the theoretical maximum speedup of a k-stage instruction pipeline processing an infinite number of instructions?", "a": "The theoretical maximum speedup approaches k, the number of stages in the pipeline."},
   {"q": "How does Auto-increment/decrement addressing streamline array and vector operations?", "a": "It automatically updates the register containing the address before or after memory access, removing the need for separate arithmetic instructions to step through sequential data structures."}
-\n],
+
+],
         advprog: [
             {q: "What is the difference between 'throw' and 'throws'?", a: "'throw' is used inside a method to actually trigger an exception object. 'throws' is used in the method signature to warn callers that the method might throw exceptions."},
             {q: "How do you implement Multithreading in Java?", a: "You can either extend the 'Thread' class or implement the 'Runnable' interface. Implementing 'Runnable' is highly preferred because Java doesn't support multiple class inheritance."},
