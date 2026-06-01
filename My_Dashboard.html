@@ -43,9 +43,14 @@
         .vid-thumb-wrap:hover .vid-open-label { opacity:1; }
         .direct-vid-link { display:flex;justify-content:space-between;align-items:center;background:var(--bg-card);padding:20px 25px;border-radius:12px;color:var(--text-main);text-decoration:none;font-weight:600;font-size:1.1rem;border:1px solid var(--border);transition:all 0.3s; }
         .direct-vid-link:hover { border-color:var(--accent);transform:translateY(-3px); }
-        .summary-card { background:var(--bg-card);padding:40px;border-radius:16px;border:1px solid var(--border); }
-        .summary-card h4 { color:var(--accent);margin-top:25px;margin-bottom:10px;font-size:1.4rem; }
-        .summary-card p { margin-bottom:15px;color:#cbd5e1; }
+        .summary-card { background:var(--bg-card);padding:45px 40px;border-radius:20px;border:1px solid var(--border); }
+        .summary-points-container { display:flex;flex-direction:column;gap:18px; }
+        .summary-point-card { background:rgba(15,23,42,0.4);border:1px solid var(--border);border-radius:14px;padding:22px 26px;display:flex;align-items:flex-start;gap:20px;transition:all 0.25s ease;box-shadow:0 6px 15px rgba(0,0,0,0.15); }
+        .summary-point-card:hover { transform:translateX(6px);background:rgba(56,189,248,0.04);border-color:var(--accent);box-shadow:0 8px 25px rgba(56,189,248,0.12); }
+        .point-number { background:var(--accent);color:#0f172a;font-weight:800;font-size:0.95rem;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 10px rgba(56,189,248,0.3); }
+        .point-text { color:#e2e8f0;font-size:1.05rem;line-height:1.75;text-align:left; }
+        .point-title { color:var(--accent);margin-right:8px;font-weight:700;font-size:1.1rem; }
+        .point-body { color:#cbd5e1; }
         .code-card { background:#000;padding:25px;border-radius:12px;border:1px solid var(--border);overflow-x:auto; }
         .code-card pre { color:#34d399;font-family:monospace;font-size:1.1rem;line-height:1.5; }
         .flashcard-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:30px; }
@@ -450,58 +455,257 @@
         </div>
         </div>
         <div class="inner-tab-content" id="se_summary">
-            <div class="summary-card">
-<ul style='margin-left: 20px; list-style-type: disc; margin-bottom: 20px;'><li style='margin-bottom: 8px;'>1. Software Engineering is the systematic application of engineering principles to the development, operation, and maintenance of software.
-2. The Software Development Life Cycle (SDLC) includes Requirements, Design, Implementation, Testing, Deployment, and Maintenance.
-3. Waterfall Model: A linear, sequential approach. Good for well-understood requirements, bad for changing environments.
-4. Agile Methodology: Iterative and incremental development. Focuses on customer collaboration and responding to change.
-5. Scrum Framework: Includes Sprints, Daily Stand-ups, Sprint Reviews, and Retrospectives. Roles: Scrum Master, Product Owner, Team.
-6. Requirements Engineering: The process of defining, documenting, and maintaining requirements.
-7. Functional Requirements: What the system should do (e.g., "The system shall allow users to log in").
-8. Non-Functional Requirements: How the system performs (e.g., Security, Performance, Usability, Reliability).
-9. Use Case Diagrams: Capture functional requirements from a user's perspective. Components: Actors, Use Cases, System Boundary.
-10. Activity Diagrams: Model the workflow or business processes. Similar to flowcharts. Includes forks, joins, and decision nodes.
-11. Object-Oriented Analysis and Design (OOAD): Modeling software using objects.
-12. Class Diagrams: Static structure of the system. Shows classes, attributes, methods, and relationships (Associations, Inheritance, Aggregation, Composition).
-13. Sequence Diagrams: Dynamic behavior. Shows object interactions arranged in time sequence. Uses lifelines and activation boxes.
-14. State Machine Diagrams: Models the discrete stages (states) an object goes through during its lifecycle in response to events.
-15. Software Architecture: The high-level structure of a system. Patterns include Client-Server, MVC (Model-View-Controller), Layered, and Microservices.
-16. Design Principles: SOLID principles (Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion).
-17. Coupling and Cohesion: Good design aims for Low Coupling (modules are independent) and High Cohesion (modules have a single, well-defined purpose).
-18. Software Testing: Verification (Are we building the product right?) and Validation (Are we building the right product?).
-19. Unit Testing: Testing individual components or functions in isolation (usually done by developers).
-20. Integration Testing: Testing how modules work together.
-21. System Testing: Testing the complete, integrated system to evaluate compliance with requirements.
-22. Acceptance Testing: Formal testing by the client/user to determine whether to accept the system (UAT).
-23. White-Box Testing: Testing internal structures/logic (e.g., path testing, branch coverage).
-24. Black-Box Testing: Testing functionality without knowing internal structure (e.g., boundary value analysis, equivalence partitioning).
-25. Regression Testing: Re-testing after changes to ensure no new bugs were introduced.
-26. Software Quality Assurance (SQA): Process to ensure software engineering processes, methods, activities, and work items are monitored and comply with standards.
-27. Configuration Management: Tracking and controlling changes in the software (Version Control like Git).
-28. Software Maintenance: Corrective (fixing bugs), Adaptive (adapting to new OS), Perfective (enhancing performance), Preventive (refactoring).
-29. Risk Management: Identifying, analyzing, and mitigating project risks.
-30. Project Scheduling: Tools include Gantt Charts and PERT/CPM charts.
-31. Estimation Techniques: COCOMO (Constructive Cost Model), Function Points, Story Points (Agile).
-32. Software Metrics: Lines of Code (LOC), Cyclomatic Complexity (measures independent paths through code).
-33. Prototyping: Creating an incomplete model of the software to explore requirements or technical feasibility.
-34. Spiral Model: Risk-driven iterative model. Combines prototyping and waterfall.
-35. V-Model: Extension of waterfall emphasizing verification and validation at each stage.
-36. Traceability Matrix: Maps requirements to test cases to ensure complete coverage.
-37. Code Smells: Indicators of poor design or implementation (e.g., duplicated code, long methods). Refactoring fixes them.
-38. Continuous Integration/Continuous Deployment (CI/CD): Automating the building, testing, and deployment of software.
-39. Architectural Views: Logical, Process, Development, Physical (e.g., 4+1 View Model).
-40. User Interface Design: Focuses on usability, accessibility, and user experience (UX).
-41. Security Engineering: Building systems to remain dependable in the face of malice, error, or mischance.
-42. Reliability vs Availability: Reliability is probability of failure-free operation; Availability is probability the system is operational when needed.
-43. Component-Based Software Engineering: Building systems by assembling reusable components.
-44. Legacy Systems: Older systems that remain useful but are difficult to maintain.
-45. Technical Debt: The implied cost of additional rework caused by choosing an easy (limited) solution now instead of using a better approach that would take longer.
-46. Code Reviews/Peer Reviews: Systematic examination of code by other developers to find mistakes.
-47. Pair Programming: Agile technique where two programmers work together at one workstation.
-48. Test-Driven Development (TDD): Writing tests before writing the code that makes the tests pass.
-49. Software Evolution: The process of updating software to adapt to changing environments and requirements over its lifecycle.
-50. Ethics in SE: Software engineers must adhere to professional codes of ethics (e.g., ACM/IEEE) ensuring public safety and confidentiality.</li></ul>
-        </div>
+            <div class="summary-card"><div class="summary-points-container">
+                <div class="summary-point-card">
+                    <span class="point-number">01</span>
+                    <div class="point-text"><span class="point-body">Software Engineering is the systematic application of engineering principles to the development, operation, and maintenance of software.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">02</span>
+                    <div class="point-text"><span class="point-body">The Software Development Life Cycle (SDLC) includes Requirements, Design, Implementation, Testing, Deployment, and Maintenance.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">03</span>
+                    <div class="point-text"><strong class="point-title">Waterfall Model:</strong><span class="point-body"> A linear, sequential approach. Good for well-understood requirements, bad for changing environments.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">04</span>
+                    <div class="point-text"><strong class="point-title">Agile Methodology:</strong><span class="point-body"> Iterative and incremental development. Focuses on customer collaboration and responding to change.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">05</span>
+                    <div class="point-text"><strong class="point-title">Scrum Framework:</strong><span class="point-body"> Includes Sprints, Daily Stand-ups, Sprint Reviews, and Retrospectives. Roles: Scrum Master, Product Owner, Team.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">06</span>
+                    <div class="point-text"><strong class="point-title">Requirements Engineering:</strong><span class="point-body"> The process of defining, documenting, and maintaining requirements.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">07</span>
+                    <div class="point-text"><strong class="point-title">Functional Requirements:</strong><span class="point-body"> What the system should do (e.g., "The system shall allow users to log in").</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">08</span>
+                    <div class="point-text"><strong class="point-title">Non-Functional Requirements:</strong><span class="point-body"> How the system performs (e.g., Security, Performance, Usability, Reliability).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">09</span>
+                    <div class="point-text"><strong class="point-title">Use Case Diagrams:</strong><span class="point-body"> Capture functional requirements from a user's perspective. Components: Actors, Use Cases, System Boundary.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">10</span>
+                    <div class="point-text"><strong class="point-title">Activity Diagrams:</strong><span class="point-body"> Model the workflow or business processes. Similar to flowcharts. Includes forks, joins, and decision nodes.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">11</span>
+                    <div class="point-text"><span class="point-body">Object-Oriented Analysis and Design (OOAD): Modeling software using objects.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">12</span>
+                    <div class="point-text"><strong class="point-title">Class Diagrams:</strong><span class="point-body"> Static structure of the system. Shows classes, attributes, methods, and relationships (Associations, Inheritance, Aggregation, Composition).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">13</span>
+                    <div class="point-text"><strong class="point-title">Sequence Diagrams:</strong><span class="point-body"> Dynamic behavior. Shows object interactions arranged in time sequence. Uses lifelines and activation boxes.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">14</span>
+                    <div class="point-text"><strong class="point-title">State Machine Diagrams:</strong><span class="point-body"> Models the discrete stages (states) an object goes through during its lifecycle in response to events.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">15</span>
+                    <div class="point-text"><strong class="point-title">Software Architecture:</strong><span class="point-body"> The high-level structure of a system. Patterns include Client-Server, MVC (Model-View-Controller), Layered, and Microservices.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">16</span>
+                    <div class="point-text"><strong class="point-title">Design Principles:</strong><span class="point-body"> SOLID principles (Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">17</span>
+                    <div class="point-text"><strong class="point-title">Coupling and Cohesion:</strong><span class="point-body"> Good design aims for Low Coupling (modules are independent) and High Cohesion (modules have a single, well-defined purpose).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">18</span>
+                    <div class="point-text"><strong class="point-title">Software Testing:</strong><span class="point-body"> Verification (Are we building the product right?) and Validation (Are we building the right product?).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">19</span>
+                    <div class="point-text"><strong class="point-title">Unit Testing:</strong><span class="point-body"> Testing individual components or functions in isolation (usually done by developers).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">20</span>
+                    <div class="point-text"><strong class="point-title">Integration Testing:</strong><span class="point-body"> Testing how modules work together.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">21</span>
+                    <div class="point-text"><strong class="point-title">System Testing:</strong><span class="point-body"> Testing the complete, integrated system to evaluate compliance with requirements.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">22</span>
+                    <div class="point-text"><strong class="point-title">Acceptance Testing:</strong><span class="point-body"> Formal testing by the client/user to determine whether to accept the system (UAT).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">23</span>
+                    <div class="point-text"><strong class="point-title">White-Box Testing:</strong><span class="point-body"> Testing internal structures/logic (e.g., path testing, branch coverage).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">24</span>
+                    <div class="point-text"><strong class="point-title">Black-Box Testing:</strong><span class="point-body"> Testing functionality without knowing internal structure (e.g., boundary value analysis, equivalence partitioning).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">25</span>
+                    <div class="point-text"><strong class="point-title">Regression Testing:</strong><span class="point-body"> Re-testing after changes to ensure no new bugs were introduced.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">26</span>
+                    <div class="point-text"><strong class="point-title">Software Quality Assurance (SQA):</strong><span class="point-body"> Process to ensure software engineering processes, methods, activities, and work items are monitored and comply with standards.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">27</span>
+                    <div class="point-text"><strong class="point-title">Configuration Management:</strong><span class="point-body"> Tracking and controlling changes in the software (Version Control like Git).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">28</span>
+                    <div class="point-text"><strong class="point-title">Software Maintenance:</strong><span class="point-body"> Corrective (fixing bugs), Adaptive (adapting to new OS), Perfective (enhancing performance), Preventive (refactoring).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">29</span>
+                    <div class="point-text"><strong class="point-title">Risk Management:</strong><span class="point-body"> Identifying, analyzing, and mitigating project risks.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">30</span>
+                    <div class="point-text"><strong class="point-title">Project Scheduling:</strong><span class="point-body"> Tools include Gantt Charts and PERT/CPM charts.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">31</span>
+                    <div class="point-text"><strong class="point-title">Estimation Techniques:</strong><span class="point-body"> COCOMO (Constructive Cost Model), Function Points, Story Points (Agile).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">32</span>
+                    <div class="point-text"><strong class="point-title">Software Metrics:</strong><span class="point-body"> Lines of Code (LOC), Cyclomatic Complexity (measures independent paths through code).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">33</span>
+                    <div class="point-text"><strong class="point-title">Prototyping:</strong><span class="point-body"> Creating an incomplete model of the software to explore requirements or technical feasibility.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">34</span>
+                    <div class="point-text"><strong class="point-title">Spiral Model:</strong><span class="point-body"> Risk-driven iterative model. Combines prototyping and waterfall.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">35</span>
+                    <div class="point-text"><strong class="point-title">V-Model:</strong><span class="point-body"> Extension of waterfall emphasizing verification and validation at each stage.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">36</span>
+                    <div class="point-text"><strong class="point-title">Traceability Matrix:</strong><span class="point-body"> Maps requirements to test cases to ensure complete coverage.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">37</span>
+                    <div class="point-text"><strong class="point-title">Code Smells:</strong><span class="point-body"> Indicators of poor design or implementation (e.g., duplicated code, long methods). Refactoring fixes them.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">38</span>
+                    <div class="point-text"><span class="point-body">Continuous Integration/Continuous Deployment (CI/CD): Automating the building, testing, and deployment of software.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">39</span>
+                    <div class="point-text"><strong class="point-title">Architectural Views:</strong><span class="point-body"> Logical, Process, Development, Physical (e.g., 4+1 View Model).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">40</span>
+                    <div class="point-text"><strong class="point-title">User Interface Design:</strong><span class="point-body"> Focuses on usability, accessibility, and user experience (UX).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">41</span>
+                    <div class="point-text"><strong class="point-title">Security Engineering:</strong><span class="point-body"> Building systems to remain dependable in the face of malice, error, or mischance.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">42</span>
+                    <div class="point-text"><strong class="point-title">Reliability vs Availability:</strong><span class="point-body"> Reliability is probability of failure-free operation; Availability is probability the system is operational when needed.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">43</span>
+                    <div class="point-text"><strong class="point-title">Component-Based Software Engineering:</strong><span class="point-body"> Building systems by assembling reusable components.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">44</span>
+                    <div class="point-text"><strong class="point-title">Legacy Systems:</strong><span class="point-body"> Older systems that remain useful but are difficult to maintain.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">45</span>
+                    <div class="point-text"><strong class="point-title">Technical Debt:</strong><span class="point-body"> The implied cost of additional rework caused by choosing an easy (limited) solution now instead of using a better approach that would take longer.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">46</span>
+                    <div class="point-text"><strong class="point-title">Code Reviews/Peer Reviews:</strong><span class="point-body"> Systematic examination of code by other developers to find mistakes.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">47</span>
+                    <div class="point-text"><strong class="point-title">Pair Programming:</strong><span class="point-body"> Agile technique where two programmers work together at one workstation.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">48</span>
+                    <div class="point-text"><strong class="point-title">Test-Driven Development (TDD):</strong><span class="point-body"> Writing tests before writing the code that makes the tests pass.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">49</span>
+                    <div class="point-text"><strong class="point-title">Software Evolution:</strong><span class="point-body"> The process of updating software to adapt to changing environments and requirements over its lifecycle.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">50</span>
+                    <div class="point-text"><strong class="point-title">Ethics in SE:</strong><span class="point-body"> Software engineers must adhere to professional codes of ethics (e.g., ACM/IEEE) ensuring public safety and confidentiality.</span></div>
+                </div>
+            </div></div>
         </div>
         <div class="inner-tab-content" id="se_code">
             <div class="code-card">
@@ -1059,58 +1263,257 @@ public class University {
         </div>
         </div>
         <div class="inner-tab-content" id="web_summary">
-            <div class="summary-card">
-<ul style='margin-left: 20px; list-style-type: disc; margin-bottom: 20px;'><li style='margin-bottom: 8px;'>1. The World Wide Web relies on the client-server model. The client (browser) sends HTTP requests, and the server returns HTTP responses.
-2. HTML (HyperText Markup Language) defines the structure and content of a web page using elements and tags.
-3. HTML5 introduced semantic elements like `&lt;header&gt;`, `&lt;footer&gt;`, `&lt;article&gt;`, and `&lt;nav&gt;` to improve accessibility and SEO.
-4. CSS (Cascading Style Sheets) controls the presentation and layout of HTML elements.
-5. The CSS Box Model consists of Margins, Borders, Padding, and the actual Content area. Understanding this is crucial for layout.
-6. CSS Selectors (element, class `.`, ID `#`, pseudo-classes `:hover`) allow targeted styling. Specificity determines which rules apply.
-7. Flexbox is a one-dimensional CSS layout model that makes it easy to align items in rows or columns dynamically.
-8. CSS Grid is a two-dimensional layout system for creating complex grid-based designs.
-9. Responsive Web Design ensures pages look good on all devices using media queries (`@media screen and (max-width: 600px)`).
-10. JavaScript is a dynamic, interpreted scripting language used to add interactivity and logic to web pages.
-11. The DOM (Document Object Model) is a tree-like representation of the HTML document that JavaScript can manipulate.
-12. JS Event Listeners (`addEventListener('click', ...)`) wait for user interactions to trigger functions.
-13. JS Variables are declared using `let` (block-scoped, mutable), `const` (block-scoped, immutable), and `var` (function-scoped, legacy).
-14. Arrays in JS are zero-indexed and come with methods like `.push()`, `.pop()`, `.map()`, and `.filter()`.
-15. JS Objects store data in key-value pairs (e.g., `{ name: "Ali", age: 20 }`).
-16. Functions in JS can be declared traditionally (`function name() {}`) or as arrow functions (`() =&gt; {}`).
-17. DOM Manipulation involves selecting elements (e.g., `document.getElementById`) and changing properties (e.g., `element.innerHTML`, `element.style`).
-18. Asynchronous JavaScript prevents blocking the main thread, utilizing Callbacks, Promises, and `async/await`.
-19. JSON (JavaScript Object Notation) is a lightweight data-interchange format, heavily used in APIs (`JSON.stringify`, `JSON.parse`).
-20. AJAX (Asynchronous JavaScript and XML) allows web pages to update asynchronously by exchanging data with a web server behind the scenes.
-21. The modern way to perform AJAX requests in JS is the `fetch()` API, which returns Promises.
-22. Server-Side Scripting runs on the web server, generating dynamic HTML before sending it to the client. PHP is a common server-side language.
-23. PHP (Hypertext Preprocessor) code is executed on the server, and the result is returned to the browser as plain HTML.
-24. PHP Variables start with a `$` sign and are dynamically typed (e.g., `$name = "Ali";`).
-25. PHP Superglobals like `$_GET`, `$_POST`, `$_SESSION`, and `$_COOKIE` are built-in arrays always accessible.
-26. Form Handling in PHP: The `method` attribute (`GET` or `POST`) dictates how data is sent. `POST` is secure and hidden in the HTTP body; `GET` is appended to the URL.
-27. Security: User input from forms must always be sanitized and validated to prevent Cross-Site Scripting (XSS).
-28. SQL Injection is a vulnerability where malicious SQL code is inserted into input fields. Prevented using Prepared Statements in PHP/PDO.
-29. PHP Arrays can be indexed (numeric keys) or associative (named keys, similar to JS objects or dictionaries).
-30. PHP Sessions (`session_start()`) store user information (e.g., login state) across multiple pages on the server.
-31. PHP Cookies store small amounts of data directly on the user's browser, sent back with every request.
-32. Connecting PHP to MySQL databases is typically done using PDO (PHP Data Objects) or MySQLi. PDO is preferred for its flexibility.
-33. A typical database operation in PHP involves: Connect -&gt; Prepare Statement -&gt; Bind Parameters -&gt; Execute -&gt; Fetch Results -&gt; Close.
-34. HTTP Status Codes: 200 (OK), 404 (Not Found), 500 (Internal Server Error), 403 (Forbidden).
-35. HTTP Methods: GET (retrieve data), POST (submit data), PUT (update data), DELETE (remove data).
-36. RESTful APIs rely on stateless HTTP requests and return data usually in JSON format.
-37. jQuery is a legacy JavaScript library that simplifies DOM manipulation and AJAX (`$.ajax()`). Modern vanilla JS has largely replaced it.
-38. Front-End vs Back-End: Front-end (Client-side) is what the user sees (HTML/CSS/JS). Back-end (Server-side) is logic and database (PHP/MySQL).
-39. CSS Positioning: `static` (default), `relative` (offset from normal), `absolute` (offset from closest positioned ancestor), `fixed` (relative to viewport).
-40. Form Validation can happen on the client-side (using HTML5 `required` or JS) and MUST happen on the server-side (PHP) for security.
-41. Bootstrap/Tailwind: Popular CSS frameworks that provide pre-built classes to speed up responsive design.
-42. LocalStorage vs SessionStorage vs Cookies: LocalStorage persists indefinitely. SessionStorage clears on tab close. Cookies are sent to the server.
-43. JS Error Handling: Handled using `try { ... } catch (error) { ... }` blocks.
-44. PHP `include` vs `require`: Both insert the content of one PHP file into another, but `require` causes a fatal error if the file is missing, while `include` only issues a warning.
-45. Web Accessibility (a11y) ensures websites are usable by people with disabilities (e.g., using `alt` tags on images).
-46. The `window` object in JS represents the browser window, while the `document` object represents the HTML page inside it.
-47. Event Bubbling: When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up.
-48. Hoisting in JS: Variable and function declarations are moved to the top of their scope before code execution.
-49. PHP Object-Oriented Programming supports Classes, Objects, Inheritance (`extends`), and Access Modifiers (`public`, `private`, `protected`).
-50. Web Hosting involves placing your HTML/CSS/JS and PHP files on a server (like Apache or Nginx) connected to the internet.</li></ul>
-        </div>
+            <div class="summary-card"><div class="summary-points-container">
+                <div class="summary-point-card">
+                    <span class="point-number">01</span>
+                    <div class="point-text"><span class="point-body">The World Wide Web relies on the client-server model. The client (browser) sends HTTP requests, and the server returns HTTP responses.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">02</span>
+                    <div class="point-text"><span class="point-body">HTML (HyperText Markup Language) defines the structure and content of a web page using elements and tags.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">03</span>
+                    <div class="point-text"><span class="point-body">HTML5 introduced semantic elements like `&lt;header&gt;`, `&lt;footer&gt;`, `&lt;article&gt;`, and `&lt;nav&gt;` to improve accessibility and SEO.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">04</span>
+                    <div class="point-text"><span class="point-body">CSS (Cascading Style Sheets) controls the presentation and layout of HTML elements.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">05</span>
+                    <div class="point-text"><span class="point-body">The CSS Box Model consists of Margins, Borders, Padding, and the actual Content area. Understanding this is crucial for layout.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">06</span>
+                    <div class="point-text"><span class="point-body">CSS Selectors (element, class `.`, ID `#`, pseudo-classes `:hover`) allow targeted styling. Specificity determines which rules apply.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">07</span>
+                    <div class="point-text"><span class="point-body">Flexbox is a one-dimensional CSS layout model that makes it easy to align items in rows or columns dynamically.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">08</span>
+                    <div class="point-text"><span class="point-body">CSS Grid is a two-dimensional layout system for creating complex grid-based designs.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">09</span>
+                    <div class="point-text"><span class="point-body">Responsive Web Design ensures pages look good on all devices using media queries (`@media screen and (max-width: 600px)`).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">10</span>
+                    <div class="point-text"><span class="point-body">JavaScript is a dynamic, interpreted scripting language used to add interactivity and logic to web pages.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">11</span>
+                    <div class="point-text"><span class="point-body">The DOM (Document Object Model) is a tree-like representation of the HTML document that JavaScript can manipulate.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">12</span>
+                    <div class="point-text"><span class="point-body">JS Event Listeners (`addEventListener('click', ...)`) wait for user interactions to trigger functions.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">13</span>
+                    <div class="point-text"><span class="point-body">JS Variables are declared using `let` (block-scoped, mutable), `const` (block-scoped, immutable), and `var` (function-scoped, legacy).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">14</span>
+                    <div class="point-text"><span class="point-body">Arrays in JS are zero-indexed and come with methods like `.push()`, `.pop()`, `.map()`, and `.filter()`.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">15</span>
+                    <div class="point-text"><span class="point-body">JS Objects store data in key-value pairs (e.g., `{ name: "Ali", age: 20 }`).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">16</span>
+                    <div class="point-text"><span class="point-body">Functions in JS can be declared traditionally (`function name() {}`) or as arrow functions (`() =&gt; {}`).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">17</span>
+                    <div class="point-text"><span class="point-body">DOM Manipulation involves selecting elements (e.g., `document.getElementById`) and changing properties (e.g., `element.innerHTML`, `element.style`).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">18</span>
+                    <div class="point-text"><span class="point-body">Asynchronous JavaScript prevents blocking the main thread, utilizing Callbacks, Promises, and `async/await`.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">19</span>
+                    <div class="point-text"><span class="point-body">JSON (JavaScript Object Notation) is a lightweight data-interchange format, heavily used in APIs (`JSON.stringify`, `JSON.parse`).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">20</span>
+                    <div class="point-text"><span class="point-body">AJAX (Asynchronous JavaScript and XML) allows web pages to update asynchronously by exchanging data with a web server behind the scenes.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">21</span>
+                    <div class="point-text"><span class="point-body">The modern way to perform AJAX requests in JS is the `fetch()` API, which returns Promises.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">22</span>
+                    <div class="point-text"><span class="point-body">Server-Side Scripting runs on the web server, generating dynamic HTML before sending it to the client. PHP is a common server-side language.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">23</span>
+                    <div class="point-text"><span class="point-body">PHP (Hypertext Preprocessor) code is executed on the server, and the result is returned to the browser as plain HTML.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">24</span>
+                    <div class="point-text"><span class="point-body">PHP Variables start with a `$` sign and are dynamically typed (e.g., `$name = "Ali";`).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">25</span>
+                    <div class="point-text"><span class="point-body">PHP Superglobals like `$_GET`, `$_POST`, `$_SESSION`, and `$_COOKIE` are built-in arrays always accessible.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">26</span>
+                    <div class="point-text"><strong class="point-title">Form Handling in PHP:</strong><span class="point-body"> The `method` attribute (`GET` or `POST`) dictates how data is sent. `POST` is secure and hidden in the HTTP body; `GET` is appended to the URL.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">27</span>
+                    <div class="point-text"><strong class="point-title">Security:</strong><span class="point-body"> User input from forms must always be sanitized and validated to prevent Cross-Site Scripting (XSS).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">28</span>
+                    <div class="point-text"><span class="point-body">SQL Injection is a vulnerability where malicious SQL code is inserted into input fields. Prevented using Prepared Statements in PHP/PDO.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">29</span>
+                    <div class="point-text"><span class="point-body">PHP Arrays can be indexed (numeric keys) or associative (named keys, similar to JS objects or dictionaries).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">30</span>
+                    <div class="point-text"><span class="point-body">PHP Sessions (`session_start()`) store user information (e.g., login state) across multiple pages on the server.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">31</span>
+                    <div class="point-text"><span class="point-body">PHP Cookies store small amounts of data directly on the user's browser, sent back with every request.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">32</span>
+                    <div class="point-text"><span class="point-body">Connecting PHP to MySQL databases is typically done using PDO (PHP Data Objects) or MySQLi. PDO is preferred for its flexibility.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">33</span>
+                    <div class="point-text"><span class="point-body">A typical database operation in PHP involves: Connect -&gt; Prepare Statement -&gt; Bind Parameters -&gt; Execute -&gt; Fetch Results -&gt; Close.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">34</span>
+                    <div class="point-text"><strong class="point-title">HTTP Status Codes:</strong><span class="point-body"> 200 (OK), 404 (Not Found), 500 (Internal Server Error), 403 (Forbidden).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">35</span>
+                    <div class="point-text"><strong class="point-title">HTTP Methods:</strong><span class="point-body"> GET (retrieve data), POST (submit data), PUT (update data), DELETE (remove data).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">36</span>
+                    <div class="point-text"><span class="point-body">RESTful APIs rely on stateless HTTP requests and return data usually in JSON format.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">37</span>
+                    <div class="point-text"><span class="point-body">jQuery is a legacy JavaScript library that simplifies DOM manipulation and AJAX (`$.ajax()`). Modern vanilla JS has largely replaced it.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">38</span>
+                    <div class="point-text"><strong class="point-title">Front-End vs Back-End:</strong><span class="point-body"> Front-end (Client-side) is what the user sees (HTML/CSS/JS). Back-end (Server-side) is logic and database (PHP/MySQL).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">39</span>
+                    <div class="point-text"><strong class="point-title">CSS Positioning:</strong><span class="point-body"> `static` (default), `relative` (offset from normal), `absolute` (offset from closest positioned ancestor), `fixed` (relative to viewport).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">40</span>
+                    <div class="point-text"><span class="point-body">Form Validation can happen on the client-side (using HTML5 `required` or JS) and MUST happen on the server-side (PHP) for security.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">41</span>
+                    <div class="point-text"><strong class="point-title">Bootstrap/Tailwind:</strong><span class="point-body"> Popular CSS frameworks that provide pre-built classes to speed up responsive design.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">42</span>
+                    <div class="point-text"><span class="point-body">LocalStorage vs SessionStorage vs Cookies: LocalStorage persists indefinitely. SessionStorage clears on tab close. Cookies are sent to the server.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">43</span>
+                    <div class="point-text"><strong class="point-title">JS Error Handling:</strong><span class="point-body"> Handled using `try { ... } catch (error) { ... }` blocks.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">44</span>
+                    <div class="point-text"><strong class="point-title">PHP `include` vs `require`:</strong><span class="point-body"> Both insert the content of one PHP file into another, but `require` causes a fatal error if the file is missing, while `include` only issues a warning.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">45</span>
+                    <div class="point-text"><span class="point-body">Web Accessibility (a11y) ensures websites are usable by people with disabilities (e.g., using `alt` tags on images).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">46</span>
+                    <div class="point-text"><span class="point-body">The `window` object in JS represents the browser window, while the `document` object represents the HTML page inside it.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">47</span>
+                    <div class="point-text"><strong class="point-title">Event Bubbling:</strong><span class="point-body"> When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">48</span>
+                    <div class="point-text"><strong class="point-title">Hoisting in JS:</strong><span class="point-body"> Variable and function declarations are moved to the top of their scope before code execution.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">49</span>
+                    <div class="point-text"><span class="point-body">PHP Object-Oriented Programming supports Classes, Objects, Inheritance (`extends`), and Access Modifiers (`public`, `private`, `protected`).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">50</span>
+                    <div class="point-text"><span class="point-body">Web Hosting involves placing your HTML/CSS/JS and PHP files on a server (like Apache or Nginx) connected to the internet.</span></div>
+                </div>
+            </div></div>
         </div>
         <div class="inner-tab-content" id="web_code">
             <div class="code-card">
@@ -1681,58 +2084,257 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
         </div>
         </div>
         <div class="inner-tab-content" id="dsa_summary">
-            <div class="summary-card">
-<ul style='margin-left: 20px; list-style-type: disc; margin-bottom: 20px;'><li style='margin-bottom: 8px;'>1. Data Structures organize data in memory for efficient access, modification, and storage. Algorithms are the step-by-step procedures that operate on them.
-2. Big O Notation measures algorithm efficiency: O(1) Constant, O(log n) Logarithmic, O(n) Linear, O(n log n) Linearithmic, O(n²) Quadratic.
-3. Arrays: Fixed-size, contiguous memory blocks. Access by index is O(1). Insertion/Deletion in the middle is O(n).
-4. Linked List: A chain of nodes, each containing data and a pointer (next). Non-contiguous memory. Dynamic size.
-5. Singly Linked List: Each node has one pointer (next). Traversal is one-directional only.
-6. Doubly Linked List: Each node has two pointers (prev and next). Allows bidirectional traversal.
-7. Circular Linked List: The tail node's next pointer points back to the head node, forming a circle.
-8. Linked List insertAtHead: O(1) — simply create a new node and point its next to the current head. Update head.
-9. Linked List insertAtTail: O(n) without tail pointer — must traverse all nodes. O(1) with a tail pointer.
-10. Linked List deleteAtHead: O(1) — save head reference for freeing, move head to head.next.
-11. Pointer: A variable that stores a memory address. In C/C++: int *ptr = &amp;x; dereferences with *ptr.
-12. Pass by Value: A copy of the variable is passed. Changes inside the function do NOT affect the original.
-13. Pass by Reference: The memory address is passed. Changes inside the function DO affect the original.
-14. Stack: Linear data structure following LIFO (Last In, First Out). Operations: push(), pop(), peek(), isEmpty().
-15. Queue: Linear data structure following FIFO (First In, First Out). Operations: enqueue(), dequeue(), front(), isEmpty().
-16. Stack applications: Function call stack, expression evaluation (infix to postfix), undo/redo operations, browser back button.
-17. Queue applications: Process scheduling, printer queues, BFS graph traversal.
-18. Recursion: A function that calls itself. MUST have: (1) Base Case to stop, (2) Recursive Case that moves toward base case.
-19. Recursion uses the Call Stack. Each recursive call adds a stack frame. Risk: StackOverflow if base case is never reached.
-20. Binary Search: Efficient search on a SORTED array. Repeatedly halves the search space. Time: O(log n), Space: O(1).
-21. Linear Search: Checks each element one by one. Works on unsorted arrays. Time: O(n). Simple but slow.
-22. Bubble Sort: Repeatedly compares adjacent elements and swaps if out of order. O(n²) worst-case. Stable sort.
-23. Selection Sort: Finds the minimum element and places it at the beginning each pass. O(n²). Not stable.
-24. Insertion Sort: Builds sorted array one item at a time by inserting each new item in correct position. O(n²) worst, O(n) best (nearly sorted). Stable.
-25. Merge Sort: Divide and Conquer. Recursively splits array in half, sorts each half, then merges. O(n log n) always. Stable. Space: O(n).
-26. Quick Sort: Divide and Conquer. Picks a pivot, partitions elements around it. O(n log n) average, O(n²) worst case. Not stable. Space: O(log n).
-27. Tree: Hierarchical, non-linear data structure with a root node and subtrees of children.
-28. Binary Tree: Each node has at most TWO children (left and right).
-29. Binary Search Tree (BST): A binary tree where: left child &lt; parent &lt; right child. Enables efficient search in O(log n).
-30. BST Insertion: Compare with root. Go left if smaller, right if larger. Insert as a leaf node.
-31. BST Search: Compare with root. Return true if match. Go left if target &lt; node, right if target &gt; node. O(log n) average.
-32. Inorder Traversal (Left → Root → Right): Produces SORTED output for a BST.
-33. Preorder Traversal (Root → Left → Right): Useful for copying or serializing the tree.
-34. Postorder Traversal (Left → Right → Root): Useful for deleting a tree (children before parent).
-35. Balanced BST: Height is O(log n). An unbalanced BST degrades to O(n) in worst case (like a linked list).
-36. Graph: A collection of vertices (nodes) and edges (connections). Can be directed or undirected.
-37. Adjacency Matrix: 2D array to represent graph. Space: O(V²). Edge check: O(1).
-38. Adjacency List: Array of linked lists. Space: O(V+E). More efficient for sparse graphs.
-39. BFS (Breadth-First Search): Uses a QUEUE. Explores level by level. Finds shortest path in unweighted graphs.
-40. DFS (Depth-First Search): Uses a STACK (or recursion). Explores as deep as possible before backtracking.
-41. Hash Table: Data structure that maps keys to values using a hash function. Average O(1) for insert/search/delete.
-42. Collision: When two keys hash to the same index. Resolved by Chaining (linked list at bucket) or Open Addressing.
-43. Heap: A complete binary tree. Max-Heap: parent ≥ children. Min-Heap: parent ≤ children. Used in Priority Queues.
-44. Dynamic Array: Array that resizes itself when full (e.g., Java ArrayList). Amortized O(1) for append.
-45. Two-Pointer Technique: Use two pointers moving through data to solve problems in O(n) instead of O(n²).
-46. Sliding Window: Maintain a window over data and slide it to compute results without re-processing. O(n).
-47. Space-Time Tradeoff: Using more memory (e.g., a HashSet) to achieve faster time complexity.
-48. Stable Sort: Maintains the relative order of equal elements. Merge Sort and Insertion Sort are stable.
-49. In-place Sort: Uses O(1) extra space. Quick Sort and Bubble Sort are in-place.
-50. VisuAlgo (visualgo.net): Interactive visualizer for all data structures and sorting algorithms. USE IT to understand BST, Linked Lists, and Sorting visually.</li></ul>
-        </div>
+            <div class="summary-card"><div class="summary-points-container">
+                <div class="summary-point-card">
+                    <span class="point-number">01</span>
+                    <div class="point-text"><span class="point-body">Data Structures organize data in memory for efficient access, modification, and storage. Algorithms are the step-by-step procedures that operate on them.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">02</span>
+                    <div class="point-text"><span class="point-body">Big O Notation measures algorithm efficiency: O(1) Constant, O(log n) Logarithmic, O(n) Linear, O(n log n) Linearithmic, O(n²) Quadratic.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">03</span>
+                    <div class="point-text"><strong class="point-title">Arrays:</strong><span class="point-body"> Fixed-size, contiguous memory blocks. Access by index is O(1). Insertion/Deletion in the middle is O(n).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">04</span>
+                    <div class="point-text"><strong class="point-title">Linked List:</strong><span class="point-body"> A chain of nodes, each containing data and a pointer (next). Non-contiguous memory. Dynamic size.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">05</span>
+                    <div class="point-text"><strong class="point-title">Singly Linked List:</strong><span class="point-body"> Each node has one pointer (next). Traversal is one-directional only.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">06</span>
+                    <div class="point-text"><strong class="point-title">Doubly Linked List:</strong><span class="point-body"> Each node has two pointers (prev and next). Allows bidirectional traversal.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">07</span>
+                    <div class="point-text"><strong class="point-title">Circular Linked List:</strong><span class="point-body"> The tail node's next pointer points back to the head node, forming a circle.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">08</span>
+                    <div class="point-text"><strong class="point-title">Linked List insertAtHead:</strong><span class="point-body"> O(1) — simply create a new node and point its next to the current head. Update head.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">09</span>
+                    <div class="point-text"><strong class="point-title">Linked List insertAtTail:</strong><span class="point-body"> O(n) without tail pointer — must traverse all nodes. O(1) with a tail pointer.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">10</span>
+                    <div class="point-text"><strong class="point-title">Linked List deleteAtHead:</strong><span class="point-body"> O(1) — save head reference for freeing, move head to head.next.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">11</span>
+                    <div class="point-text"><strong class="point-title">Pointer:</strong><span class="point-body"> A variable that stores a memory address. In C/C++: int *ptr = &amp;x; dereferences with *ptr.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">12</span>
+                    <div class="point-text"><strong class="point-title">Pass by Value:</strong><span class="point-body"> A copy of the variable is passed. Changes inside the function do NOT affect the original.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">13</span>
+                    <div class="point-text"><strong class="point-title">Pass by Reference:</strong><span class="point-body"> The memory address is passed. Changes inside the function DO affect the original.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">14</span>
+                    <div class="point-text"><strong class="point-title">Stack:</strong><span class="point-body"> Linear data structure following LIFO (Last In, First Out). Operations: push(), pop(), peek(), isEmpty().</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">15</span>
+                    <div class="point-text"><strong class="point-title">Queue:</strong><span class="point-body"> Linear data structure following FIFO (First In, First Out). Operations: enqueue(), dequeue(), front(), isEmpty().</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">16</span>
+                    <div class="point-text"><strong class="point-title">Stack applications:</strong><span class="point-body"> Function call stack, expression evaluation (infix to postfix), undo/redo operations, browser back button.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">17</span>
+                    <div class="point-text"><strong class="point-title">Queue applications:</strong><span class="point-body"> Process scheduling, printer queues, BFS graph traversal.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">18</span>
+                    <div class="point-text"><strong class="point-title">Recursion:</strong><span class="point-body"> A function that calls itself. MUST have: (1) Base Case to stop, (2) Recursive Case that moves toward base case.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">19</span>
+                    <div class="point-text"><span class="point-body">Recursion uses the Call Stack. Each recursive call adds a stack frame. Risk: StackOverflow if base case is never reached.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">20</span>
+                    <div class="point-text"><strong class="point-title">Binary Search:</strong><span class="point-body"> Efficient search on a SORTED array. Repeatedly halves the search space. Time: O(log n), Space: O(1).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">21</span>
+                    <div class="point-text"><strong class="point-title">Linear Search:</strong><span class="point-body"> Checks each element one by one. Works on unsorted arrays. Time: O(n). Simple but slow.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">22</span>
+                    <div class="point-text"><strong class="point-title">Bubble Sort:</strong><span class="point-body"> Repeatedly compares adjacent elements and swaps if out of order. O(n²) worst-case. Stable sort.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">23</span>
+                    <div class="point-text"><strong class="point-title">Selection Sort:</strong><span class="point-body"> Finds the minimum element and places it at the beginning each pass. O(n²). Not stable.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">24</span>
+                    <div class="point-text"><strong class="point-title">Insertion Sort:</strong><span class="point-body"> Builds sorted array one item at a time by inserting each new item in correct position. O(n²) worst, O(n) best (nearly sorted). Stable.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">25</span>
+                    <div class="point-text"><strong class="point-title">Merge Sort:</strong><span class="point-body"> Divide and Conquer. Recursively splits array in half, sorts each half, then merges. O(n log n) always. Stable. Space: O(n).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">26</span>
+                    <div class="point-text"><strong class="point-title">Quick Sort:</strong><span class="point-body"> Divide and Conquer. Picks a pivot, partitions elements around it. O(n log n) average, O(n²) worst case. Not stable. Space: O(log n).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">27</span>
+                    <div class="point-text"><strong class="point-title">Tree:</strong><span class="point-body"> Hierarchical, non-linear data structure with a root node and subtrees of children.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">28</span>
+                    <div class="point-text"><strong class="point-title">Binary Tree:</strong><span class="point-body"> Each node has at most TWO children (left and right).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">29</span>
+                    <div class="point-text"><strong class="point-title">Binary Search Tree (BST):</strong><span class="point-body"> A binary tree where: left child &lt; parent &lt; right child. Enables efficient search in O(log n).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">30</span>
+                    <div class="point-text"><strong class="point-title">BST Insertion:</strong><span class="point-body"> Compare with root. Go left if smaller, right if larger. Insert as a leaf node.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">31</span>
+                    <div class="point-text"><strong class="point-title">BST Search:</strong><span class="point-body"> Compare with root. Return true if match. Go left if target &lt; node, right if target &gt; node. O(log n) average.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">32</span>
+                    <div class="point-text"><strong class="point-title">Inorder Traversal (Left → Root → Right):</strong><span class="point-body"> Produces SORTED output for a BST.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">33</span>
+                    <div class="point-text"><span class="point-body">Preorder Traversal (Root → Left → Right): Useful for copying or serializing the tree.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">34</span>
+                    <div class="point-text"><span class="point-body">Postorder Traversal (Left → Right → Root): Useful for deleting a tree (children before parent).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">35</span>
+                    <div class="point-text"><strong class="point-title">Balanced BST:</strong><span class="point-body"> Height is O(log n). An unbalanced BST degrades to O(n) in worst case (like a linked list).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">36</span>
+                    <div class="point-text"><strong class="point-title">Graph:</strong><span class="point-body"> A collection of vertices (nodes) and edges (connections). Can be directed or undirected.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">37</span>
+                    <div class="point-text"><strong class="point-title">Adjacency Matrix:</strong><span class="point-body"> 2D array to represent graph. Space: O(V²). Edge check: O(1).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">38</span>
+                    <div class="point-text"><strong class="point-title">Adjacency List:</strong><span class="point-body"> Array of linked lists. Space: O(V+E). More efficient for sparse graphs.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">39</span>
+                    <div class="point-text"><strong class="point-title">BFS (Breadth-First Search):</strong><span class="point-body"> Uses a QUEUE. Explores level by level. Finds shortest path in unweighted graphs.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">40</span>
+                    <div class="point-text"><strong class="point-title">DFS (Depth-First Search):</strong><span class="point-body"> Uses a STACK (or recursion). Explores as deep as possible before backtracking.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">41</span>
+                    <div class="point-text"><strong class="point-title">Hash Table:</strong><span class="point-body"> Data structure that maps keys to values using a hash function. Average O(1) for insert/search/delete.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">42</span>
+                    <div class="point-text"><strong class="point-title">Collision:</strong><span class="point-body"> When two keys hash to the same index. Resolved by Chaining (linked list at bucket) or Open Addressing.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">43</span>
+                    <div class="point-text"><strong class="point-title">Heap:</strong><span class="point-body"> A complete binary tree. Max-Heap: parent ≥ children. Min-Heap: parent ≤ children. Used in Priority Queues.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">44</span>
+                    <div class="point-text"><strong class="point-title">Dynamic Array:</strong><span class="point-body"> Array that resizes itself when full (e.g., Java ArrayList). Amortized O(1) for append.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">45</span>
+                    <div class="point-text"><strong class="point-title">Two-Pointer Technique:</strong><span class="point-body"> Use two pointers moving through data to solve problems in O(n) instead of O(n²).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">46</span>
+                    <div class="point-text"><strong class="point-title">Sliding Window:</strong><span class="point-body"> Maintain a window over data and slide it to compute results without re-processing. O(n).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">47</span>
+                    <div class="point-text"><strong class="point-title">Space-Time Tradeoff:</strong><span class="point-body"> Using more memory (e.g., a HashSet) to achieve faster time complexity.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">48</span>
+                    <div class="point-text"><strong class="point-title">Stable Sort:</strong><span class="point-body"> Maintains the relative order of equal elements. Merge Sort and Insertion Sort are stable.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">49</span>
+                    <div class="point-text"><strong class="point-title">In-place Sort:</strong><span class="point-body"> Uses O(1) extra space. Quick Sort and Bubble Sort are in-place.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">50</span>
+                    <div class="point-text"><strong class="point-title">VisuAlgo (visualgo.net):</strong><span class="point-body"> Interactive visualizer for all data structures and sorting algorithms. USE IT to understand BST, Linked Lists, and Sorting visually.</span></div>
+                </div>
+            </div></div>
         </div>
         <div class="inner-tab-content" id="dsa_code">
             <div class="code-card">
@@ -2371,58 +2973,257 @@ void merge(int arr[], int l, int m, int r) {
         </div>
         </div>
         <div class="inner-tab-content" id="cyber_summary">
-            <div class="summary-card">
-<ul style='margin-left: 20px; list-style-type: disc; margin-bottom: 20px;'><li style='margin-bottom: 8px;'>1. Cybersecurity is the practice of protecting systems, networks, and programs from digital attacks, damage, or unauthorized access.
-2. CIA Triad: The three core principles of cybersecurity — Confidentiality (only authorized access), Integrity (data is accurate and unaltered), Availability (systems are accessible when needed).
-3. Authentication: Verifying the identity of a user (e.g., password, fingerprint). Authorization: Granting access rights after authentication.
-4. Multi-Factor Authentication (MFA): Uses two or more of: Something you know (password), Something you have (OTP token), Something you are (biometric).
-5. Symmetric Encryption: Same key is used for encryption and decryption. Fast but key distribution is challenging. Example: AES.
-6. Asymmetric Encryption: Uses a key pair — Public Key (encrypt or verify) and Private Key (decrypt or sign). Example: RSA. Used in HTTPS.
-7. AES (Advanced Encryption Standard): The gold standard symmetric cipher. Block sizes: 128-bit. Key sizes: 128, 192, or 256 bits.
-8. RSA: Most widely used asymmetric algorithm. Security based on difficulty of factoring large prime numbers.
-9. Hashing: One-way function that converts data into a fixed-size digest. Cannot be reversed. Used for password storage. Examples: SHA-256, MD5 (BROKEN).
-10. MD5 is considered cryptographically broken — do NOT use it for passwords or security. SHA-256 is the minimum standard.
-11. XOR Cipher: Bitwise operation. P XOR K = C (Ciphertext). C XOR K = P (Decryption). Same key for both operations.
-12. Caesar Cipher: Simple substitution cipher that shifts letters by a fixed number. Easily broken by frequency analysis.
-13. Digital Signature: Uses Private Key to SIGN, Public Key to VERIFY. Provides authentication and non-repudiation.
-14. PKI (Public Key Infrastructure): System for managing digital certificates and public-key encryption. Certificate Authority (CA) issues trusted certificates.
-15. TLS/SSL: Protocol that secures communication over networks. HTTPS = HTTP over TLS. Provides confidentiality and integrity.
-16. Firewall: Network security device that monitors and filters incoming/outgoing traffic based on predefined rules.
-17. IDS (Intrusion Detection System): Monitors network traffic for suspicious activity and alerts administrators.
-18. IPS (Intrusion Prevention System): Like IDS but actively blocks detected threats.
-19. DMZ (Demilitarized Zone): A network segment between the external internet and internal network that hosts public-facing servers.
-20. VPN (Virtual Private Network): Creates an encrypted tunnel over a public network, making private communication possible.
-21. OSI Model (7 Layers — BOTTOM to TOP): Physical, Data Link, Network, Transport, Session, Presentation, Application.
-22. Transport Layer (Layer 4): Provides end-to-end communication. TCP (reliable, connection-oriented), UDP (fast, connectionless).
-23. Network Layer (Layer 3): Handles routing and IP addressing. Firewalls and routers operate here.
-24. Application Layer (Layer 7): Protocols like HTTP, HTTPS, FTP, SMTP, DNS operate here.
-25. Social Engineering: Manipulating people to divulge information. Most common: Phishing (fake emails), Vishing (voice), Smishing (SMS).
-26. Phishing: Fraudulent emails/websites designed to steal credentials. Spear Phishing targets specific individuals.
-27. Malware: Malicious software. Types: Virus (attaches to files), Worm (self-replicates across networks), Trojan (disguised as legitimate), Ransomware (encrypts files for ransom), Spyware (monitors user).
-28. DoS (Denial of Service): Floods a server with requests to make it unavailable. DDoS uses multiple compromised systems.
-29. Man-in-the-Middle (MitM) Attack: Attacker secretly intercepts and potentially alters communication between two parties.
-30. SQL Injection: Malicious SQL code inserted into form fields to manipulate databases. Prevented with Prepared Statements.
-31. XSS (Cross-Site Scripting): Injects malicious scripts into web pages viewed by other users. Prevented with output escaping.
-32. Buffer Overflow: Writing more data than a buffer can hold, overwriting adjacent memory. Can allow arbitrary code execution.
-33. OWASP Top 10: A standard awareness document listing the 10 most critical web application security risks. Includes SQLi, XSS, Broken Access Control.
-34. Principle of Least Privilege: Users and programs should only have the minimum access rights necessary to perform their function.
-35. Defense in Depth: Layered security approach — if one control fails, others remain. Multiple barriers at different levels.
-36. Zero Trust: Security model that assumes no user or device is inherently trusted, even inside the network. "Never trust, always verify."
-37. Penetration Testing (Ethical Hacking): Authorized, simulated cyber attack to find vulnerabilities before malicious actors do.
-38. Vulnerability Assessment: Identifies security weaknesses without actively exploiting them.
-39. Incident Response Phases: Preparation → Identification → Containment → Eradication → Recovery → Lessons Learned.
-40. SIEM (Security Information and Event Management): Collects and analyzes security data from across the organization in real time.
-41. Honeypot: A decoy system designed to attract attackers to study their methods and distract them from real systems.
-42. Access Control Models: DAC (Discretionary — owner controls access), MAC (Mandatory — system enforces policies), RBAC (Role-Based — access by role).
-43. Data Encryption at Rest vs In Transit: Encrypt data stored on disk (at rest) AND data traveling over networks (in transit).
-44. Certificate Authority (CA): A trusted entity that issues digital certificates binding public keys to identities (e.g., DigiCert, Let's Encrypt).
-45. Cryptographic Key Management: Generating, storing, distributing, rotating, and revoking cryptographic keys securely.
-46. Steganography: Hiding secret data within non-secret files (e.g., hiding a message inside an image).
-47. Port Numbers: HTTP=80, HTTPS=443, FTP=21, SSH=22, DNS=53, SMTP=25.
-48. Ransomware Defense: Regular backups (3-2-1 rule), email filtering, endpoint protection, user training.
-49. Biometric Authentication: Uses physical characteristics (fingerprint, face, iris). Convenient but cannot be changed if compromised.
-50. Cybersecurity Frameworks: NIST Cybersecurity Framework (Identify, Protect, Detect, Respond, Recover). ISO 27001 for information security management.</li></ul>
-        </div>
+            <div class="summary-card"><div class="summary-points-container">
+                <div class="summary-point-card">
+                    <span class="point-number">01</span>
+                    <div class="point-text"><span class="point-body">Cybersecurity is the practice of protecting systems, networks, and programs from digital attacks, damage, or unauthorized access.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">02</span>
+                    <div class="point-text"><strong class="point-title">CIA Triad:</strong><span class="point-body"> The three core principles of cybersecurity — Confidentiality (only authorized access), Integrity (data is accurate and unaltered), Availability (systems are accessible when needed).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">03</span>
+                    <div class="point-text"><strong class="point-title">Authentication:</strong><span class="point-body"> Verifying the identity of a user (e.g., password, fingerprint). Authorization: Granting access rights after authentication.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">04</span>
+                    <div class="point-text"><strong class="point-title">Multi-Factor Authentication (MFA):</strong><span class="point-body"> Uses two or more of: Something you know (password), Something you have (OTP token), Something you are (biometric).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">05</span>
+                    <div class="point-text"><strong class="point-title">Symmetric Encryption:</strong><span class="point-body"> Same key is used for encryption and decryption. Fast but key distribution is challenging. Example: AES.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">06</span>
+                    <div class="point-text"><strong class="point-title">Asymmetric Encryption:</strong><span class="point-body"> Uses a key pair — Public Key (encrypt or verify) and Private Key (decrypt or sign). Example: RSA. Used in HTTPS.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">07</span>
+                    <div class="point-text"><strong class="point-title">AES (Advanced Encryption Standard):</strong><span class="point-body"> The gold standard symmetric cipher. Block sizes: 128-bit. Key sizes: 128, 192, or 256 bits.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">08</span>
+                    <div class="point-text"><strong class="point-title">RSA:</strong><span class="point-body"> Most widely used asymmetric algorithm. Security based on difficulty of factoring large prime numbers.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">09</span>
+                    <div class="point-text"><strong class="point-title">Hashing:</strong><span class="point-body"> One-way function that converts data into a fixed-size digest. Cannot be reversed. Used for password storage. Examples: SHA-256, MD5 (BROKEN).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">10</span>
+                    <div class="point-text"><span class="point-body">MD5 is considered cryptographically broken — do NOT use it for passwords or security. SHA-256 is the minimum standard.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">11</span>
+                    <div class="point-text"><strong class="point-title">XOR Cipher:</strong><span class="point-body"> Bitwise operation. P XOR K = C (Ciphertext). C XOR K = P (Decryption). Same key for both operations.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">12</span>
+                    <div class="point-text"><strong class="point-title">Caesar Cipher:</strong><span class="point-body"> Simple substitution cipher that shifts letters by a fixed number. Easily broken by frequency analysis.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">13</span>
+                    <div class="point-text"><strong class="point-title">Digital Signature:</strong><span class="point-body"> Uses Private Key to SIGN, Public Key to VERIFY. Provides authentication and non-repudiation.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">14</span>
+                    <div class="point-text"><strong class="point-title">PKI (Public Key Infrastructure):</strong><span class="point-body"> System for managing digital certificates and public-key encryption. Certificate Authority (CA) issues trusted certificates.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">15</span>
+                    <div class="point-text"><strong class="point-title">TLS/SSL:</strong><span class="point-body"> Protocol that secures communication over networks. HTTPS = HTTP over TLS. Provides confidentiality and integrity.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">16</span>
+                    <div class="point-text"><strong class="point-title">Firewall:</strong><span class="point-body"> Network security device that monitors and filters incoming/outgoing traffic based on predefined rules.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">17</span>
+                    <div class="point-text"><strong class="point-title">IDS (Intrusion Detection System):</strong><span class="point-body"> Monitors network traffic for suspicious activity and alerts administrators.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">18</span>
+                    <div class="point-text"><strong class="point-title">IPS (Intrusion Prevention System):</strong><span class="point-body"> Like IDS but actively blocks detected threats.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">19</span>
+                    <div class="point-text"><strong class="point-title">DMZ (Demilitarized Zone):</strong><span class="point-body"> A network segment between the external internet and internal network that hosts public-facing servers.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">20</span>
+                    <div class="point-text"><strong class="point-title">VPN (Virtual Private Network):</strong><span class="point-body"> Creates an encrypted tunnel over a public network, making private communication possible.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">21</span>
+                    <div class="point-text"><strong class="point-title">OSI Model (7 Layers — BOTTOM to TOP):</strong><span class="point-body"> Physical, Data Link, Network, Transport, Session, Presentation, Application.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">22</span>
+                    <div class="point-text"><strong class="point-title">Transport Layer (Layer 4):</strong><span class="point-body"> Provides end-to-end communication. TCP (reliable, connection-oriented), UDP (fast, connectionless).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">23</span>
+                    <div class="point-text"><strong class="point-title">Network Layer (Layer 3):</strong><span class="point-body"> Handles routing and IP addressing. Firewalls and routers operate here.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">24</span>
+                    <div class="point-text"><strong class="point-title">Application Layer (Layer 7):</strong><span class="point-body"> Protocols like HTTP, HTTPS, FTP, SMTP, DNS operate here.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">25</span>
+                    <div class="point-text"><strong class="point-title">Social Engineering:</strong><span class="point-body"> Manipulating people to divulge information. Most common: Phishing (fake emails), Vishing (voice), Smishing (SMS).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">26</span>
+                    <div class="point-text"><strong class="point-title">Phishing:</strong><span class="point-body"> Fraudulent emails/websites designed to steal credentials. Spear Phishing targets specific individuals.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">27</span>
+                    <div class="point-text"><strong class="point-title">Malware:</strong><span class="point-body"> Malicious software. Types: Virus (attaches to files), Worm (self-replicates across networks), Trojan (disguised as legitimate), Ransomware (encrypts files for ransom), Spyware (monitors user).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">28</span>
+                    <div class="point-text"><strong class="point-title">DoS (Denial of Service):</strong><span class="point-body"> Floods a server with requests to make it unavailable. DDoS uses multiple compromised systems.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">29</span>
+                    <div class="point-text"><strong class="point-title">Man-in-the-Middle (MitM) Attack:</strong><span class="point-body"> Attacker secretly intercepts and potentially alters communication between two parties.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">30</span>
+                    <div class="point-text"><strong class="point-title">SQL Injection:</strong><span class="point-body"> Malicious SQL code inserted into form fields to manipulate databases. Prevented with Prepared Statements.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">31</span>
+                    <div class="point-text"><strong class="point-title">XSS (Cross-Site Scripting):</strong><span class="point-body"> Injects malicious scripts into web pages viewed by other users. Prevented with output escaping.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">32</span>
+                    <div class="point-text"><strong class="point-title">Buffer Overflow:</strong><span class="point-body"> Writing more data than a buffer can hold, overwriting adjacent memory. Can allow arbitrary code execution.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">33</span>
+                    <div class="point-text"><strong class="point-title">OWASP Top 10:</strong><span class="point-body"> A standard awareness document listing the 10 most critical web application security risks. Includes SQLi, XSS, Broken Access Control.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">34</span>
+                    <div class="point-text"><strong class="point-title">Principle of Least Privilege:</strong><span class="point-body"> Users and programs should only have the minimum access rights necessary to perform their function.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">35</span>
+                    <div class="point-text"><strong class="point-title">Defense in Depth:</strong><span class="point-body"> Layered security approach — if one control fails, others remain. Multiple barriers at different levels.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">36</span>
+                    <div class="point-text"><strong class="point-title">Zero Trust:</strong><span class="point-body"> Security model that assumes no user or device is inherently trusted, even inside the network. "Never trust, always verify."</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">37</span>
+                    <div class="point-text"><strong class="point-title">Penetration Testing (Ethical Hacking):</strong><span class="point-body"> Authorized, simulated cyber attack to find vulnerabilities before malicious actors do.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">38</span>
+                    <div class="point-text"><strong class="point-title">Vulnerability Assessment:</strong><span class="point-body"> Identifies security weaknesses without actively exploiting them.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">39</span>
+                    <div class="point-text"><strong class="point-title">Incident Response Phases:</strong><span class="point-body"> Preparation → Identification → Containment → Eradication → Recovery → Lessons Learned.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">40</span>
+                    <div class="point-text"><span class="point-body">SIEM (Security Information and Event Management): Collects and analyzes security data from across the organization in real time.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">41</span>
+                    <div class="point-text"><strong class="point-title">Honeypot:</strong><span class="point-body"> A decoy system designed to attract attackers to study their methods and distract them from real systems.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">42</span>
+                    <div class="point-text"><strong class="point-title">Access Control Models:</strong><span class="point-body"> DAC (Discretionary — owner controls access), MAC (Mandatory — system enforces policies), RBAC (Role-Based — access by role).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">43</span>
+                    <div class="point-text"><strong class="point-title">Data Encryption at Rest vs In Transit:</strong><span class="point-body"> Encrypt data stored on disk (at rest) AND data traveling over networks (in transit).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">44</span>
+                    <div class="point-text"><strong class="point-title">Certificate Authority (CA):</strong><span class="point-body"> A trusted entity that issues digital certificates binding public keys to identities (e.g., DigiCert, Let's Encrypt).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">45</span>
+                    <div class="point-text"><strong class="point-title">Cryptographic Key Management:</strong><span class="point-body"> Generating, storing, distributing, rotating, and revoking cryptographic keys securely.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">46</span>
+                    <div class="point-text"><strong class="point-title">Steganography:</strong><span class="point-body"> Hiding secret data within non-secret files (e.g., hiding a message inside an image).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">47</span>
+                    <div class="point-text"><strong class="point-title">Port Numbers:</strong><span class="point-body"> HTTP=80, HTTPS=443, FTP=21, SSH=22, DNS=53, SMTP=25.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">48</span>
+                    <div class="point-text"><strong class="point-title">Ransomware Defense:</strong><span class="point-body"> Regular backups (3-2-1 rule), email filtering, endpoint protection, user training.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">49</span>
+                    <div class="point-text"><strong class="point-title">Biometric Authentication:</strong><span class="point-body"> Uses physical characteristics (fingerprint, face, iris). Convenient but cannot be changed if compromised.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">50</span>
+                    <div class="point-text"><strong class="point-title">Cybersecurity Frameworks:</strong><span class="point-body"> NIST Cybersecurity Framework (Identify, Protect, Detect, Respond, Recover). ISO 27001 for information security management.</span></div>
+                </div>
+            </div></div>
         </div>
         <div class="inner-tab-content" id="cyber_code">
             <div class="code-card">
@@ -3075,58 +3876,257 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
         </div>
         </div>
         <div class="inner-tab-content" id="arch_summary">
-            <div class="summary-card">
-<ul style='margin-left: 20px; list-style-type: disc; margin-bottom: 20px;'><li style='margin-bottom: 8px;'>1. Computer Architecture defines the functional structure of a computer system: how hardware components work together to execute programs.
-2. Von Neumann Architecture: The foundational model. A single shared memory holds BOTH instructions and data. Includes CPU, Memory, and I/O.
-3. Harvard Architecture: Separate memory and buses for instructions and data, allowing simultaneous access. Used in modern CPUs and microcontrollers.
-4. CPU (Central Processing Unit): The brain of the computer. Performs the Fetch-Decode-Execute cycle for every instruction.
-5. MARIE (Machine Architecture that is Really Intuitive and Easy): A simplified, educational computer used to teach assembly language and architecture concepts.
-6. MARIE Registers: AC (Accumulator), PC (Program Counter), IR (Instruction Register), MAR (Memory Address Register), MBR (Memory Buffer Register), InREG, OutREG.
-7. PC (Program Counter): Always holds the address of the NEXT instruction to be fetched. Auto-increments after each fetch.
-8. MAR (Memory Address Register): Holds the address in memory that is about to be read from or written to.
-9. MBR (Memory Buffer Register): Temporarily holds data being transferred to/from memory.
-10. IR (Instruction Register): Holds the current instruction being decoded and executed.
-11. AC (Accumulator): The main general-purpose register in MARIE. All arithmetic results are stored here.
-12. MARIE Instruction Format: 16 bits total — upper 4 bits = Opcode, lower 12 bits = Operand (memory address).
-13. The Universal Fetch Cycle (RTN): MAR ← PC → MBR ← M[MAR] → IR ← MBR → PC ← PC + 1.
-14. RTN for LOAD X: MAR ← X; MBR ← M[MAR]; AC ← MBR.
-15. RTN for ADD X: MAR ← X; MBR ← M[MAR]; AC ← AC + MBR.
-16. RTN for STORE X: MAR ← X; MBR ← AC; M[MAR] ← MBR.
-17. RTN for JUMP X: PC ← X. (Simply overwrites the Program Counter — no memory access needed.)
-18. SKIPCOND Instruction: Skips the next instruction based on AC: 000 = skip if AC &lt; 0; 400 = skip if AC = 0; 800 = skip if AC &gt; 0.
-19. MARIE Assembly: Uses labels, LOAD, STORE, ADD, SUB, JUMP, SKIPCOND, INPUT, OUTPUT, HALT, DEC, ORG directives.
-20. Direct Addressing: The operand field of the instruction directly contains the effective address of the data.
-21. Indirect Addressing: The operand field contains the address of the address of the data — requires an extra memory access.
-22. Immediate Addressing: The operand IS the data itself, not an address. Faster but limited value size.
-23. Indexed Addressing: Effective address = operand + value of an index register. Useful for arrays.
-24. Boolean Algebra: Mathematical system using 0 and 1. Operations: AND (·), OR (+), NOT (¬).
-25. Logic Gates: AND, OR, NOT, NAND, NOR, XOR, XNOR. The fundamental building blocks of all digital circuits.
-26. NAND and NOR are Universal Gates — any Boolean function can be built using only NAND gates or only NOR gates.
-27. XOR (Exclusive OR): Output is 1 only when inputs differ. Key component in adders and parity checkers.
-28. Half Adder: Adds two single bits. Outputs: Sum = A XOR B, Carry = A AND B.
-29. Full Adder: Adds three bits (two inputs + carry-in). Outputs Sum and Carry-out. Built from two Half Adders.
-30. Ripple Carry Adder: Chains multiple Full Adders to add multi-bit numbers. Carry ripples from LSB to MSB.
-31. Flip-Flops: 1-bit memory elements. Types: SR, JK, D, T. D Flip-Flop: on clock edge, Q = D.
-32. Registers: A group of flip-flops storing multiple bits as a unit. A 16-bit register has 16 flip-flops.
-33. Memory Hierarchy (Fastest to Slowest/Cheapest): Registers → Cache (SRAM) → Main Memory (DRAM) → Secondary Storage (HDD/SSD).
-34. Cache Memory: Small, very fast SRAM between CPU and main memory. Exploits temporal and spatial locality.
-35. Cache Hit: Data is found in cache. Cache Miss: Data must be fetched from slower main memory.
-36. Locality of Reference: Temporal Locality (recently used data will likely be used again), Spatial Locality (nearby data will likely be used soon).
-37. SRAM (Static RAM): Used for CPU cache. Fast, expensive, no refresh needed. Data stored in flip-flops.
-38. DRAM (Dynamic RAM): Used for main memory. Slower, cheaper, requires periodic refresh. Data stored in capacitors.
-39. ROM (Read-Only Memory): Non-volatile memory used for firmware/BIOS. Cannot be easily modified.
-40. Pipeline: Overlapping execution of multiple instructions by dividing the instruction cycle into stages (Fetch, Decode, Execute).
-41. Pipeline Hazards: Structural (resource conflict), Data (instruction depends on previous result), Control (branch causes wrong fetch).
-42. RISC (Reduced Instruction Set Computer): Simple, fixed-length instructions. Many registers. Load/Store architecture. Examples: ARM, MIPS.
-43. CISC (Complex Instruction Set Computer): Complex, variable-length instructions. Fewer but more powerful instructions. Example: Intel x86.
-44. RISC vs CISC: RISC executes 1 instruction per cycle (pipelined). CISC may take multiple cycles per instruction.
-45. Input/Output (I/O): Mechanisms for CPU to communicate with peripherals. Methods: Programmed I/O (busy-wait), Interrupt-Driven I/O, DMA.
-46. Interrupts: Signals from hardware/software that stop the CPU's current task and run an Interrupt Service Routine (ISR).
-47. DMA (Direct Memory Access): A controller that handles data transfer between I/O devices and memory without CPU involvement. Frees CPU.
-48. Bus: Shared communication pathway connecting CPU, memory, and I/O. Types: Data Bus, Address Bus, Control Bus.
-49. Clock Speed (GHz): Number of clock cycles per second. Higher clock = more instructions per second.
-50. Moore's Law: Observation that transistor count on a chip doubles approximately every two years, leading to exponential growth in computing power.</li></ul>
-        </div>
+            <div class="summary-card"><div class="summary-points-container">
+                <div class="summary-point-card">
+                    <span class="point-number">01</span>
+                    <div class="point-text"><span class="point-body">Computer Architecture defines the functional structure of a computer system: how hardware components work together to execute programs.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">02</span>
+                    <div class="point-text"><strong class="point-title">Von Neumann Architecture:</strong><span class="point-body"> The foundational model. A single shared memory holds BOTH instructions and data. Includes CPU, Memory, and I/O.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">03</span>
+                    <div class="point-text"><strong class="point-title">Harvard Architecture:</strong><span class="point-body"> Separate memory and buses for instructions and data, allowing simultaneous access. Used in modern CPUs and microcontrollers.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">04</span>
+                    <div class="point-text"><strong class="point-title">CPU (Central Processing Unit):</strong><span class="point-body"> The brain of the computer. Performs the Fetch-Decode-Execute cycle for every instruction.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">05</span>
+                    <div class="point-text"><span class="point-body">MARIE (Machine Architecture that is Really Intuitive and Easy): A simplified, educational computer used to teach assembly language and architecture concepts.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">06</span>
+                    <div class="point-text"><strong class="point-title">MARIE Registers:</strong><span class="point-body"> AC (Accumulator), PC (Program Counter), IR (Instruction Register), MAR (Memory Address Register), MBR (Memory Buffer Register), InREG, OutREG.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">07</span>
+                    <div class="point-text"><strong class="point-title">PC (Program Counter):</strong><span class="point-body"> Always holds the address of the NEXT instruction to be fetched. Auto-increments after each fetch.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">08</span>
+                    <div class="point-text"><strong class="point-title">MAR (Memory Address Register):</strong><span class="point-body"> Holds the address in memory that is about to be read from or written to.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">09</span>
+                    <div class="point-text"><strong class="point-title">MBR (Memory Buffer Register):</strong><span class="point-body"> Temporarily holds data being transferred to/from memory.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">10</span>
+                    <div class="point-text"><strong class="point-title">IR (Instruction Register):</strong><span class="point-body"> Holds the current instruction being decoded and executed.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">11</span>
+                    <div class="point-text"><strong class="point-title">AC (Accumulator):</strong><span class="point-body"> The main general-purpose register in MARIE. All arithmetic results are stored here.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">12</span>
+                    <div class="point-text"><strong class="point-title">MARIE Instruction Format:</strong><span class="point-body"> 16 bits total — upper 4 bits = Opcode, lower 12 bits = Operand (memory address).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">13</span>
+                    <div class="point-text"><strong class="point-title">The Universal Fetch Cycle (RTN):</strong><span class="point-body"> MAR ← PC → MBR ← M[MAR] → IR ← MBR → PC ← PC + 1.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">14</span>
+                    <div class="point-text"><strong class="point-title">RTN for LOAD X:</strong><span class="point-body"> MAR ← X; MBR ← M[MAR]; AC ← MBR.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">15</span>
+                    <div class="point-text"><strong class="point-title">RTN for ADD X:</strong><span class="point-body"> MAR ← X; MBR ← M[MAR]; AC ← AC + MBR.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">16</span>
+                    <div class="point-text"><strong class="point-title">RTN for STORE X:</strong><span class="point-body"> MAR ← X; MBR ← AC; M[MAR] ← MBR.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">17</span>
+                    <div class="point-text"><strong class="point-title">RTN for JUMP X:</strong><span class="point-body"> PC ← X. (Simply overwrites the Program Counter — no memory access needed.)</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">18</span>
+                    <div class="point-text"><strong class="point-title">SKIPCOND Instruction:</strong><span class="point-body"> Skips the next instruction based on AC: 000 = skip if AC &lt; 0; 400 = skip if AC = 0; 800 = skip if AC &gt; 0.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">19</span>
+                    <div class="point-text"><strong class="point-title">MARIE Assembly:</strong><span class="point-body"> Uses labels, LOAD, STORE, ADD, SUB, JUMP, SKIPCOND, INPUT, OUTPUT, HALT, DEC, ORG directives.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">20</span>
+                    <div class="point-text"><strong class="point-title">Direct Addressing:</strong><span class="point-body"> The operand field of the instruction directly contains the effective address of the data.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">21</span>
+                    <div class="point-text"><strong class="point-title">Indirect Addressing:</strong><span class="point-body"> The operand field contains the address of the address of the data — requires an extra memory access.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">22</span>
+                    <div class="point-text"><strong class="point-title">Immediate Addressing:</strong><span class="point-body"> The operand IS the data itself, not an address. Faster but limited value size.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">23</span>
+                    <div class="point-text"><strong class="point-title">Indexed Addressing:</strong><span class="point-body"> Effective address = operand + value of an index register. Useful for arrays.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">24</span>
+                    <div class="point-text"><strong class="point-title">Boolean Algebra:</strong><span class="point-body"> Mathematical system using 0 and 1. Operations: AND (·), OR (+), NOT (¬).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">25</span>
+                    <div class="point-text"><strong class="point-title">Logic Gates:</strong><span class="point-body"> AND, OR, NOT, NAND, NOR, XOR, XNOR. The fundamental building blocks of all digital circuits.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">26</span>
+                    <div class="point-text"><span class="point-body">NAND and NOR are Universal Gates — any Boolean function can be built using only NAND gates or only NOR gates.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">27</span>
+                    <div class="point-text"><strong class="point-title">XOR (Exclusive OR):</strong><span class="point-body"> Output is 1 only when inputs differ. Key component in adders and parity checkers.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">28</span>
+                    <div class="point-text"><strong class="point-title">Half Adder:</strong><span class="point-body"> Adds two single bits. Outputs: Sum = A XOR B, Carry = A AND B.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">29</span>
+                    <div class="point-text"><strong class="point-title">Full Adder:</strong><span class="point-body"> Adds three bits (two inputs + carry-in). Outputs Sum and Carry-out. Built from two Half Adders.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">30</span>
+                    <div class="point-text"><strong class="point-title">Ripple Carry Adder:</strong><span class="point-body"> Chains multiple Full Adders to add multi-bit numbers. Carry ripples from LSB to MSB.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">31</span>
+                    <div class="point-text"><strong class="point-title">Flip-Flops:</strong><span class="point-body"> 1-bit memory elements. Types: SR, JK, D, T. D Flip-Flop: on clock edge, Q = D.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">32</span>
+                    <div class="point-text"><strong class="point-title">Registers:</strong><span class="point-body"> A group of flip-flops storing multiple bits as a unit. A 16-bit register has 16 flip-flops.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">33</span>
+                    <div class="point-text"><span class="point-body">Memory Hierarchy (Fastest to Slowest/Cheapest): Registers → Cache (SRAM) → Main Memory (DRAM) → Secondary Storage (HDD/SSD).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">34</span>
+                    <div class="point-text"><strong class="point-title">Cache Memory:</strong><span class="point-body"> Small, very fast SRAM between CPU and main memory. Exploits temporal and spatial locality.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">35</span>
+                    <div class="point-text"><strong class="point-title">Cache Hit:</strong><span class="point-body"> Data is found in cache. Cache Miss: Data must be fetched from slower main memory.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">36</span>
+                    <div class="point-text"><strong class="point-title">Locality of Reference:</strong><span class="point-body"> Temporal Locality (recently used data will likely be used again), Spatial Locality (nearby data will likely be used soon).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">37</span>
+                    <div class="point-text"><strong class="point-title">SRAM (Static RAM):</strong><span class="point-body"> Used for CPU cache. Fast, expensive, no refresh needed. Data stored in flip-flops.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">38</span>
+                    <div class="point-text"><strong class="point-title">DRAM (Dynamic RAM):</strong><span class="point-body"> Used for main memory. Slower, cheaper, requires periodic refresh. Data stored in capacitors.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">39</span>
+                    <div class="point-text"><strong class="point-title">ROM (Read-Only Memory):</strong><span class="point-body"> Non-volatile memory used for firmware/BIOS. Cannot be easily modified.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">40</span>
+                    <div class="point-text"><strong class="point-title">Pipeline:</strong><span class="point-body"> Overlapping execution of multiple instructions by dividing the instruction cycle into stages (Fetch, Decode, Execute).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">41</span>
+                    <div class="point-text"><strong class="point-title">Pipeline Hazards:</strong><span class="point-body"> Structural (resource conflict), Data (instruction depends on previous result), Control (branch causes wrong fetch).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">42</span>
+                    <div class="point-text"><strong class="point-title">RISC (Reduced Instruction Set Computer):</strong><span class="point-body"> Simple, fixed-length instructions. Many registers. Load/Store architecture. Examples: ARM, MIPS.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">43</span>
+                    <div class="point-text"><strong class="point-title">CISC (Complex Instruction Set Computer):</strong><span class="point-body"> Complex, variable-length instructions. Fewer but more powerful instructions. Example: Intel x86.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">44</span>
+                    <div class="point-text"><strong class="point-title">RISC vs CISC:</strong><span class="point-body"> RISC executes 1 instruction per cycle (pipelined). CISC may take multiple cycles per instruction.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">45</span>
+                    <div class="point-text"><strong class="point-title">Input/Output (I/O):</strong><span class="point-body"> Mechanisms for CPU to communicate with peripherals. Methods: Programmed I/O (busy-wait), Interrupt-Driven I/O, DMA.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">46</span>
+                    <div class="point-text"><strong class="point-title">Interrupts:</strong><span class="point-body"> Signals from hardware/software that stop the CPU's current task and run an Interrupt Service Routine (ISR).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">47</span>
+                    <div class="point-text"><strong class="point-title">DMA (Direct Memory Access):</strong><span class="point-body"> A controller that handles data transfer between I/O devices and memory without CPU involvement. Frees CPU.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">48</span>
+                    <div class="point-text"><strong class="point-title">Bus:</strong><span class="point-body"> Shared communication pathway connecting CPU, memory, and I/O. Types: Data Bus, Address Bus, Control Bus.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">49</span>
+                    <div class="point-text"><strong class="point-title">Clock Speed (GHz):</strong><span class="point-body"> Number of clock cycles per second. Higher clock = more instructions per second.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">50</span>
+                    <div class="point-text"><strong class="point-title">Moore's Law:</strong><span class="point-body"> Observation that transistor count on a chip doubles approximately every two years, leading to exponential growth in computing power.</span></div>
+                </div>
+            </div></div>
         </div>
         <div class="inner-tab-content" id="arch_code">
             <div class="code-card">
@@ -3619,58 +4619,257 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
         </div>
         </div>
         <div class="inner-tab-content" id="advprog_summary">
-            <div class="summary-card">
-<ul style='margin-left: 20px; list-style-type: disc; margin-bottom: 20px;'><li style='margin-bottom: 8px;'>1. Java is a strongly-typed, object-oriented programming language that runs on the Java Virtual Machine (JVM), making it platform-independent ("Write Once, Run Anywhere").
-2. OOP Pillars in Java: Encapsulation (hiding data with private fields + getters/setters), Inheritance (extends keyword), Polymorphism (overriding/overloading), Abstraction (abstract classes/interfaces).
-3. Classes and Objects: A Class is a blueprint. An Object is an instance of a class, created with the new keyword.
-4. Constructor: A special method with the same name as the class. Called automatically when an object is created. Used for initialization.
-5. Access Modifiers: public (accessible everywhere), private (accessible only within the class), protected (accessible within package and subclasses), default (package-level).
-6. Inheritance: A subclass (child) inherits the fields and methods of a superclass (parent) using extends. Only single inheritance of classes is allowed in Java.
-7. Method Overriding: Subclass provides a specific implementation for a method already defined in the superclass. Must use @Override annotation.
-8. Method Overloading: Multiple methods with the same name but different parameter lists (different number or types). Resolved at compile time.
-9. Abstract Class: Cannot be instantiated. Can have abstract methods (no body) that must be implemented by subclasses. Uses abstract keyword.
-10. Interface: A contract specifying what a class MUST do (without saying how). Uses implements. A class can implement multiple interfaces.
-11. Interface vs Abstract Class: Interface = pure contract, multiple inheritance. Abstract Class = partial implementation, single inheritance with code reuse.
-12. Polymorphism: An object can take many forms. A parent class reference can hold a child class object.
-13. super Keyword: Refers to the parent class. Used to call parent's constructor (super()) or override methods (super.method()).
-14. static Keyword: Belongs to the class, not an instance. Static methods can be called without creating an object (e.g., Math.sqrt()).
-15. final Keyword: final variable = constant. final method = cannot be overridden. final class = cannot be extended.
-16. Generics: Allow classes and methods to work with any data type specified at compile time. Example: ArrayList&lt;String&gt;.
-17. Java Collections Framework: Key interfaces: List (ArrayList, LinkedList), Set (HashSet, TreeSet), Map (HashMap, TreeMap), Queue.
-18. ArrayList vs LinkedList: ArrayList uses dynamic arrays (fast random access O(1)). LinkedList uses doubly-linked list (fast insert/delete at ends O(1)).
-19. HashMap: Stores key-value pairs. put(K, V), get(K), containsKey(K). Average O(1) for operations. Does NOT maintain order.
-20. Exception Handling: try { risky code } catch (ExceptionType e) { handle } finally { always runs }.
-21. Checked Exceptions: Must be caught or declared with throws (e.g., IOException, SQLException). Compile-time enforcement.
-22. Unchecked Exceptions (RuntimeException): Do not need to be caught (e.g., NullPointerException, ArrayIndexOutOfBoundsException).
-23. Custom Exceptions: Create by extending Exception (checked) or RuntimeException (unchecked).
-24. Multithreading: Running multiple threads concurrently within a single program to improve performance.
-25. Thread Creation Method 1 — extends Thread: Override run() method. Call .start() to launch thread.
-26. Thread Creation Method 2 — implements Runnable (PREFERRED): Separates task from thread. Pass Runnable to new Thread(task). Allows implementing other interfaces.
-27. Thread Lifecycle: NEW → RUNNABLE → RUNNING → BLOCKED/WAITING → TERMINATED.
-28. Thread.sleep(ms): Pauses the current thread for the specified number of milliseconds.
-29. thread.join(): Waits for a thread to finish before continuing. Used to synchronize threads.
-30. Race Condition: Occurs when multiple threads access shared data concurrently and the result depends on thread scheduling order.
-31. synchronized keyword: Ensures only one thread executes a block of code at a time. Prevents race conditions.
-32. JDBC (Java Database Connectivity): Standard Java API for connecting to relational databases (MySQL, Oracle, etc.).
-33. JDBC Steps: (1) Load Driver, (2) DriverManager.getConnection(url, user, pass), (3) Create Statement/PreparedStatement, (4) Execute, (5) Process ResultSet, (6) Close.
-34. PreparedStatement: Precompiled SQL query that prevents SQL Injection. Use ? placeholders and setString/setInt methods.
-35. ResultSet: The object returned by executeQuery(). Iterate with while(rs.next()). Access data with rs.getString("col").
-36. MVC (Model-View-Controller) Pattern: Separates application into three components. Model = data/logic, View = UI, Controller = mediates between Model and View.
-37. Design Patterns: Reusable solutions to common design problems. Categories: Creational (Singleton, Factory), Structural (Decorator, Adapter), Behavioral (Observer, Strategy).
-38. Singleton Pattern: Ensures a class has only ONE instance. Private constructor + static getInstance() method.
-39. Observer Pattern: One object (Subject) notifies many (Observers) when its state changes. Foundation of event-driven programming.
-40. Lambda Expressions (Java 8+): Short syntax for anonymous functions. (params) -> expression. Used with functional interfaces.
-41. Stream API (Java 8+): Process collections of data in a declarative way. Methods: .filter(), .map(), .collect(), .forEach().
-42. File I/O: Java uses FileReader/BufferedReader for reading, FileWriter/BufferedWriter for writing. Always close streams in a finally block or use try-with-resources.
-43. ArrayList common methods: add(), remove(), get(), size(), contains(), set(), clear(), sort().
-44. String class: Immutable in Java. Key methods: length(), charAt(), substring(), equals(), contains(), toUpperCase(), split(), trim().
-45. StringBuilder: Mutable string buffer. More efficient than String concatenation in loops.
-46. Wrapper Classes: Convert primitives to objects: int → Integer, double → Double. Enable use in Collections. Autoboxing/unboxing handles conversion automatically.
-47. Comparable vs Comparator: Comparable (implements compareTo()) is for natural ordering. Comparator is for custom ordering passed to sort methods.
-48. Networking in Java: Socket and ServerSocket classes for TCP communication. URL and HttpURLConnection for HTTP requests.
-49. Java Annotations: Metadata added to code with @. Built-in: @Override, @Deprecated, @SuppressWarnings. Custom annotations also possible.
-50. Java Memory Management: Automatic Garbage Collection (GC) reclaims memory from objects no longer referenced. Stack holds primitives/references; Heap holds objects.</li></ul>
-        </div>
+            <div class="summary-card"><div class="summary-points-container">
+                <div class="summary-point-card">
+                    <span class="point-number">01</span>
+                    <div class="point-text"><span class="point-body">Java is a strongly-typed, object-oriented programming language that runs on the Java Virtual Machine (JVM), making it platform-independent ("Write Once, Run Anywhere").</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">02</span>
+                    <div class="point-text"><strong class="point-title">OOP Pillars in Java:</strong><span class="point-body"> Encapsulation (hiding data with private fields + getters/setters), Inheritance (extends keyword), Polymorphism (overriding/overloading), Abstraction (abstract classes/interfaces).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">03</span>
+                    <div class="point-text"><strong class="point-title">Classes and Objects:</strong><span class="point-body"> A Class is a blueprint. An Object is an instance of a class, created with the new keyword.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">04</span>
+                    <div class="point-text"><strong class="point-title">Constructor:</strong><span class="point-body"> A special method with the same name as the class. Called automatically when an object is created. Used for initialization.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">05</span>
+                    <div class="point-text"><strong class="point-title">Access Modifiers:</strong><span class="point-body"> public (accessible everywhere), private (accessible only within the class), protected (accessible within package and subclasses), default (package-level).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">06</span>
+                    <div class="point-text"><strong class="point-title">Inheritance:</strong><span class="point-body"> A subclass (child) inherits the fields and methods of a superclass (parent) using extends. Only single inheritance of classes is allowed in Java.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">07</span>
+                    <div class="point-text"><strong class="point-title">Method Overriding:</strong><span class="point-body"> Subclass provides a specific implementation for a method already defined in the superclass. Must use @Override annotation.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">08</span>
+                    <div class="point-text"><strong class="point-title">Method Overloading:</strong><span class="point-body"> Multiple methods with the same name but different parameter lists (different number or types). Resolved at compile time.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">09</span>
+                    <div class="point-text"><strong class="point-title">Abstract Class:</strong><span class="point-body"> Cannot be instantiated. Can have abstract methods (no body) that must be implemented by subclasses. Uses abstract keyword.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">10</span>
+                    <div class="point-text"><strong class="point-title">Interface:</strong><span class="point-body"> A contract specifying what a class MUST do (without saying how). Uses implements. A class can implement multiple interfaces.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">11</span>
+                    <div class="point-text"><strong class="point-title">Interface vs Abstract Class:</strong><span class="point-body"> Interface = pure contract, multiple inheritance. Abstract Class = partial implementation, single inheritance with code reuse.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">12</span>
+                    <div class="point-text"><strong class="point-title">Polymorphism:</strong><span class="point-body"> An object can take many forms. A parent class reference can hold a child class object.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">13</span>
+                    <div class="point-text"><strong class="point-title">super Keyword:</strong><span class="point-body"> Refers to the parent class. Used to call parent's constructor (super()) or override methods (super.method()).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">14</span>
+                    <div class="point-text"><strong class="point-title">static Keyword:</strong><span class="point-body"> Belongs to the class, not an instance. Static methods can be called without creating an object (e.g., Math.sqrt()).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">15</span>
+                    <div class="point-text"><strong class="point-title">final Keyword:</strong><span class="point-body"> final variable = constant. final method = cannot be overridden. final class = cannot be extended.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">16</span>
+                    <div class="point-text"><strong class="point-title">Generics:</strong><span class="point-body"> Allow classes and methods to work with any data type specified at compile time. Example: ArrayList&lt;String&gt;.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">17</span>
+                    <div class="point-text"><strong class="point-title">Java Collections Framework:</strong><span class="point-body"> Key interfaces: List (ArrayList, LinkedList), Set (HashSet, TreeSet), Map (HashMap, TreeMap), Queue.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">18</span>
+                    <div class="point-text"><strong class="point-title">ArrayList vs LinkedList:</strong><span class="point-body"> ArrayList uses dynamic arrays (fast random access O(1)). LinkedList uses doubly-linked list (fast insert/delete at ends O(1)).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">19</span>
+                    <div class="point-text"><strong class="point-title">HashMap:</strong><span class="point-body"> Stores key-value pairs. put(K, V), get(K), containsKey(K). Average O(1) for operations. Does NOT maintain order.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">20</span>
+                    <div class="point-text"><strong class="point-title">Exception Handling:</strong><span class="point-body"> try { risky code } catch (ExceptionType e) { handle } finally { always runs }.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">21</span>
+                    <div class="point-text"><strong class="point-title">Checked Exceptions:</strong><span class="point-body"> Must be caught or declared with throws (e.g., IOException, SQLException). Compile-time enforcement.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">22</span>
+                    <div class="point-text"><strong class="point-title">Unchecked Exceptions (RuntimeException):</strong><span class="point-body"> Do not need to be caught (e.g., NullPointerException, ArrayIndexOutOfBoundsException).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">23</span>
+                    <div class="point-text"><strong class="point-title">Custom Exceptions:</strong><span class="point-body"> Create by extending Exception (checked) or RuntimeException (unchecked).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">24</span>
+                    <div class="point-text"><strong class="point-title">Multithreading:</strong><span class="point-body"> Running multiple threads concurrently within a single program to improve performance.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">25</span>
+                    <div class="point-text"><span class="point-body">Thread Creation Method 1 — extends Thread: Override run() method. Call .start() to launch thread.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">26</span>
+                    <div class="point-text"><span class="point-body">Thread Creation Method 2 — implements Runnable (PREFERRED): Separates task from thread. Pass Runnable to new Thread(task). Allows implementing other interfaces.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">27</span>
+                    <div class="point-text"><strong class="point-title">Thread Lifecycle:</strong><span class="point-body"> NEW → RUNNABLE → RUNNING → BLOCKED/WAITING → TERMINATED.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">28</span>
+                    <div class="point-text"><strong class="point-title">Thread.sleep(ms):</strong><span class="point-body"> Pauses the current thread for the specified number of milliseconds.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">29</span>
+                    <div class="point-text"><strong class="point-title">thread.join():</strong><span class="point-body"> Waits for a thread to finish before continuing. Used to synchronize threads.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">30</span>
+                    <div class="point-text"><strong class="point-title">Race Condition:</strong><span class="point-body"> Occurs when multiple threads access shared data concurrently and the result depends on thread scheduling order.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">31</span>
+                    <div class="point-text"><strong class="point-title">synchronized keyword:</strong><span class="point-body"> Ensures only one thread executes a block of code at a time. Prevents race conditions.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">32</span>
+                    <div class="point-text"><strong class="point-title">JDBC (Java Database Connectivity):</strong><span class="point-body"> Standard Java API for connecting to relational databases (MySQL, Oracle, etc.).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">33</span>
+                    <div class="point-text"><strong class="point-title">JDBC Steps:</strong><span class="point-body"> (1) Load Driver, (2) DriverManager.getConnection(url, user, pass), (3) Create Statement/PreparedStatement, (4) Execute, (5) Process ResultSet, (6) Close.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">34</span>
+                    <div class="point-text"><strong class="point-title">PreparedStatement:</strong><span class="point-body"> Precompiled SQL query that prevents SQL Injection. Use ? placeholders and setString/setInt methods.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">35</span>
+                    <div class="point-text"><strong class="point-title">ResultSet:</strong><span class="point-body"> The object returned by executeQuery(). Iterate with while(rs.next()). Access data with rs.getString("col").</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">36</span>
+                    <div class="point-text"><strong class="point-title">MVC (Model-View-Controller) Pattern:</strong><span class="point-body"> Separates application into three components. Model = data/logic, View = UI, Controller = mediates between Model and View.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">37</span>
+                    <div class="point-text"><strong class="point-title">Design Patterns:</strong><span class="point-body"> Reusable solutions to common design problems. Categories: Creational (Singleton, Factory), Structural (Decorator, Adapter), Behavioral (Observer, Strategy).</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">38</span>
+                    <div class="point-text"><strong class="point-title">Singleton Pattern:</strong><span class="point-body"> Ensures a class has only ONE instance. Private constructor + static getInstance() method.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">39</span>
+                    <div class="point-text"><strong class="point-title">Observer Pattern:</strong><span class="point-body"> One object (Subject) notifies many (Observers) when its state changes. Foundation of event-driven programming.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">40</span>
+                    <div class="point-text"><strong class="point-title">Lambda Expressions (Java 8+):</strong><span class="point-body"> Short syntax for anonymous functions. (params) -> expression. Used with functional interfaces.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">41</span>
+                    <div class="point-text"><strong class="point-title">Stream API (Java 8+):</strong><span class="point-body"> Process collections of data in a declarative way. Methods: .filter(), .map(), .collect(), .forEach().</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">42</span>
+                    <div class="point-text"><strong class="point-title">File I/O:</strong><span class="point-body"> Java uses FileReader/BufferedReader for reading, FileWriter/BufferedWriter for writing. Always close streams in a finally block or use try-with-resources.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">43</span>
+                    <div class="point-text"><strong class="point-title">ArrayList common methods:</strong><span class="point-body"> add(), remove(), get(), size(), contains(), set(), clear(), sort().</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">44</span>
+                    <div class="point-text"><strong class="point-title">String class:</strong><span class="point-body"> Immutable in Java. Key methods: length(), charAt(), substring(), equals(), contains(), toUpperCase(), split(), trim().</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">45</span>
+                    <div class="point-text"><strong class="point-title">StringBuilder:</strong><span class="point-body"> Mutable string buffer. More efficient than String concatenation in loops.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">46</span>
+                    <div class="point-text"><strong class="point-title">Wrapper Classes:</strong><span class="point-body"> Convert primitives to objects: int → Integer, double → Double. Enable use in Collections. Autoboxing/unboxing handles conversion automatically.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">47</span>
+                    <div class="point-text"><strong class="point-title">Comparable vs Comparator:</strong><span class="point-body"> Comparable (implements compareTo()) is for natural ordering. Comparator is for custom ordering passed to sort methods.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">48</span>
+                    <div class="point-text"><strong class="point-title">Networking in Java:</strong><span class="point-body"> Socket and ServerSocket classes for TCP communication. URL and HttpURLConnection for HTTP requests.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">49</span>
+                    <div class="point-text"><strong class="point-title">Java Annotations:</strong><span class="point-body"> Metadata added to code with @. Built-in: @Override, @Deprecated, @SuppressWarnings. Custom annotations also possible.</span></div>
+                </div>
+            
+                <div class="summary-point-card">
+                    <span class="point-number">50</span>
+                    <div class="point-text"><strong class="point-title">Java Memory Management:</strong><span class="point-body"> Automatic Garbage Collection (GC) reclaims memory from objects no longer referenced. Stack holds primitives/references; Heap holds objects.</span></div>
+                </div>
+            </div></div>
         </div>
         <div class="inner-tab-content" id="advprog_code">
             <div class="code-card">
