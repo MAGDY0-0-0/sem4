@@ -24,7 +24,56 @@ const subjectsData = {
             {title: "Agile & Scrum in 10 Minutes", id: "9TycLR0TqFA", embed: true},
             {title: "Software Testing Basics", id: "bKdOclW1b0Q", embed: true}
         ],
-        summary: `\n\n`,
+        summary: `\n<ul><li>1. Software Engineering is the systematic application of engineering principles to the development, operation, and maintenance of software.
+2. The Software Development Life Cycle (SDLC) includes Requirements, Design, Implementation, Testing, Deployment, and Maintenance.
+3. Waterfall Model: A linear, sequential approach. Good for well-understood requirements, bad for changing environments.
+4. Agile Methodology: Iterative and incremental development. Focuses on customer collaboration and responding to change.
+5. Scrum Framework: Includes Sprints, Daily Stand-ups, Sprint Reviews, and Retrospectives. Roles: Scrum Master, Product Owner, Team.
+6. Requirements Engineering: The process of defining, documenting, and maintaining requirements.
+7. Functional Requirements: What the system should do (e.g., "The system shall allow users to log in").
+8. Non-Functional Requirements: How the system performs (e.g., Security, Performance, Usability, Reliability).
+9. Use Case Diagrams: Capture functional requirements from a user's perspective. Components: Actors, Use Cases, System Boundary.
+10. Activity Diagrams: Model the workflow or business processes. Similar to flowcharts. Includes forks, joins, and decision nodes.
+11. Object-Oriented Analysis and Design (OOAD): Modeling software using objects.
+12. Class Diagrams: Static structure of the system. Shows classes, attributes, methods, and relationships (Associations, Inheritance, Aggregation, Composition).
+13. Sequence Diagrams: Dynamic behavior. Shows object interactions arranged in time sequence. Uses lifelines and activation boxes.
+14. State Machine Diagrams: Models the discrete stages (states) an object goes through during its lifecycle in response to events.
+15. Software Architecture: The high-level structure of a system. Patterns include Client-Server, MVC (Model-View-Controller), Layered, and Microservices.
+16. Design Principles: SOLID principles (Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion).
+17. Coupling and Cohesion: Good design aims for Low Coupling (modules are independent) and High Cohesion (modules have a single, well-defined purpose).
+18. Software Testing: Verification (Are we building the product right?) and Validation (Are we building the right product?).
+19. Unit Testing: Testing individual components or functions in isolation (usually done by developers).
+20. Integration Testing: Testing how modules work together.
+21. System Testing: Testing the complete, integrated system to evaluate compliance with requirements.
+22. Acceptance Testing: Formal testing by the client/user to determine whether to accept the system (UAT).
+23. White-Box Testing: Testing internal structures/logic (e.g., path testing, branch coverage).
+24. Black-Box Testing: Testing functionality without knowing internal structure (e.g., boundary value analysis, equivalence partitioning).
+25. Regression Testing: Re-testing after changes to ensure no new bugs were introduced.
+26. Software Quality Assurance (SQA): Process to ensure software engineering processes, methods, activities, and work items are monitored and comply with standards.
+27. Configuration Management: Tracking and controlling changes in the software (Version Control like Git).
+28. Software Maintenance: Corrective (fixing bugs), Adaptive (adapting to new OS), Perfective (enhancing performance), Preventive (refactoring).
+29. Risk Management: Identifying, analyzing, and mitigating project risks.
+30. Project Scheduling: Tools include Gantt Charts and PERT/CPM charts.
+31. Estimation Techniques: COCOMO (Constructive Cost Model), Function Points, Story Points (Agile).
+32. Software Metrics: Lines of Code (LOC), Cyclomatic Complexity (measures independent paths through code).
+33. Prototyping: Creating an incomplete model of the software to explore requirements or technical feasibility.
+34. Spiral Model: Risk-driven iterative model. Combines prototyping and waterfall.
+35. V-Model: Extension of waterfall emphasizing verification and validation at each stage.
+36. Traceability Matrix: Maps requirements to test cases to ensure complete coverage.
+37. Code Smells: Indicators of poor design or implementation (e.g., duplicated code, long methods). Refactoring fixes them.
+38. Continuous Integration/Continuous Deployment (CI/CD): Automating the building, testing, and deployment of software.
+39. Architectural Views: Logical, Process, Development, Physical (e.g., 4+1 View Model).
+40. User Interface Design: Focuses on usability, accessibility, and user experience (UX).
+41. Security Engineering: Building systems to remain dependable in the face of malice, error, or mischance.
+42. Reliability vs Availability: Reliability is probability of failure-free operation; Availability is probability the system is operational when needed.
+43. Component-Based Software Engineering: Building systems by assembling reusable components.
+44. Legacy Systems: Older systems that remain useful but are difficult to maintain.
+45. Technical Debt: The implied cost of additional rework caused by choosing an easy (limited) solution now instead of using a better approach that would take longer.
+46. Code Reviews/Peer Reviews: Systematic examination of code by other developers to find mistakes.
+47. Pair Programming: Agile technique where two programmers work together at one workstation.
+48. Test-Driven Development (TDD): Writing tests before writing the code that makes the tests pass.
+49. Software Evolution: The process of updating software to adapt to changing environments and requirements over its lifecycle.
+50. Ethics in SE: Software engineers must adhere to professional codes of ethics (e.g., ACM/IEEE) ensuring public safety and confidentiality.</li></ul>\n        `,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: UML RELATIONSHIPS IN JAVA
@@ -79,7 +128,56 @@ public class University {
             {title: "PHP in 100 Seconds (Fireship)", id: "a7_WFUlFS94", embed: true},
             {title: "HTML Crash Course (Elzero - Arabic)", id: "q4jYm3FihgQ", embed: true}
         ],
-        summary: `\n\n`,
+        summary: `\n<ul><li>1. The World Wide Web relies on the client-server model. The client (browser) sends HTTP requests, and the server returns HTTP responses.
+2. HTML (HyperText Markup Language) defines the structure and content of a web page using elements and tags.
+3. HTML5 introduced semantic elements like \\`<header>\\`, \\`<footer>\\`, \\`<article>\\`, and \\`<nav>\\` to improve accessibility and SEO.
+4. CSS (Cascading Style Sheets) controls the presentation and layout of HTML elements.
+5. The CSS Box Model consists of Margins, Borders, Padding, and the actual Content area. Understanding this is crucial for layout.
+6. CSS Selectors (element, class \\`.\\`, ID \\`#\\`, pseudo-classes \\`:hover\\`) allow targeted styling. Specificity determines which rules apply.
+7. Flexbox is a one-dimensional CSS layout model that makes it easy to align items in rows or columns dynamically.
+8. CSS Grid is a two-dimensional layout system for creating complex grid-based designs.
+9. Responsive Web Design ensures pages look good on all devices using media queries (\\`@media screen and (max-width: 600px)\\`).
+10. JavaScript is a dynamic, interpreted scripting language used to add interactivity and logic to web pages.
+11. The DOM (Document Object Model) is a tree-like representation of the HTML document that JavaScript can manipulate.
+12. JS Event Listeners (\\`addEventListener('click', ...)\\`) wait for user interactions to trigger functions.
+13. JS Variables are declared using \\`let\\` (block-scoped, mutable), \\`const\\` (block-scoped, immutable), and \\`var\\` (function-scoped, legacy).
+14. Arrays in JS are zero-indexed and come with methods like \\`.push()\\`, \\`.pop()\\`, \\`.map()\\`, and \\`.filter()\\`.
+15. JS Objects store data in key-value pairs (e.g., \\`{ name: "Ali", age: 20 }\\`).
+16. Functions in JS can be declared traditionally (\\`function name() {}\\`) or as arrow functions (\\`() => {}\\`).
+17. DOM Manipulation involves selecting elements (e.g., \\`document.getElementById\\`) and changing properties (e.g., \\`element.innerHTML\\`, \\`element.style\\`).
+18. Asynchronous JavaScript prevents blocking the main thread, utilizing Callbacks, Promises, and \\`async/await\\`.
+19. JSON (JavaScript Object Notation) is a lightweight data-interchange format, heavily used in APIs (\\`JSON.stringify\\`, \\`JSON.parse\\`).
+20. AJAX (Asynchronous JavaScript and XML) allows web pages to update asynchronously by exchanging data with a web server behind the scenes.
+21. The modern way to perform AJAX requests in JS is the \\`fetch()\\` API, which returns Promises.
+22. Server-Side Scripting runs on the web server, generating dynamic HTML before sending it to the client. PHP is a common server-side language.
+23. PHP (Hypertext Preprocessor) code is executed on the server, and the result is returned to the browser as plain HTML.
+24. PHP Variables start with a \\`$\\` sign and are dynamically typed (e.g., \\`$name = "Ali";\\`).
+25. PHP Superglobals like \\`$_GET\\`, \\`$_POST\\`, \\`$_SESSION\\`, and \\`$_COOKIE\\` are built-in arrays always accessible.
+26. Form Handling in PHP: The \\`method\\` attribute (\\`GET\\` or \\`POST\\`) dictates how data is sent. \\`POST\\` is secure and hidden in the HTTP body; \\`GET\\` is appended to the URL.
+27. Security: User input from forms must always be sanitized and validated to prevent Cross-Site Scripting (XSS).
+28. SQL Injection is a vulnerability where malicious SQL code is inserted into input fields. Prevented using Prepared Statements in PHP/PDO.
+29. PHP Arrays can be indexed (numeric keys) or associative (named keys, similar to JS objects or dictionaries).
+30. PHP Sessions (\\`session_start()\\`) store user information (e.g., login state) across multiple pages on the server.
+31. PHP Cookies store small amounts of data directly on the user's browser, sent back with every request.
+32. Connecting PHP to MySQL databases is typically done using PDO (PHP Data Objects) or MySQLi. PDO is preferred for its flexibility.
+33. A typical database operation in PHP involves: Connect -> Prepare Statement -> Bind Parameters -> Execute -> Fetch Results -> Close.
+34. HTTP Status Codes: 200 (OK), 404 (Not Found), 500 (Internal Server Error), 403 (Forbidden).
+35. HTTP Methods: GET (retrieve data), POST (submit data), PUT (update data), DELETE (remove data).
+36. RESTful APIs rely on stateless HTTP requests and return data usually in JSON format.
+37. jQuery is a legacy JavaScript library that simplifies DOM manipulation and AJAX (\\`$.ajax()\\`). Modern vanilla JS has largely replaced it.
+38. Front-End vs Back-End: Front-end (Client-side) is what the user sees (HTML/CSS/JS). Back-end (Server-side) is logic and database (PHP/MySQL).
+39. CSS Positioning: \\`static\\` (default), \\`relative\\` (offset from normal), \\`absolute\\` (offset from closest positioned ancestor), \\`fixed\\` (relative to viewport).
+40. Form Validation can happen on the client-side (using HTML5 \\`required\\` or JS) and MUST happen on the server-side (PHP) for security.
+41. Bootstrap/Tailwind: Popular CSS frameworks that provide pre-built classes to speed up responsive design.
+42. LocalStorage vs SessionStorage vs Cookies: LocalStorage persists indefinitely. SessionStorage clears on tab close. Cookies are sent to the server.
+43. JS Error Handling: Handled using \\`try { ... } catch (error) { ... }\\` blocks.
+44. PHP \\`include\\` vs \\`require\\`: Both insert the content of one PHP file into another, but \\`require\\` causes a fatal error if the file is missing, while \\`include\\` only issues a warning.
+45. Web Accessibility (a11y) ensures websites are usable by people with disabilities (e.g., using \\`alt\\` tags on images).
+46. The \\`window\\` object in JS represents the browser window, while the \\`document\\` object represents the HTML page inside it.
+47. Event Bubbling: When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up.
+48. Hoisting in JS: Variable and function declarations are moved to the top of their scope before code execution.
+49. PHP Object-Oriented Programming supports Classes, Objects, Inheritance (\\`extends\\`), and Access Modifiers (\\`public\\`, \\`private\\`, \\`protected\\`).
+50. Web Hosting involves placing your HTML/CSS/JS and PHP files on a server (like Apache or Nginx) connected to the internet.</li></ul>\n        `,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: SECURE PHP FORM REGISTRATION
@@ -160,7 +258,7 @@ document.getElementById('loadBtn').addEventListener('click', () => {
             {title: "🧠 VisuAlgo (Interactive Sorting)", url: "https://visualgo.net/en/sorting", embed: "link"},
             {title: "🧠 VisuAlgo (Interactive BST)", url: "https://visualgo.net/en/bst", embed: "link"}
         ],
-        summary: `\n\n`,
+        summary: `\n\n        `,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: BINARY SEARCH TREE (JAVA)
@@ -260,7 +358,7 @@ void merge(int arr[], int l, int m, int r) {
             {title: "Linux Basics", id: "sWbUDq4S6Y8", embed: true},
             {title: "Risk Management", id: "p0E6sLwUeY8", embed: true} 
         ],
-        summary: `\n\n`,
+        summary: `\n\n        `,
         codeVault: `
 # ==========================================
 # FULL CONTEXT: ESSENTIAL LINUX COMMANDS
@@ -300,7 +398,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
             {title: "Registers and RAM", id: "fpnE6UAfbtU", embed: true},
             {title: "Fetch-Execute Cycle", id: "cNN_tTXABUA", embed: true}
         ],
-        summary: `\n\n`,
+        summary: `\n\n        `,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: CPU FETCH-DECODE-EXECUTE RTN
@@ -345,7 +443,7 @@ PC <- X            // Simply overwrite the Program Counter with X!
             {title: "Java JDBC Database", id: "e8g9eNnFMm0", embed: true},
             {title: "Java Threads in 10 Minutes", id: "WvA1e4y7o3I", embed: true}
         ],
-        summary: `\n\n`,
+        summary: `\n\n        `,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: MULTI-THREADING (RUNNABLE)
@@ -484,12 +582,96 @@ function generateExamsHtml(subjectTitle) {
 // Flashcard Generator Data
 function getFlashcardsData(id) {
     const data = {
-        se: [\n\n],
-        web: [\n\n],
-        dsa: [\n\n],
-        cyber: [\n\n],
-        arch: [\n\n],
-        advprog: [\n\n]
+        se: [\n
+  {"q": "What is the difference between Verification and Validation?", "a": "Verification asks 'Are we building the product right?' (meets specs). Validation asks 'Are we building the right product?' (meets user needs)."},
+  {"q": "Describe the Agile methodology.", "a": "An iterative and incremental approach that emphasizes flexibility, customer collaboration, and rapid delivery of working software."},
+  {"q": "What is a Functional Requirement?", "a": "A specific action or feature the system must perform (e.g., 'The system must email a receipt')."},
+  {"q": "What is a Non-Functional Requirement?", "a": "A quality or constraint of the system, such as performance, security, or usability."},
+  {"q": "In UML, what does an Activity Diagram show?", "a": "It models the dynamic workflow, business processes, or the flow of control from one activity to another."},
+  {"q": "What is the difference between High Cohesion and Low Coupling?", "a": "High Cohesion means a module focuses on a single task. Low Coupling means modules are independent of each other. Both are goals of good design."},
+  {"q": "What is White-Box Testing?", "a": "Testing where the internal logic and structure of the code are known to the tester (e.g., statement coverage, path testing)."},
+  {"q": "What is Black-Box Testing?", "a": "Testing the software's functionality without any knowledge of its internal implementation (e.g., boundary value analysis)."},
+  {"q": "What is Regression Testing?", "a": "Re-running previously passed tests after a code change to ensure the modification did not introduce new bugs."},
+  {"q": "What does MVC stand for and what is its purpose?", "a": "Model-View-Controller. An architectural pattern that separates data (Model), UI (View), and logic (Controller)."},
+  {"q": "What is a Use Case Diagram?", "a": "A UML diagram that captures system requirements by showing interactions between Actors (users) and Use Cases (system functions)."},
+  {"q": "Define the Scrum Roles.", "a": "Product Owner (represents stakeholders), Scrum Master (facilitates process), and Development Team (builds the product)."},
+  {"q": "What is Cyclomatic Complexity?", "a": "A software metric used to measure the logical complexity of a program, counting the number of linearly independent paths."},
+  {"q": "What is the purpose of a Sequence Diagram?", "a": "To show how objects interact with each other in a specific sequential order over time."},
+  {"q": "What is Continuous Integration (CI)?", "a": "A practice where developers frequently merge code changes into a central repository, followed by automated builds and tests."}
+\n],
+        web: [\n
+  {"q": "What is the CSS Box Model?", "a": "A conceptual box wrapping every HTML element, consisting of margins, borders, padding, and the actual content."},
+  {"q": "What is the difference between ID and Class in CSS?", "a": "An ID (#) is unique and can only be used once per page. A Class (.) can be used on multiple elements."},
+  {"q": "How does `var` differ from `let` in JavaScript?", "a": "`var` is function-scoped and allows redeclaration. `let` is block-scoped and cannot be redeclared in the same scope."},
+  {"q": "What does the DOM stand for?", "a": "Document Object Model. It is the programming interface representing the HTML structure as a tree of objects."},
+  {"q": "What is AJAX?", "a": "Asynchronous JavaScript and XML. It allows a web page to request data from a server and update the UI without reloading the page."},
+  {"q": "What is the difference between GET and POST methods?", "a": "GET appends data to the URL (visible, limited size). POST sends data inside the HTTP body (hidden, secure, larger size)."},
+  {"q": "Why must server-side form validation be used even if client-side validation exists?", "a": "Client-side validation can be easily bypassed or disabled by the user. Server-side validation (PHP) guarantees security and data integrity."},
+  {"q": "How do you prevent SQL Injection in PHP?", "a": "By using Prepared Statements and parameterized queries (via PDO or MySQLi) instead of directly concatenating user input into SQL strings."},
+  {"q": "What is a Superglobal in PHP?", "a": "Built-in arrays like $_GET, $_POST, and $_SESSION that are always available in all scopes throughout a PHP script."},
+  {"q": "What is the difference between `==` and `===` in JavaScript?", "a": "`==` checks for value equality (with type coercion). `===` checks for strict equality (both value and type must match)."},
+  {"q": "What are PHP Sessions used for?", "a": "Sessions store user information (like a logged-in user ID) across multiple pages. The data is stored securely on the server."},
+  {"q": "What does the JS `fetch()` API do?", "a": "It makes asynchronous HTTP requests to servers to retrieve or send data, returning a Promise."},
+  {"q": "What is JSON?", "a": "JavaScript Object Notation. A lightweight, text-based data format used heavily for transmitting data between client and server."},
+  {"q": "Explain Event Bubbling in JavaScript.", "a": "When an event occurs on a child element, it triggers the child's event handler, and then bubbles up to trigger the parents' handlers."},
+  {"q": "What is the difference between PHP `include` and `require`?", "a": "Both load a file, but if the file is missing, `include` throws a warning and continues execution, while `require` throws a fatal error and stops execution."}
+\n],
+        dsa: [\n
+  {"q": "Why is a swap function ineffective when passing variables by value?", "a": "It only manipulates local copies of the variables, leaving the original variables in the calling function unchanged."},
+  {"q": "What is the primary purpose of the `&` and `*` operators in C/C++ pointer operations?", "a": "`&` retrieves the memory address of a variable, while `*` dereferences a pointer to access or modify the value at that address."},
+  {"q": "Define a 'struct' in the context of C/C++.", "a": "A complex data type that groups multiple variables of potentially different types under a single unified name in a continuous block of memory."},
+  {"q": "What is the time complexity for inserting a new node at the head of a Single Linked List?", "a": "O(1) constant time, as it only requires updating two pointers regardless of the list's total size."},
+  {"q": "Describe the mechanism for inserting a node at the very end of a Single Linked List.", "a": "Traverse the list from the head until reaching the node where `next` is NULL, then set its `next` pointer to the newly created node."},
+  {"q": "Why must a temporary pointer be utilized when deleting a node from the middle of a Linked List?", "a": "To maintain the connection between the preceding node and the succeeding node before safely freeing the target node's memory."},
+  {"q": "What function is used in C to prevent memory leaks after deleting a node, and what is its C++ equivalent?", "a": "The `free()` function is used in C, whereas `delete` is utilized in C++."},
+  {"q": "How does memory allocation differ between static arrays and linked lists?", "a": "Arrays have a fixed size allocated in contiguous memory at compile time, whereas linked lists dynamically allocate nodes in non-contiguous heap memory at runtime."},
+  {"q": "What is the defining characteristic of a node in a Single Linked List?", "a": "It is a self-referential structure containing a data payload and a single pointer (`next`) directing to the subsequent node of the same type."},
+  {"q": "What happens if the `head` pointer of a linked list is accidentally reassigned to NULL or lost?", "a": "Access to the entire linked list is severed, resulting in a memory leak since the nodes can no longer be referenced or freed."},
+  {"q": "How do you identify the terminal (last) node in a standard Single Linked List?", "a": "Its `next` pointer evaluates to NULL."},
+  {"q": "In C, what format specifier is used within `printf` to output a raw memory address?", "a": "The `%p` placeholder is used to print the memory address in hexadecimal format."},
+  {"q": "What is a critical edge case to evaluate when attempting to delete an element from a Linked List?", "a": "Checking if the list is completely empty (`head == NULL`) to avoid a segmentation fault."},
+  {"q": "How would one iterate through a Linked List to count its elements?", "a": "Initialize a pointer `p` to `head` and a counter to 0. Use a `while(p != NULL)` loop, incrementing the counter and setting `p = p->next` each iteration."},
+  {"q": "What is the process for concatenating two Single Linked Lists?", "a": "Traverse the first list to its final node, and assign its `next` pointer to the `head` of the second list."}
+\n],
+        cyber: [\n
+  {"q": "How do you securely SSH into 'bandit.labs.overthewire.org' as 'bandit0' on port 2220?", "a": "ssh bandit0@bandit.labs.overthewire.org -p 2220"},
+  {"q": "What command reads a file named '-file07' without the shell misinterpreting it as an argument flag?", "a": "cat ./-file07"},
+  {"q": "Write a `find` command that locates a file exactly 1033 bytes in size, which is not an executable, from the current directory.", "a": "find . -type f -size 1033c ! -executable"},
+  {"q": "How do you search the entire filesystem ('/') for a file owned by user 'bandit7' and group 'bandit6', while suppressing permission denied errors?", "a": "find / -user bandit7 -group bandit6 -size 33c 2>/dev/null"},
+  {"q": "What command sequence sorts a file and filters it to display only the uniquely occurring lines?", "a": "sort data.txt | uniq -u"},
+  {"q": "What command extracts only the human-readable text from a binary file?", "a": "strings filename"},
+  {"q": "How do you use grep to find a line that strictly begins with an equals sign ('=')?", "a": "grep '^='"},
+  {"q": "What is the command to decode a base64 encoded string stored in data.txt?", "a": "base64 -d data.txt"},
+  {"q": "How do you decrypt a ROT13 ciphered file using the `tr` command?", "a": "cat data.txt | tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"},
+  {"q": "What tool and flag are used to reverse a hexadecimal dump back into a binary file?", "a": "xxd -r"},
+  {"q": "How do you verify the true file type of a file that lacks an extension?", "a": "file filename"},
+  {"q": "What command extracts a bzip2 compressed archive?", "a": "bunzip2 filename.bz2"},
+  {"q": "Which command streams the newest appended lines of a file dynamically?", "a": "tail -f filename"},
+  {"q": "How do you output the human-readable total disk usage size of a specific directory?", "a": "du -sh directory_name/"},
+  {"q": "What syntax redirects both standard output and standard error to the same file?", "a": "command > out.txt 2>&1"}
+\n],
+        arch: [\n
+  {"q": "How does a Big Endian machine represent the 32-bit hexadecimal value 0x12345678 in byte-addressable memory?", "a": "It stores the most significant byte (0x12) at the lowest memory address, followed by 0x34, 0x56, and 0x78 at consecutively higher addresses."},
+  {"q": "What is the primary advantage of Little Endian architecture when converting a 32-bit integer to a 16-bit integer?", "a": "The conversion does not require any address arithmetic; the 16-bit integer simply occupies the same base address as the 32-bit integer."},
+  {"q": "In a Stack ISA, how is the infix expression Z = (X + Y) * (W + U) evaluated using Reverse Polish Notation?", "a": "The expression is written and evaluated as postfix: X Y + W U + *."},
+  {"q": "What characterizes a Load-Store (Register-to-Register) GPR architecture?", "a": "Memory access is restricted to explicit load and store instructions; all arithmetic and logic operations must occur directly between registers."},
+  {"q": "How does the Expanding Opcodes technique optimize instruction encoding in a fixed-length instruction architecture?", "a": "It uses variable-length opcodes where instructions with fewer operands are assigned longer opcodes, allowing a richer instruction set without increasing the overall instruction length."},
+  {"q": "Given an 8-bit instruction format, how many unique bit patterns are required to encode two instructions with one 4-bit operand?", "a": "It requires 2 * 2^4 = 32 distinct bit patterns."},
+  {"q": "What is the key difference between Indexed Addressing and Based Addressing?", "a": "Indexed addressing uses an index register to hold an offset relative to a base address given in the instruction, whereas Based addressing uses a base register to hold a base address, with the instruction providing a displacement."},
+  {"q": "In an instruction pipeline, how is the total execution time calculated for n tasks running through a k-stage pipeline with clock cycle time tp?", "a": "The total execution time is calculated using the formula: (k + n - 1) * tp."},
+  {"q": "What architectural enhancement is often employed to resolve resource conflicts caused by simultaneous instruction and data fetching?", "a": "A Harvard architecture or the implementation of separate Instruction and Data Caches prevents structural hazards during fetching."},
+  {"q": "Describe the pipeline hazard known as a Data Dependency.", "a": "It occurs when an instruction relies on the result of a previous instruction that has not yet completed its execute or store stages, leading to potential read-after-write errors."},
+  {"q": "Why is conditional branching particularly problematic for instruction pipelining?", "a": "Because the pipeline fetches and decodes subsequent instructions before the branch condition is resolved; if the branch is taken, the speculative instructions must be flushed, wasting cycles."},
+  {"q": "What implicit advantage does an Accumulator architecture provide over a GPR architecture, and what is its main drawback?", "a": "It minimizes machine complexity and allows for short instructions since one operand is implicitly the accumulator; however, it leads to high memory traffic since all operations bottleneck through the single accumulator."},
+  {"q": "In Indirect Addressing mode, what does the address field of the instruction explicitly contain?", "a": "It contains the memory address of a pointer, which in turn holds the effective address of the actual operand."},
+  {"q": "What is the theoretical maximum speedup of a k-stage instruction pipeline processing an infinite number of instructions?", "a": "The theoretical maximum speedup approaches k, the number of stages in the pipeline."},
+  {"q": "How does Auto-increment/decrement addressing streamline array and vector operations?", "a": "It automatically updates the register containing the address before or after memory access, removing the need for separate arithmetic instructions to step through sequential data structures."}
+\n],
+        advprog: [
+            {q: "What is the difference between 'throw' and 'throws'?", a: "'throw' is used inside a method to actually trigger an exception object. 'throws' is used in the method signature to warn callers that the method might throw exceptions."},
+            {q: "How do you implement Multithreading in Java?", a: "You can either extend the 'Thread' class or implement the 'Runnable' interface. Implementing 'Runnable' is highly preferred because Java doesn't support multiple class inheritance."},
+            {q: "Explain the MVC Pattern briefly.", a: "Model: Handles data and database logic. View: The User Interface. Controller: Listens to user inputs from the View, updates the Model, and refreshes the View."}
+        ]
     };
     return data[id];
 }
