@@ -582,7 +582,7 @@ function generateExamsHtml(subjectTitle) {
 // Flashcard Generator Data
 function getFlashcardsData(id) {
     const data = {
-        se: [\n
+        se: [
   {"q": "What is the difference between Verification and Validation?", "a": "Verification asks 'Are we building the product right?' (meets specs). Validation asks 'Are we building the right product?' (meets user needs)."},
   {"q": "Describe the Agile methodology.", "a": "An iterative and incremental approach that emphasizes flexibility, customer collaboration, and rapid delivery of working software."},
   {"q": "What is a Functional Requirement?", "a": "A specific action or feature the system must perform (e.g., 'The system must email a receipt')."},
@@ -599,7 +599,7 @@ function getFlashcardsData(id) {
   {"q": "What is the purpose of a Sequence Diagram?", "a": "To show how objects interact with each other in a specific sequential order over time."},
   {"q": "What is Continuous Integration (CI)?", "a": "A practice where developers frequently merge code changes into a central repository, followed by automated builds and tests."}
 \n],
-        web: [\n
+        web: [
   {"q": "What is the CSS Box Model?", "a": "A conceptual box wrapping every HTML element, consisting of margins, borders, padding, and the actual content."},
   {"q": "What is the difference between ID and Class in CSS?", "a": "An ID (#) is unique and can only be used once per page. A Class (.) can be used on multiple elements."},
   {"q": "How does `var` differ from `let` in JavaScript?", "a": "`var` is function-scoped and allows redeclaration. `let` is block-scoped and cannot be redeclared in the same scope."},
@@ -616,7 +616,7 @@ function getFlashcardsData(id) {
   {"q": "Explain Event Bubbling in JavaScript.", "a": "When an event occurs on a child element, it triggers the child's event handler, and then bubbles up to trigger the parents' handlers."},
   {"q": "What is the difference between PHP `include` and `require`?", "a": "Both load a file, but if the file is missing, `include` throws a warning and continues execution, while `require` throws a fatal error and stops execution."}
 \n],
-        dsa: [\n
+        dsa: [
   {"q": "Why is a swap function ineffective when passing variables by value?", "a": "It only manipulates local copies of the variables, leaving the original variables in the calling function unchanged."},
   {"q": "What is the primary purpose of the `&` and `*` operators in C/C++ pointer operations?", "a": "`&` retrieves the memory address of a variable, while `*` dereferences a pointer to access or modify the value at that address."},
   {"q": "Define a 'struct' in the context of C/C++.", "a": "A complex data type that groups multiple variables of potentially different types under a single unified name in a continuous block of memory."},
@@ -633,7 +633,7 @@ function getFlashcardsData(id) {
   {"q": "How would one iterate through a Linked List to count its elements?", "a": "Initialize a pointer `p` to `head` and a counter to 0. Use a `while(p != NULL)` loop, incrementing the counter and setting `p = p->next` each iteration."},
   {"q": "What is the process for concatenating two Single Linked Lists?", "a": "Traverse the first list to its final node, and assign its `next` pointer to the `head` of the second list."}
 \n],
-        cyber: [\n
+        cyber: [
   {"q": "How do you securely SSH into 'bandit.labs.overthewire.org' as 'bandit0' on port 2220?", "a": "ssh bandit0@bandit.labs.overthewire.org -p 2220"},
   {"q": "What command reads a file named '-file07' without the shell misinterpreting it as an argument flag?", "a": "cat ./-file07"},
   {"q": "Write a `find` command that locates a file exactly 1033 bytes in size, which is not an executable, from the current directory.", "a": "find . -type f -size 1033c ! -executable"},
@@ -650,7 +650,7 @@ function getFlashcardsData(id) {
   {"q": "How do you output the human-readable total disk usage size of a specific directory?", "a": "du -sh directory_name/"},
   {"q": "What syntax redirects both standard output and standard error to the same file?", "a": "command > out.txt 2>&1"}
 \n],
-        arch: [\n
+        arch: [
   {"q": "How does a Big Endian machine represent the 32-bit hexadecimal value 0x12345678 in byte-addressable memory?", "a": "It stores the most significant byte (0x12) at the lowest memory address, followed by 0x34, 0x56, and 0x78 at consecutively higher addresses."},
   {"q": "What is the primary advantage of Little Endian architecture when converting a 32-bit integer to a 16-bit integer?", "a": "The conversion does not require any address arithmetic; the 16-bit integer simply occupies the same base address as the 32-bit integer."},
   {"q": "In a Stack ISA, how is the infix expression Z = (X + Y) * (W + U) evaluated using Reverse Polish Notation?", "a": "The expression is written and evaluated as postfix: X Y + W U + *."},
