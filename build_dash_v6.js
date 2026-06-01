@@ -130,53 +130,53 @@ public class University {
         ],
         summary: `\n<ul><li>1. The World Wide Web relies on the client-server model. The client (browser) sends HTTP requests, and the server returns HTTP responses.
 2. HTML (HyperText Markup Language) defines the structure and content of a web page using elements and tags.
-3. HTML5 introduced semantic elements like \\`<header>\\`, \\`<footer>\\`, \\`<article>\\`, and \\`<nav>\\` to improve accessibility and SEO.
+3. HTML5 introduced semantic elements like \`&lt;header&gt;\`, \`&lt;footer&gt;\`, \`&lt;article&gt;\`, and \`&lt;nav&gt;\` to improve accessibility and SEO.
 4. CSS (Cascading Style Sheets) controls the presentation and layout of HTML elements.
 5. The CSS Box Model consists of Margins, Borders, Padding, and the actual Content area. Understanding this is crucial for layout.
-6. CSS Selectors (element, class \\`.\\`, ID \\`#\\`, pseudo-classes \\`:hover\\`) allow targeted styling. Specificity determines which rules apply.
+6. CSS Selectors (element, class \`.\`, ID \`#\`, pseudo-classes \`:hover\`) allow targeted styling. Specificity determines which rules apply.
 7. Flexbox is a one-dimensional CSS layout model that makes it easy to align items in rows or columns dynamically.
 8. CSS Grid is a two-dimensional layout system for creating complex grid-based designs.
-9. Responsive Web Design ensures pages look good on all devices using media queries (\\`@media screen and (max-width: 600px)\\`).
+9. Responsive Web Design ensures pages look good on all devices using media queries (\`@media screen and (max-width: 600px)\`).
 10. JavaScript is a dynamic, interpreted scripting language used to add interactivity and logic to web pages.
 11. The DOM (Document Object Model) is a tree-like representation of the HTML document that JavaScript can manipulate.
-12. JS Event Listeners (\\`addEventListener('click', ...)\\`) wait for user interactions to trigger functions.
-13. JS Variables are declared using \\`let\\` (block-scoped, mutable), \\`const\\` (block-scoped, immutable), and \\`var\\` (function-scoped, legacy).
-14. Arrays in JS are zero-indexed and come with methods like \\`.push()\\`, \\`.pop()\\`, \\`.map()\\`, and \\`.filter()\\`.
-15. JS Objects store data in key-value pairs (e.g., \\`{ name: "Ali", age: 20 }\\`).
-16. Functions in JS can be declared traditionally (\\`function name() {}\\`) or as arrow functions (\\`() => {}\\`).
-17. DOM Manipulation involves selecting elements (e.g., \\`document.getElementById\\`) and changing properties (e.g., \\`element.innerHTML\\`, \\`element.style\\`).
-18. Asynchronous JavaScript prevents blocking the main thread, utilizing Callbacks, Promises, and \\`async/await\\`.
-19. JSON (JavaScript Object Notation) is a lightweight data-interchange format, heavily used in APIs (\\`JSON.stringify\\`, \\`JSON.parse\\`).
+12. JS Event Listeners (\`addEventListener('click', ...)\`) wait for user interactions to trigger functions.
+13. JS Variables are declared using \`let\` (block-scoped, mutable), \`const\` (block-scoped, immutable), and \`var\` (function-scoped, legacy).
+14. Arrays in JS are zero-indexed and come with methods like \`.push()\`, \`.pop()\`, \`.map()\`, and \`.filter()\`.
+15. JS Objects store data in key-value pairs (e.g., \`{ name: "Ali", age: 20 }\`).
+16. Functions in JS can be declared traditionally (\`function name() {}\`) or as arrow functions (\`() =&gt; {}\`).
+17. DOM Manipulation involves selecting elements (e.g., \`document.getElementById\`) and changing properties (e.g., \`element.innerHTML\`, \`element.style\`).
+18. Asynchronous JavaScript prevents blocking the main thread, utilizing Callbacks, Promises, and \`async/await\`.
+19. JSON (JavaScript Object Notation) is a lightweight data-interchange format, heavily used in APIs (\`JSON.stringify\`, \`JSON.parse\`).
 20. AJAX (Asynchronous JavaScript and XML) allows web pages to update asynchronously by exchanging data with a web server behind the scenes.
-21. The modern way to perform AJAX requests in JS is the \\`fetch()\\` API, which returns Promises.
+21. The modern way to perform AJAX requests in JS is the \`fetch()\` API, which returns Promises.
 22. Server-Side Scripting runs on the web server, generating dynamic HTML before sending it to the client. PHP is a common server-side language.
 23. PHP (Hypertext Preprocessor) code is executed on the server, and the result is returned to the browser as plain HTML.
-24. PHP Variables start with a \\`$\\` sign and are dynamically typed (e.g., \\`$name = "Ali";\\`).
-25. PHP Superglobals like \\`$_GET\\`, \\`$_POST\\`, \\`$_SESSION\\`, and \\`$_COOKIE\\` are built-in arrays always accessible.
-26. Form Handling in PHP: The \\`method\\` attribute (\\`GET\\` or \\`POST\\`) dictates how data is sent. \\`POST\\` is secure and hidden in the HTTP body; \\`GET\\` is appended to the URL.
+24. PHP Variables start with a \`$\` sign and are dynamically typed (e.g., \`$name = "Ali";\`).
+25. PHP Superglobals like \`$_GET\`, \`$_POST\`, \`$_SESSION\`, and \`$_COOKIE\` are built-in arrays always accessible.
+26. Form Handling in PHP: The \`method\` attribute (\`GET\` or \`POST\`) dictates how data is sent. \`POST\` is secure and hidden in the HTTP body; \`GET\` is appended to the URL.
 27. Security: User input from forms must always be sanitized and validated to prevent Cross-Site Scripting (XSS).
 28. SQL Injection is a vulnerability where malicious SQL code is inserted into input fields. Prevented using Prepared Statements in PHP/PDO.
 29. PHP Arrays can be indexed (numeric keys) or associative (named keys, similar to JS objects or dictionaries).
-30. PHP Sessions (\\`session_start()\\`) store user information (e.g., login state) across multiple pages on the server.
+30. PHP Sessions (\`session_start()\`) store user information (e.g., login state) across multiple pages on the server.
 31. PHP Cookies store small amounts of data directly on the user's browser, sent back with every request.
 32. Connecting PHP to MySQL databases is typically done using PDO (PHP Data Objects) or MySQLi. PDO is preferred for its flexibility.
-33. A typical database operation in PHP involves: Connect -> Prepare Statement -> Bind Parameters -> Execute -> Fetch Results -> Close.
+33. A typical database operation in PHP involves: Connect -&gt; Prepare Statement -&gt; Bind Parameters -&gt; Execute -&gt; Fetch Results -&gt; Close.
 34. HTTP Status Codes: 200 (OK), 404 (Not Found), 500 (Internal Server Error), 403 (Forbidden).
 35. HTTP Methods: GET (retrieve data), POST (submit data), PUT (update data), DELETE (remove data).
 36. RESTful APIs rely on stateless HTTP requests and return data usually in JSON format.
-37. jQuery is a legacy JavaScript library that simplifies DOM manipulation and AJAX (\\`$.ajax()\\`). Modern vanilla JS has largely replaced it.
+37. jQuery is a legacy JavaScript library that simplifies DOM manipulation and AJAX (\`$.ajax()\`). Modern vanilla JS has largely replaced it.
 38. Front-End vs Back-End: Front-end (Client-side) is what the user sees (HTML/CSS/JS). Back-end (Server-side) is logic and database (PHP/MySQL).
-39. CSS Positioning: \\`static\\` (default), \\`relative\\` (offset from normal), \\`absolute\\` (offset from closest positioned ancestor), \\`fixed\\` (relative to viewport).
-40. Form Validation can happen on the client-side (using HTML5 \\`required\\` or JS) and MUST happen on the server-side (PHP) for security.
+39. CSS Positioning: \`static\` (default), \`relative\` (offset from normal), \`absolute\` (offset from closest positioned ancestor), \`fixed\` (relative to viewport).
+40. Form Validation can happen on the client-side (using HTML5 \`required\` or JS) and MUST happen on the server-side (PHP) for security.
 41. Bootstrap/Tailwind: Popular CSS frameworks that provide pre-built classes to speed up responsive design.
 42. LocalStorage vs SessionStorage vs Cookies: LocalStorage persists indefinitely. SessionStorage clears on tab close. Cookies are sent to the server.
-43. JS Error Handling: Handled using \\`try { ... } catch (error) { ... }\\` blocks.
-44. PHP \\`include\\` vs \\`require\\`: Both insert the content of one PHP file into another, but \\`require\\` causes a fatal error if the file is missing, while \\`include\\` only issues a warning.
-45. Web Accessibility (a11y) ensures websites are usable by people with disabilities (e.g., using \\`alt\\` tags on images).
-46. The \\`window\\` object in JS represents the browser window, while the \\`document\\` object represents the HTML page inside it.
+43. JS Error Handling: Handled using \`try { ... } catch (error) { ... }\` blocks.
+44. PHP \`include\` vs \`require\`: Both insert the content of one PHP file into another, but \`require\` causes a fatal error if the file is missing, while \`include\` only issues a warning.
+45. Web Accessibility (a11y) ensures websites are usable by people with disabilities (e.g., using \`alt\` tags on images).
+46. The \`window\` object in JS represents the browser window, while the \`document\` object represents the HTML page inside it.
 47. Event Bubbling: When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up.
 48. Hoisting in JS: Variable and function declarations are moved to the top of their scope before code execution.
-49. PHP Object-Oriented Programming supports Classes, Objects, Inheritance (\\`extends\\`), and Access Modifiers (\\`public\\`, \\`private\\`, \\`protected\\`).
+49. PHP Object-Oriented Programming supports Classes, Objects, Inheritance (\`extends\`), and Access Modifiers (\`public\`, \`private\`, \`protected\`).
 50. Web Hosting involves placing your HTML/CSS/JS and PHP files on a server (like Apache or Nginx) connected to the internet.</li></ul>\n        `,
         codeVault: `
 // ==========================================
