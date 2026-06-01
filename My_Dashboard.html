@@ -192,6 +192,27 @@
         .schedule-list li.exam-eve { background: rgba(244, 63, 94, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #f43f5e; margin: 10px 0; }
         .schedule-list li.exam-day { background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #10b981; margin: 10px 0; }
         .empty-state { color: var(--text-muted); font-style: italic; }
+
+        .custom-checkbox { position: relative; display: flex; align-items: center; cursor: pointer; }
+        .custom-checkbox input { position: absolute; opacity: 0; width: 0; height: 0; }
+        .checkmark {
+            width: 24px; height: 24px; border-radius: 6px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 2px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; flex-shrink: 0;
+        }
+        .custom-checkbox input:checked ~ .checkmark {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        .custom-checkbox input:checked ~ .checkmark::after {
+            content: '✓';
+            color: #0f172a;
+            font-size: 14px;
+            font-weight: 900;
+        }
+        .split-layout { display: grid; gap: 30px; }
     </style>
 </head>
 <body>
@@ -803,84 +824,72 @@ public class University {
 
         <div class="inner-tab-content" id="se_exam">
             <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
-            <h3 class="exam-header">Intro to Software Engineering (CSE2001) - Full Mock Exam A (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eAq1"> A) Option 1 <input type="radio" name="eAq1"> B) Option 2 <input type="radio" name="eAq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eAq2"> A) Option 1 <input type="radio" name="eAq2"> B) Option 2 <input type="radio" name="eAq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eAq3"> A) Option 1 <input type="radio" name="eAq3"> B) Option 2 <input type="radio" name="eAq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eAq4"> A) Option 1 <input type="radio" name="eAq4"> B) Option 2 <input type="radio" name="eAq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eAq5"> A) Option 1 <input type="radio" name="eAq5"> B) Option 2 <input type="radio" name="eAq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eAq6"> A) Option 1 <input type="radio" name="eAq6"> B) Option 2 <input type="radio" name="eAq6"> C) Option 3</div>
+                <h3 class="exam-header">Intro to Software Engineering (CSE2001) - Full Mock Exam A (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> Which SDLC model is most appropriate when requirements are well-understood and unlikely to change? <br><input type='radio' name='se_eAq1'> A) Agile <input type='radio' name='se_eAq1'> B) Waterfall &check; <input type='radio' name='se_eAq1'> C) Scrum</div>
+                        <div class="mcq-item"><strong>Q2:</strong> What does the 'O' in SOLID stand for? <br><input type='radio' name='se_eAq2'> A) Object <input type='radio' name='se_eAq2'> B) Open-Closed &check; <input type='radio' name='se_eAq2'> C) Oriented</div>
+                        <div class="mcq-item"><strong>Q3:</strong> Which UML diagram shows object interactions over time? <br><input type='radio' name='se_eAq3'> A) Class Diagram <input type='radio' name='se_eAq3'> B) Use Case <input type='radio' name='se_eAq3'> C) Sequence &check;</div>
+                        <div class="mcq-item"><strong>Q4:</strong> What is a Non-Functional Requirement? <br><input type='radio' name='se_eAq4'> A) Login feature <input type='radio' name='se_eAq4'> B) System performance &check; <input type='radio' name='se_eAq4'> C) Use case</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Which testing technique does NOT require knowledge of internal code? <br><input type='radio' name='se_eAq5'> A) White-Box <input type='radio' name='se_eAq5'> B) Black-Box &check; <input type='radio' name='se_eAq5'> C) Path Testing</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which is FALSE about Agile? <br><input type='radio' name='se_eAq6'> A) Iterative <input type='radio' name='se_eAq6'> B) Requires fixed requirements &check; <input type='radio' name='se_eAq6'> C) Values customer collaboration</div>
+                    </div>
                 </div>
-            </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
-        </div><div class="exam-content " data-exam="B">
-            <h3 class="exam-header">Intro to Software Engineering (CSE2001) - Full Mock Exam B (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eBq1"> A) Option 1 <input type="radio" name="eBq1"> B) Option 2 <input type="radio" name="eBq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eBq2"> A) Option 1 <input type="radio" name="eBq2"> B) Option 2 <input type="radio" name="eBq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eBq3"> A) Option 1 <input type="radio" name="eBq3"> B) Option 2 <input type="radio" name="eBq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eBq4"> A) Option 1 <input type="radio" name="eBq4"> B) Option 2 <input type="radio" name="eBq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eBq5"> A) Option 1 <input type="radio" name="eBq5"> B) Option 2 <input type="radio" name="eBq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eBq6"> A) Option 1 <input type="radio" name="eBq6"> B) Option 2 <input type="radio" name="eBq6"> C) Option 3</div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Draw a Class Diagram for a University system with Student, Course, and Professor classes. Show multiplicity.</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> Explain the difference between Aggregation and Composition in UML with a real-world example each.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
                 </div>
-            </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
-        </div><div class="exam-content " data-exam="C">
-            <h3 class="exam-header">Intro to Software Engineering (CSE2001) - Full Mock Exam C (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eCq1"> A) Option 1 <input type="radio" name="eCq1"> B) Option 2 <input type="radio" name="eCq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eCq2"> A) Option 1 <input type="radio" name="eCq2"> B) Option 2 <input type="radio" name="eCq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eCq3"> A) Option 1 <input type="radio" name="eCq3"> B) Option 2 <input type="radio" name="eCq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eCq4"> A) Option 1 <input type="radio" name="eCq4"> B) Option 2 <input type="radio" name="eCq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eCq5"> A) Option 1 <input type="radio" name="eCq5"> B) Option 2 <input type="radio" name="eCq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eCq6"> A) Option 1 <input type="radio" name="eCq6"> B) Option 2 <input type="radio" name="eCq6"> C) Option 3</div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> You are the software architect for an online banking system. Write a full Use Case description for the 'Transfer Money' use case. Include: Use Case Name, Actor, Preconditions, Main Flow (steps 1-7), Alternate Flows, and Postconditions.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
                 </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+            </div><div class="exam-content " data-exam="B">
+                <h3 class="exam-header">Intro to Software Engineering (CSE2001) - Full Mock Exam B (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> In the V-Model, what is paired with the Requirements Analysis phase? <br><input type='radio' name='se_eBq1'> A) Unit Testing <input type='radio' name='se_eBq1'> B) Acceptance Testing &check; <input type='radio' name='se_eBq1'> C) Integration Testing</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Cyclomatic Complexity measures: <br><input type='radio' name='se_eBq2'> A) Lines of code <input type='radio' name='se_eBq2'> B) Independent paths through code &check; <input type='radio' name='se_eBq2'> C) Class count</div>
+                        <div class="mcq-item"><strong>Q3:</strong> Which Agile role manages the product backlog? <br><input type='radio' name='se_eBq3'> A) Scrum Master <input type='radio' name='se_eBq3'> B) Product Owner &check; <input type='radio' name='se_eBq3'> C) Developer</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Regression Testing is performed to: <br><input type='radio' name='se_eBq4'> A) Test new features <input type='radio' name='se_eBq4'> B) Ensure old features still work after changes &check; <input type='radio' name='se_eBq4'> C) Measure performance</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Which SDLC model is BEST for projects with high risk and evolving requirements? <br><input type='radio' name='se_eBq5'> A) Waterfall <input type='radio' name='se_eBq5'> B) V-Model <input type='radio' name='se_eBq5'> C) Spiral &check;</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which is TRUE about Low Coupling? <br><input type='radio' name='se_eBq6'> A) Modules are heavily dependent <input type='radio' name='se_eBq6'> B) Modules are mostly independent &check; <input type='radio' name='se_eBq6'> C) A class has one purpose</div>
+                    </div>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Explain the 4 types of Software Maintenance with a brief example of each.</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> Draw a State Machine Diagram for a simple traffic light system (Red → Green → Yellow → Red).</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> A company is building a hospital management system. Identify 5 Functional Requirements and 5 Non-Functional Requirements. For each non-functional requirement, specify a measurable criteria.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
+                </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+            </div><div class="exam-content " data-exam="C">
+                <h3 class="exam-header">Intro to Software Engineering (CSE2001) - Full Mock Exam C (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> What is Technical Debt? <br><input type='radio' name='se_eCq1'> A) Project budget <input type='radio' name='se_eCq1'> B) Cost of choosing quick/poor solutions now &check; <input type='radio' name='se_eCq1'> C) Bug count</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Which is a Black-Box testing technique? <br><input type='radio' name='se_eCq2'> A) Branch Coverage <input type='radio' name='se_eCq2'> B) Boundary Value Analysis &check; <input type='radio' name='se_eCq2'> C) Path Testing</div>
+                        <div class="mcq-item"><strong>Q3:</strong> A Gantt Chart is used for: <br><input type='radio' name='se_eCq3'> A) Risk analysis <input type='radio' name='se_eCq3'> B) Project scheduling &check; <input type='radio' name='se_eCq3'> C) Requirement gathering</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Pair Programming is a practice from which methodology? <br><input type='radio' name='se_eCq4'> A) Waterfall <input type='radio' name='se_eCq4'> B) V-Model <input type='radio' name='se_eCq4'> C) Agile/XP &check;</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Which diagram models business WORKFLOW and process flow? <br><input type='radio' name='se_eCq5'> A) Class Diagram <input type='radio' name='se_eCq5'> B) Sequence Diagram <input type='radio' name='se_eCq5'> C) Activity Diagram &check;</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which is FALSE about Unit Testing? <br><input type='radio' name='se_eCq6'> A) Tests individual functions <input type='radio' name='se_eCq6'> B) Done by developers <input type='radio' name='se_eCq6'> C) Tests the complete integrated system &check;</div>
+                    </div>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Explain the difference between Verification and Validation with examples. Which testing types belong to each?</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> You are evaluating risk for a software project. Identify 3 project risks, rate them (High/Medium/Low), and suggest one mitigation strategy for each.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Design the architecture for a simple e-commerce website. Describe which architectural pattern you chose (e.g., MVC, Layered, Microservices) and explain why. Draw the architectural layers/components and describe the responsibility of each layer.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
+                </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
             </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
-        </div>
         </div>
     </div>
     
@@ -1415,84 +1424,72 @@ document.getElementById('loadBtn').addEventListener('click', () =&gt; {
 
         <div class="inner-tab-content" id="web_exam">
             <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
-            <h3 class="exam-header">Web Programming (CCS2305) - Full Mock Exam A (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eAq1"> A) Option 1 <input type="radio" name="eAq1"> B) Option 2 <input type="radio" name="eAq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eAq2"> A) Option 1 <input type="radio" name="eAq2"> B) Option 2 <input type="radio" name="eAq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eAq3"> A) Option 1 <input type="radio" name="eAq3"> B) Option 2 <input type="radio" name="eAq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eAq4"> A) Option 1 <input type="radio" name="eAq4"> B) Option 2 <input type="radio" name="eAq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eAq5"> A) Option 1 <input type="radio" name="eAq5"> B) Option 2 <input type="radio" name="eAq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eAq6"> A) Option 1 <input type="radio" name="eAq6"> B) Option 2 <input type="radio" name="eAq6"> C) Option 3</div>
+                <h3 class="exam-header">Web Programming (CCS2305) - Full Mock Exam A (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> Which CSS property controls the space BETWEEN an element's content and its border? <br><input type='radio' name='web_eAq1'> A) margin <input type='radio' name='web_eAq1'> B) padding &check; <input type='radio' name='web_eAq1'> C) border-spacing</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Which HTTP method should be used to SUBMIT a login form securely? <br><input type='radio' name='web_eAq2'> A) GET <input type='radio' name='web_eAq2'> B) POST &check; <input type='radio' name='web_eAq2'> C) PUT</div>
+                        <div class="mcq-item"><strong>Q3:</strong> document.getElementById('box').style.display = 'none' does what? <br><input type='radio' name='web_eAq3'> A) Deletes the element <input type='radio' name='web_eAq3'> B) Hides the element &check; <input type='radio' name='web_eAq3'> C) Changes color</div>
+                        <div class="mcq-item"><strong>Q4:</strong> PHP superglobal $_SESSION is used to: <br><input type='radio' name='web_eAq4'> A) Get URL params <input type='radio' name='web_eAq4'> B) Store data server-side across pages &check; <input type='radio' name='web_eAq4'> C) Read cookies</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Which is the CORRECT way to prevent SQL injection in PHP? <br><input type='radio' name='web_eAq5'> A) htmlspecialchars <input type='radio' name='web_eAq5'> B) Prepared Statements &check; <input type='radio' name='web_eAq5'> C) trim()</div>
+                        <div class="mcq-item"><strong>Q6:</strong> fetch() in JavaScript returns: <br><input type='radio' name='web_eAq6'> A) A string <input type='radio' name='web_eAq6'> B) A Promise &check; <input type='radio' name='web_eAq6'> C) An array</div>
+                    </div>
                 </div>
-            </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
-        </div><div class="exam-content " data-exam="B">
-            <h3 class="exam-header">Web Programming (CCS2305) - Full Mock Exam B (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eBq1"> A) Option 1 <input type="radio" name="eBq1"> B) Option 2 <input type="radio" name="eBq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eBq2"> A) Option 1 <input type="radio" name="eBq2"> B) Option 2 <input type="radio" name="eBq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eBq3"> A) Option 1 <input type="radio" name="eBq3"> B) Option 2 <input type="radio" name="eBq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eBq4"> A) Option 1 <input type="radio" name="eBq4"> B) Option 2 <input type="radio" name="eBq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eBq5"> A) Option 1 <input type="radio" name="eBq5"> B) Option 2 <input type="radio" name="eBq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eBq6"> A) Option 1 <input type="radio" name="eBq6"> B) Option 2 <input type="radio" name="eBq6"> C) Option 3</div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Write valid PHP code to connect to a MySQL database named school_db using PDO. Include error handling.</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> Explain the CSS Box Model. Draw a labeled diagram showing all 4 components and explain what each does.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
                 </div>
-            </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
-        </div><div class="exam-content " data-exam="C">
-            <h3 class="exam-header">Web Programming (CCS2305) - Full Mock Exam C (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eCq1"> A) Option 1 <input type="radio" name="eCq1"> B) Option 2 <input type="radio" name="eCq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eCq2"> A) Option 1 <input type="radio" name="eCq2"> B) Option 2 <input type="radio" name="eCq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eCq3"> A) Option 1 <input type="radio" name="eCq3"> B) Option 2 <input type="radio" name="eCq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eCq4"> A) Option 1 <input type="radio" name="eCq4"> B) Option 2 <input type="radio" name="eCq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eCq5"> A) Option 1 <input type="radio" name="eCq5"> B) Option 2 <input type="radio" name="eCq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eCq6"> A) Option 1 <input type="radio" name="eCq6"> B) Option 2 <input type="radio" name="eCq6"> C) Option 3</div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Write a complete HTML page with a registration form (Name, Email, Password). Using JavaScript, validate that no field is empty and the email contains '@' before submission. Show an error message under each invalid field without using alert().</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
                 </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+            </div><div class="exam-content " data-exam="B">
+                <h3 class="exam-header">Web Programming (CCS2305) - Full Mock Exam B (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> Which HTML5 element makes code more accessible and SEO-friendly by describing a major section? <br><input type='radio' name='web_eBq1'> A) &lt;div&gt; <input type='radio' name='web_eBq1'> B) &lt;section&gt; <input type='radio' name='web_eBq1'> C) &lt;article&gt; &check;</div>
+                        <div class="mcq-item"><strong>Q2:</strong> What does AJAX stand for? <br><input type='radio' name='web_eBq2'> A) Active Java and XML <input type='radio' name='web_eBq2'> B) Asynchronous JavaScript and XML &check; <input type='radio' name='web_eBq2'> C) Async Java Action XML</div>
+                        <div class="mcq-item"><strong>Q3:</strong> localStorage.setItem('user', 'Ali') — this data persists: <br><input type='radio' name='web_eBq3'> A) Until tab close <input type='radio' name='web_eBq3'> B) Until browser close <input type='radio' name='web_eBq3'> C) Until manually cleared &check;</div>
+                        <div class="mcq-item"><strong>Q4:</strong> In CSS Flexbox, which property aligns items along the CROSS axis? <br><input type='radio' name='web_eBq4'> A) justify-content <input type='radio' name='web_eBq4'> B) align-items &check; <input type='radio' name='web_eBq4'> C) flex-direction</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Which PHP function starts a session? <br><input type='radio' name='web_eBq5'> A) begin_session() <input type='radio' name='web_eBq5'> B) session_start() &check; <input type='radio' name='web_eBq5'> C) start_session()</div>
+                        <div class="mcq-item"><strong>Q6:</strong> XSS (Cross-Site Scripting) is prevented by: <br><input type='radio' name='web_eBq6'> A) Prepared statements <input type='radio' name='web_eBq6'> B) Escaping/sanitizing user output &check; <input type='radio' name='web_eBq6'> C) Using HTTPS</div>
+                    </div>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Write AJAX code using fetch() to send a GET request to api/users.php and display the JSON response (a list of user names) in a &lt;ul&gt; with id='user-list'.</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> Explain the difference between GET and POST HTTP methods. When should each be used? What are the security implications of using GET for form submission?</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Write a complete PHP script for a login page that: (1) Uses $_POST to receive username and password, (2) Uses PDO with a prepared statement to check credentials against a users table, (3) On success, starts a session and stores the username, (4) On failure, displays an error message.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
+                </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+            </div><div class="exam-content " data-exam="C">
+                <h3 class="exam-header">Web Programming (CCS2305) - Full Mock Exam C (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> Which CSS selector targets ALL &lt;p&gt; elements that are direct children of a &lt;div&gt;? <br><input type='radio' name='web_eCq1'> A) div p <input type='radio' name='web_eCq1'> B) div > p &check; <input type='radio' name='web_eCq1'> C) div + p</div>
+                        <div class="mcq-item"><strong>Q2:</strong> In JavaScript, const arr = [1,2,3]; arr.map(x => x*2) returns: <br><input type='radio' name='web_eCq2'> A) [1,2,3] <input type='radio' name='web_eCq2'> B) [2,4,6] &check; <input type='radio' name='web_eCq2'> C) 6</div>
+                        <div class="mcq-item"><strong>Q3:</strong> Which status code means 'Resource Not Found'? <br><input type='radio' name='web_eCq3'> A) 200 <input type='radio' name='web_eCq3'> B) 403 <input type='radio' name='web_eCq3'> C) 404 &check;</div>
+                        <div class="mcq-item"><strong>Q4:</strong> jQuery's $.ajax() is used for: <br><input type='radio' name='web_eCq4'> A) CSS animation <input type='radio' name='web_eCq4'> B) Asynchronous HTTP requests &check; <input type='radio' name='web_eCq4'> C) Form validation</div>
+                        <div class="mcq-item"><strong>Q5:</strong> PHP include vs require — the key difference is: <br><input type='radio' name='web_eCq5'> A) Performance <input type='radio' name='web_eCq5'> B) require causes fatal error if file missing &check; <input type='radio' name='web_eCq5'> C) Syntax</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which is TRUE about Cookies? <br><input type='radio' name='web_eCq6'> A) Stored on server <input type='radio' name='web_eCq6'> B) Sent with every HTTP request &check; <input type='radio' name='web_eCq6'> C) More secure than sessions</div>
+                    </div>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Explain Event Bubbling in JavaScript with a code example. How do you stop an event from bubbling?</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> What is Responsive Web Design? Write a CSS media query that changes the body font-size to 14px when the screen width is less than 600px.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Build a complete, working JavaScript to-do list. The page should have: an input field, an 'Add' button, and a &lt;ul&gt;. When 'Add' is clicked, the typed text should appear as a new &lt;li&gt;. Each &lt;li&gt; should have a 'Delete' button that removes it. No frameworks allowed.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
+                </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
             </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
-        </div>
         </div>
     </div>
     
@@ -1991,84 +1988,72 @@ void merge(int arr[], int l, int m, int r) {
 
         <div class="inner-tab-content" id="dsa_exam">
             <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
-            <h3 class="exam-header">Data Structures & Algorithms (CCS2401) - Full Mock Exam A (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eAq1"> A) Option 1 <input type="radio" name="eAq1"> B) Option 2 <input type="radio" name="eAq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eAq2"> A) Option 1 <input type="radio" name="eAq2"> B) Option 2 <input type="radio" name="eAq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eAq3"> A) Option 1 <input type="radio" name="eAq3"> B) Option 2 <input type="radio" name="eAq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eAq4"> A) Option 1 <input type="radio" name="eAq4"> B) Option 2 <input type="radio" name="eAq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eAq5"> A) Option 1 <input type="radio" name="eAq5"> B) Option 2 <input type="radio" name="eAq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eAq6"> A) Option 1 <input type="radio" name="eAq6"> B) Option 2 <input type="radio" name="eAq6"> C) Option 3</div>
+                <h3 class="exam-header">Data Structures & Algorithms (CCS2401) - Full Mock Exam A (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> What is the time complexity of Binary Search on a sorted array of n elements? <br><input type='radio' name='dsa_eAq1'> A) O(n) <input type='radio' name='dsa_eAq1'> B) O(log n) &check; <input type='radio' name='dsa_eAq1'> C) O(n²)</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Which linked list operation is O(1) regardless of list size? <br><input type='radio' name='dsa_eAq2'> A) Insert at tail <input type='radio' name='dsa_eAq2'> B) Insert at head &check; <input type='radio' name='dsa_eAq2'> C) Search</div>
+                        <div class="mcq-item"><strong>Q3:</strong> A Stack uses which principle? <br><input type='radio' name='dsa_eAq3'> A) FIFO <input type='radio' name='dsa_eAq3'> B) LIFO &check; <input type='radio' name='dsa_eAq3'> C) Priority</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Inorder traversal of a BST produces: <br><input type='radio' name='dsa_eAq4'> A) Random output <input type='radio' name='dsa_eAq4'> B) Reverse sorted output <input type='radio' name='dsa_eAq4'> C) Sorted output &check;</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Merge Sort's worst-case time complexity is: <br><input type='radio' name='dsa_eAq5'> A) O(n²) <input type='radio' name='dsa_eAq5'> B) O(n log n) &check; <input type='radio' name='dsa_eAq5'> C) O(n)</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which is FALSE about a Binary Search Tree? <br><input type='radio' name='dsa_eAq6'> A) Left child < parent <input type='radio' name='dsa_eAq6'> B) Can be unbalanced <input type='radio' name='dsa_eAq6'> C) Duplicates are always stored in right subtree &check;</div>
+                    </div>
                 </div>
-            </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
-        </div><div class="exam-content " data-exam="B">
-            <h3 class="exam-header">Data Structures & Algorithms (CCS2401) - Full Mock Exam B (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eBq1"> A) Option 1 <input type="radio" name="eBq1"> B) Option 2 <input type="radio" name="eBq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eBq2"> A) Option 1 <input type="radio" name="eBq2"> B) Option 2 <input type="radio" name="eBq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eBq3"> A) Option 1 <input type="radio" name="eBq3"> B) Option 2 <input type="radio" name="eBq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eBq4"> A) Option 1 <input type="radio" name="eBq4"> B) Option 2 <input type="radio" name="eBq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eBq5"> A) Option 1 <input type="radio" name="eBq5"> B) Option 2 <input type="radio" name="eBq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eBq6"> A) Option 1 <input type="radio" name="eBq6"> B) Option 2 <input type="radio" name="eBq6"> C) Option 3</div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Trace the execution of Bubble Sort on the array [64, 34, 25, 12, 22]. Show each pass step-by-step.</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> Write the full Java code for a single linked list insertAtHead(int data) and deleteAtHead() method, including null checks.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
                 </div>
-            </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
-        </div><div class="exam-content " data-exam="C">
-            <h3 class="exam-header">Data Structures & Algorithms (CCS2401) - Full Mock Exam C (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eCq1"> A) Option 1 <input type="radio" name="eCq1"> B) Option 2 <input type="radio" name="eCq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eCq2"> A) Option 1 <input type="radio" name="eCq2"> B) Option 2 <input type="radio" name="eCq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eCq3"> A) Option 1 <input type="radio" name="eCq3"> B) Option 2 <input type="radio" name="eCq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eCq4"> A) Option 1 <input type="radio" name="eCq4"> B) Option 2 <input type="radio" name="eCq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eCq5"> A) Option 1 <input type="radio" name="eCq5"> B) Option 2 <input type="radio" name="eCq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eCq6"> A) Option 1 <input type="radio" name="eCq6"> B) Option 2 <input type="radio" name="eCq6"> C) Option 3</div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Implement a full Binary Search Tree in Java with: (1) insert(int key), (2) search(int key) returning boolean, (3) inorderTraversal(). Trace the insertion of keys: 50, 30, 70, 20, 40 and draw the resulting tree.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
                 </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+            </div><div class="exam-content " data-exam="B">
+                <h3 class="exam-header">Data Structures & Algorithms (CCS2401) - Full Mock Exam B (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> The &amp; operator in C/C++ is used to: <br><input type='radio' name='dsa_eBq1'> A) Multiply <input type='radio' name='dsa_eBq1'> B) Get the memory address of a variable &check; <input type='radio' name='dsa_eBq1'> C) Dereference a pointer</div>
+                        <div class="mcq-item"><strong>Q2:</strong> What is the space complexity of Merge Sort? <br><input type='radio' name='dsa_eBq2'> A) O(1) <input type='radio' name='dsa_eBq2'> B) O(n) &check; <input type='radio' name='dsa_eBq2'> C) O(log n)</div>
+                        <div class="mcq-item"><strong>Q3:</strong> A Doubly Linked List node requires: <br><input type='radio' name='dsa_eBq3'> A) One pointer <input type='radio' name='dsa_eBq3'> B) Two pointers &check; <input type='radio' name='dsa_eBq3'> C) Three pointers</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Which traversal visits Root FIRST, then left, then right? <br><input type='radio' name='dsa_eBq4'> A) Inorder <input type='radio' name='dsa_eBq4'> B) Postorder <input type='radio' name='dsa_eBq4'> C) Preorder &check;</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Why do we use a temp pointer when deleting a linked list node? <br><input type='radio' name='dsa_eBq5'> A) Speed <input type='radio' name='dsa_eBq5'> B) To free the memory without losing the list connection &check; <input type='radio' name='dsa_eBq5'> C) Required by compiler</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which is TRUE about a Circular Linked List? <br><input type='radio' name='dsa_eBq6'> A) Last node's next is NULL <input type='radio' name='dsa_eBq6'> B) Last node's next points to head &check; <input type='radio' name='dsa_eBq6'> C) Cannot be traversed</div>
+                    </div>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Explain the difference between Pass by Value and Pass by Reference in C/C++. Write a working swap(int *a, int *b) function using pointers.</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> For the array [38, 27, 43, 3, 9, 82, 10], show the complete recursive division steps of Merge Sort and the final merge result.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Compare and contrast Quick Sort and Merge Sort in terms of: (a) Time complexity (best/average/worst), (b) Space complexity, (c) Stability, (d) When to prefer each. Then implement Quick Sort in Java including the partition function.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
+                </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+            </div><div class="exam-content " data-exam="C">
+                <h3 class="exam-header">Data Structures & Algorithms (CCS2401) - Full Mock Exam C (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> Graph BFS uses which data structure? <br><input type='radio' name='dsa_eCq1'> A) Stack <input type='radio' name='dsa_eCq1'> B) Queue &check; <input type='radio' name='dsa_eCq1'> C) Array</div>
+                        <div class="mcq-item"><strong>Q2:</strong> The height of a balanced BST with n nodes is approximately: <br><input type='radio' name='dsa_eCq2'> A) O(n) <input type='radio' name='dsa_eCq2'> B) O(log n) &check; <input type='radio' name='dsa_eCq2'> C) O(n²)</div>
+                        <div class="mcq-item"><strong>Q3:</strong> Which sorting algorithm is most efficient for nearly-sorted data? <br><input type='radio' name='dsa_eCq3'> A) Merge Sort <input type='radio' name='dsa_eCq3'> B) Quick Sort <input type='radio' name='dsa_eCq3'> C) Insertion Sort &check;</div>
+                        <div class="mcq-item"><strong>Q4:</strong> An Adjacency Matrix for a graph with V vertices requires: <br><input type='radio' name='dsa_eCq4'> A) O(V) <input type='radio' name='dsa_eCq4'> B) O(V+E) <input type='radio' name='dsa_eCq4'> C) O(V²) &check; space</div>
+                        <div class="mcq-item"><strong>Q5:</strong> A Hash Table with chaining handles collisions by: <br><input type='radio' name='dsa_eCq5'> A) Finding next empty slot <input type='radio' name='dsa_eCq5'> B) Using a linked list at each bucket &check; <input type='radio' name='dsa_eCq5'> C) Rehashing</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which is FALSE about Recursion? <br><input type='radio' name='dsa_eCq6'> A) Must have a base case <input type='radio' name='dsa_eCq6'> B) Uses the call stack <input type='radio' name='dsa_eCq6'> C) Always more efficient than iteration &check;</div>
+                    </div>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> A BST contains keys: 15, 10, 20, 8, 12, 17, 25. Draw the tree. Then write the output of: (a) Inorder, (b) Preorder, (c) Postorder traversal.</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> Explain the difference between a Stack and a Queue. Give a real-world example of each. Write pseudocode for a Stack implemented using an array.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Implement Graph BFS in Java. Your implementation should: (1) Represent the graph as an adjacency list, (2) Accept a start vertex, (3) Print all vertices in BFS order, (4) Handle disconnected graphs. Trace BFS starting from vertex 0 on this graph: 0-1, 0-2, 1-3, 2-4.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
+                </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
             </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
-        </div>
         </div>
     </div>
     
@@ -2560,84 +2545,72 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
 
         <div class="inner-tab-content" id="cyber_exam">
             <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
-            <h3 class="exam-header">Intro to Cybersecurity (CCY2001) - Full Mock Exam A (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eAq1"> A) Option 1 <input type="radio" name="eAq1"> B) Option 2 <input type="radio" name="eAq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eAq2"> A) Option 1 <input type="radio" name="eAq2"> B) Option 2 <input type="radio" name="eAq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eAq3"> A) Option 1 <input type="radio" name="eAq3"> B) Option 2 <input type="radio" name="eAq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eAq4"> A) Option 1 <input type="radio" name="eAq4"> B) Option 2 <input type="radio" name="eAq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eAq5"> A) Option 1 <input type="radio" name="eAq5"> B) Option 2 <input type="radio" name="eAq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eAq6"> A) Option 1 <input type="radio" name="eAq6"> B) Option 2 <input type="radio" name="eAq6"> C) Option 3</div>
+                <h3 class="exam-header">Intro to Cybersecurity (CCY2001) - Full Mock Exam A (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> The CIA Triad stands for: <br><input type='radio' name='cyber_eAq1'> A) Code, Interface, Access <input type='radio' name='cyber_eAq1'> B) Confidentiality, Integrity, Availability &check; <input type='radio' name='cyber_eAq1'> C) Cipher, Integrity, Auth</div>
+                        <div class="mcq-item"><strong>Q2:</strong> XOR Cipher: 1010 XOR 1100 = ? <br><input type='radio' name='cyber_eAq2'> A) 0110 &check; <input type='radio' name='cyber_eAq2'> B) 1110 <input type='radio' name='cyber_eAq2'> C) 0010</div>
+                        <div class="mcq-item"><strong>Q3:</strong> Which attack floods a server to make it unavailable? <br><input type='radio' name='cyber_eAq3'> A) Phishing <input type='radio' name='cyber_eAq3'> B) DDoS &check; <input type='radio' name='cyber_eAq3'> C) XSS</div>
+                        <div class="mcq-item"><strong>Q4:</strong> AES is an example of: <br><input type='radio' name='cyber_eAq4'> A) Asymmetric Encryption <input type='radio' name='cyber_eAq4'> B) Hashing <input type='radio' name='cyber_eAq4'> C) Symmetric Encryption &check;</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Which principle gives users only the access they need? <br><input type='radio' name='cyber_eAq5'> A) Defense in Depth <input type='radio' name='cyber_eAq5'> B) Least Privilege &check; <input type='radio' name='cyber_eAq5'> C) Zero Trust</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which is FALSE about Hashing? <br><input type='radio' name='cyber_eAq6'> A) One-way function <input type='radio' name='cyber_eAq6'> B) Fixed-size output <input type='radio' name='cyber_eAq6'> C) Can be reversed with the key &check;</div>
+                    </div>
                 </div>
-            </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
-        </div><div class="exam-content " data-exam="B">
-            <h3 class="exam-header">Intro to Cybersecurity (CCY2001) - Full Mock Exam B (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eBq1"> A) Option 1 <input type="radio" name="eBq1"> B) Option 2 <input type="radio" name="eBq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eBq2"> A) Option 1 <input type="radio" name="eBq2"> B) Option 2 <input type="radio" name="eBq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eBq3"> A) Option 1 <input type="radio" name="eBq3"> B) Option 2 <input type="radio" name="eBq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eBq4"> A) Option 1 <input type="radio" name="eBq4"> B) Option 2 <input type="radio" name="eBq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eBq5"> A) Option 1 <input type="radio" name="eBq5"> B) Option 2 <input type="radio" name="eBq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eBq6"> A) Option 1 <input type="radio" name="eBq6"> B) Option 2 <input type="radio" name="eBq6"> C) Option 3</div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Explain the difference between Symmetric and Asymmetric encryption. Give one real-world use case for each (e.g., which is used in HTTPS and why).</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> Using the XOR cipher with Key = 1011, encrypt the plaintext 1001. Then decrypt your ciphertext to verify the result. Show all steps.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
                 </div>
-            </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
-        </div><div class="exam-content " data-exam="C">
-            <h3 class="exam-header">Intro to Cybersecurity (CCY2001) - Full Mock Exam C (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eCq1"> A) Option 1 <input type="radio" name="eCq1"> B) Option 2 <input type="radio" name="eCq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eCq2"> A) Option 1 <input type="radio" name="eCq2"> B) Option 2 <input type="radio" name="eCq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eCq3"> A) Option 1 <input type="radio" name="eCq3"> B) Option 2 <input type="radio" name="eCq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eCq4"> A) Option 1 <input type="radio" name="eCq4"> B) Option 2 <input type="radio" name="eCq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eCq5"> A) Option 1 <input type="radio" name="eCq5"> B) Option 2 <input type="radio" name="eCq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eCq6"> A) Option 1 <input type="radio" name="eCq6"> B) Option 2 <input type="radio" name="eCq6"> C) Option 3</div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> A company's web application was compromised by SQL Injection. (a) Explain exactly how this attack works with a code example of the malicious input. (b) Show the vulnerable PHP code. (c) Show the fixed PHP code using Prepared Statements with PDO. (d) Name two other security measures the company should implement.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
                 </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+            </div><div class="exam-content " data-exam="B">
+                <h3 class="exam-header">Intro to Cybersecurity (CCY2001) - Full Mock Exam B (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> Which OSI layer handles end-to-end communication and reliability (TCP/UDP)? <br><input type='radio' name='cyber_eBq1'> A) Network <input type='radio' name='cyber_eBq1'> B) Transport &check; <input type='radio' name='cyber_eBq1'> C) Session</div>
+                        <div class="mcq-item"><strong>Q2:</strong> A Firewall operates primarily at which layer? <br><input type='radio' name='cyber_eBq2'> A) Application <input type='radio' name='cyber_eBq2'> B) Network &check; <input type='radio' name='cyber_eBq2'> C) Physical</div>
+                        <div class="mcq-item"><strong>Q3:</strong> Which is an example of Multi-Factor Authentication? <br><input type='radio' name='cyber_eBq3'> A) Username+Password <input type='radio' name='cyber_eBq3'> B) Password+OTP &check; <input type='radio' name='cyber_eBq3'> C) Fingerprint only</div>
+                        <div class="mcq-item"><strong>Q4:</strong> A Honeypot is used to: <br><input type='radio' name='cyber_eBq4'> A) Store passwords <input type='radio' name='cyber_eBq4'> B) Lure and analyze attackers &check; <input type='radio' name='cyber_eBq4'> C) Encrypt traffic</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Which attack intercepts communication between two parties without their knowledge? <br><input type='radio' name='cyber_eBq5'> A) DoS <input type='radio' name='cyber_eBq5'> B) Phishing <input type='radio' name='cyber_eBq5'> C) Man-in-the-Middle &check;</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which is TRUE about a DMZ? <br><input type='radio' name='cyber_eBq6'> A) Sits inside the internal network <input type='radio' name='cyber_eBq6'> B) Hosts public-facing servers between external and internal networks &check; <input type='radio' name='cyber_eBq6'> C) Has no firewall</div>
+                    </div>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Explain the difference between a Virus, a Worm, and a Trojan. How does each spread? Give one real-world example of each type.</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> List all 7 OSI model layers in order (Physical to Application). For each layer, give one protocol or technology that operates at that layer.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Design a layered security architecture (Defense in Depth) for a company's network. Include at least 5 different security controls, placed at different layers (perimeter, network, host, application, data). For each control, explain what threat it mitigates.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
+                </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+            </div><div class="exam-content " data-exam="C">
+                <h3 class="exam-header">Intro to Cybersecurity (CCY2001) - Full Mock Exam C (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> Digital Signatures use which key for signing? <br><input type='radio' name='cyber_eCq1'> A) Public Key <input type='radio' name='cyber_eCq1'> B) Private Key &check; <input type='radio' name='cyber_eCq1'> C) Shared Key</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Which is a social engineering attack? <br><input type='radio' name='cyber_eCq2'> A) SQL Injection <input type='radio' name='cyber_eCq2'> B) Buffer Overflow <input type='radio' name='cyber_eCq2'> C) Phishing &check;</div>
+                        <div class="mcq-item"><strong>Q3:</strong> HTTPS uses which protocol for encryption? <br><input type='radio' name='cyber_eCq3'> A) HTTP <input type='radio' name='cyber_eCq3'> B) TLS &check; <input type='radio' name='cyber_eCq3'> C) FTP</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Penetration Testing requires: <br><input type='radio' name='cyber_eCq4'> A) No permission needed <input type='radio' name='cyber_eCq4'> B) Explicit written authorization &check; <input type='radio' name='cyber_eCq4'> C) Government approval only</div>
+                        <div class="mcq-item"><strong>Q5:</strong> The OWASP Top 10 covers: <br><input type='radio' name='cyber_eCq5'> A) Linux commands <input type='radio' name='cyber_eCq5'> B) Critical web application security risks &check; <input type='radio' name='cyber_eCq5'> C) Network protocols</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which hashing algorithm is considered BROKEN and should NOT be used? <br><input type='radio' name='cyber_eCq6'> A) SHA-256 <input type='radio' name='cyber_eCq6'> B) SHA-3 <input type='radio' name='cyber_eCq6'> C) MD5 &check;</div>
+                    </div>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Explain the concept of Public Key Infrastructure (PKI). What is a Certificate Authority (CA)? How does HTTPS use PKI to establish a secure connection? Walk through the handshake process.</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> What is a Buffer Overflow attack? Explain how it works at the memory level. What defensive coding practice prevents it? What OS-level mitigation exists?</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> A healthcare company suffered a ransomware attack. (a) Explain what ransomware is and how it typically enters a system. (b) Describe the full Incident Response process (all 6 phases) applied to this scenario. (c) Recommend 5 preventative measures the company should implement to avoid future attacks.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
+                </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
             </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
-        </div>
         </div>
     </div>
     
@@ -3173,84 +3146,80 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
 
         <div class="inner-tab-content" id="arch_exam">
             <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
-            <h3 class="exam-header">Computer Architecture (CCS2103) - Full Mock Exam A (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eAq1"> A) Option 1 <input type="radio" name="eAq1"> B) Option 2 <input type="radio" name="eAq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eAq2"> A) Option 1 <input type="radio" name="eAq2"> B) Option 2 <input type="radio" name="eAq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eAq3"> A) Option 1 <input type="radio" name="eAq3"> B) Option 2 <input type="radio" name="eAq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eAq4"> A) Option 1 <input type="radio" name="eAq4"> B) Option 2 <input type="radio" name="eAq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eAq5"> A) Option 1 <input type="radio" name="eAq5"> B) Option 2 <input type="radio" name="eAq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eAq6"> A) Option 1 <input type="radio" name="eAq6"> B) Option 2 <input type="radio" name="eAq6"> C) Option 3</div>
+                <h3 class="exam-header">Computer Architecture (CCS2103) - Full Mock Exam A (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> In MARIE, which register holds the NEXT instruction's address? <br><input type='radio' name='arch_eAq1'> A) IR <input type='radio' name='arch_eAq1'> B) AC <input type='radio' name='arch_eAq1'> C) PC &check;</div>
+                        <div class="mcq-item"><strong>Q2:</strong> The RTN for the Fetch step starts with: <br><input type='radio' name='arch_eAq2'> A) IR ← MBR <input type='radio' name='arch_eAq2'> B) MAR ← PC &check; <input type='radio' name='arch_eAq2'> C) AC ← MBR</div>
+                        <div class="mcq-item"><strong>Q3:</strong> MARIE's instruction format is: <br><input type='radio' name='arch_eAq3'> A) 8-bit opcode + 8-bit address <input type='radio' name='arch_eAq3'> B) 4-bit opcode + 12-bit address &check; <input type='radio' name='arch_eAq3'> C) 16-bit opcode</div>
+                        <div class="mcq-item"><strong>Q4:</strong> SKIPCOND 800 skips the next instruction when: <br><input type='radio' name='arch_eAq4'> A) AC = 0 <input type='radio' name='arch_eAq4'> B) AC < 0 <input type='radio' name='arch_eAq4'> C) AC > 0 &check;</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Which memory type is used for CPU Cache? <br><input type='radio' name='arch_eAq5'> A) DRAM <input type='radio' name='arch_eAq5'> B) SRAM &check; <input type='radio' name='arch_eAq5'> C) ROM</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which is FALSE about CISC vs RISC? <br><input type='radio' name='arch_eAq6'> A) CISC has complex instructions <input type='radio' name='arch_eAq6'> B) RISC needs fewer instructions per program &check; <input type='radio' name='arch_eAq6'> C) ARM is RISC</div>
+                    </div>
                 </div>
-            </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
-        </div><div class="exam-content " data-exam="B">
-            <h3 class="exam-header">Computer Architecture (CCS2103) - Full Mock Exam B (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eBq1"> A) Option 1 <input type="radio" name="eBq1"> B) Option 2 <input type="radio" name="eBq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eBq2"> A) Option 1 <input type="radio" name="eBq2"> B) Option 2 <input type="radio" name="eBq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eBq3"> A) Option 1 <input type="radio" name="eBq3"> B) Option 2 <input type="radio" name="eBq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eBq4"> A) Option 1 <input type="radio" name="eBq4"> B) Option 2 <input type="radio" name="eBq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eBq5"> A) Option 1 <input type="radio" name="eBq5"> B) Option 2 <input type="radio" name="eBq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eBq6"> A) Option 1 <input type="radio" name="eBq6"> B) Option 2 <input type="radio" name="eBq6"> C) Option 3</div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea><p><strong>Q8 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p><textarea class='exam-textarea' placeholder='Write your answer or code here...'></textarea>
                 </div>
-            </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
-        </div><div class="exam-content " data-exam="C">
-            <h3 class="exam-header">Computer Architecture (CCS2103) - Full Mock Exam C (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eCq1"> A) Option 1 <input type="radio" name="eCq1"> B) Option 2 <input type="radio" name="eCq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eCq2"> A) Option 1 <input type="radio" name="eCq2"> B) Option 2 <input type="radio" name="eCq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eCq3"> A) Option 1 <input type="radio" name="eCq3"> B) Option 2 <input type="radio" name="eCq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eCq4"> A) Option 1 <input type="radio" name="eCq4"> B) Option 2 <input type="radio" name="eCq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eCq5"> A) Option 1 <input type="radio" name="eCq5"> B) Option 2 <input type="radio" name="eCq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eCq6"> A) Option 1 <input type="radio" name="eCq6"> B) Option 2 <input type="radio" name="eCq6"> C) Option 3</div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full implementation here...'></textarea>
                 </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+            </div><div class="exam-content " data-exam="B">
+                <h3 class="exam-header">Computer Architecture (CCS2103) - Full Mock Exam B (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> Placeholder? <br><input type="radio" name="arch_eBq1"> A) Option 1 <input type="radio" name="arch_eBq1"> B) Option 2 <input type="radio" name="arch_eBq1"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Placeholder? <br><input type="radio" name="arch_eBq2"> A) Option 1 <input type="radio" name="arch_eBq2"> B) Option 2 <input type="radio" name="arch_eBq2"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q3:</strong> Placeholder? <br><input type="radio" name="arch_eBq3"> A) Option 1 <input type="radio" name="arch_eBq3"> B) Option 2 <input type="radio" name="arch_eBq3"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Placeholder? <br><input type="radio" name="arch_eBq4"> A) Option 1 <input type="radio" name="arch_eBq4"> B) Option 2 <input type="radio" name="arch_eBq4"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Placeholder? <br><input type="radio" name="arch_eBq5"> A) Option 1 <input type="radio" name="arch_eBq5"> B) Option 2 <input type="radio" name="arch_eBq5"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Placeholder? <br><input type="radio" name="arch_eBq6"> A) Option 1 <input type="radio" name="arch_eBq6"> B) Option 2 <input type="radio" name="arch_eBq6"> C) Option 3</div>
+                    </div>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Draw diagram.</p>
+                    <textarea class="exam-textarea" placeholder="Write your answer..."></textarea>
+                    <p><strong>Q8 (7 pts):</strong> Explain.</p>
+                    <textarea class="exam-textarea" placeholder="Write your explanation..."></textarea>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Implementation.</p>
+                    <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation..."></textarea>
+                </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam B!')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+            </div><div class="exam-content " data-exam="C">
+                <h3 class="exam-header">Computer Architecture (CCS2103) - Full Mock Exam C (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> Placeholder? <br><input type="radio" name="arch_eCq1"> A) Option 1 <input type="radio" name="arch_eCq1"> B) Option 2 <input type="radio" name="arch_eCq1"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Placeholder? <br><input type="radio" name="arch_eCq2"> A) Option 1 <input type="radio" name="arch_eCq2"> B) Option 2 <input type="radio" name="arch_eCq2"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q3:</strong> Placeholder? <br><input type="radio" name="arch_eCq3"> A) Option 1 <input type="radio" name="arch_eCq3"> B) Option 2 <input type="radio" name="arch_eCq3"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Placeholder? <br><input type="radio" name="arch_eCq4"> A) Option 1 <input type="radio" name="arch_eCq4"> B) Option 2 <input type="radio" name="arch_eCq4"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Placeholder? <br><input type="radio" name="arch_eCq5"> A) Option 1 <input type="radio" name="arch_eCq5"> B) Option 2 <input type="radio" name="arch_eCq5"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Placeholder? <br><input type="radio" name="arch_eCq6"> A) Option 1 <input type="radio" name="arch_eCq6"> B) Option 2 <input type="radio" name="arch_eCq6"> C) Option 3</div>
+                    </div>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Draw diagram.</p>
+                    <textarea class="exam-textarea" placeholder="Write your answer..."></textarea>
+                    <p><strong>Q8 (7 pts):</strong> Explain.</p>
+                    <textarea class="exam-textarea" placeholder="Write your explanation..."></textarea>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Implementation.</p>
+                    <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation..."></textarea>
+                </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam C!')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
             </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
-        </div>
         </div>
     </div>
     
@@ -3534,84 +3503,84 @@ class BankAccount {
 
         <div class="inner-tab-content" id="advprog_exam">
             <div class="exam-tabs"><button class="exam-tab-btn active" onclick="switchExam(event, this, 'A')">Exam A</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'B')">Exam B</button><button class="exam-tab-btn " onclick="switchExam(event, this, 'C')">Exam C</button></div><div class="exam-content active" data-exam="A">
-            <h3 class="exam-header">Advanced Programming Apps (CCS2304) - Full Mock Exam A (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eAq1"> A) Option 1 <input type="radio" name="eAq1"> B) Option 2 <input type="radio" name="eAq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eAq2"> A) Option 1 <input type="radio" name="eAq2"> B) Option 2 <input type="radio" name="eAq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eAq3"> A) Option 1 <input type="radio" name="eAq3"> B) Option 2 <input type="radio" name="eAq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eAq4"> A) Option 1 <input type="radio" name="eAq4"> B) Option 2 <input type="radio" name="eAq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eAq5"> A) Option 1 <input type="radio" name="eAq5"> B) Option 2 <input type="radio" name="eAq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eAq6"> A) Option 1 <input type="radio" name="eAq6"> B) Option 2 <input type="radio" name="eAq6"> C) Option 3</div>
+                <h3 class="exam-header">Advanced Programming Apps (CCS2304) - Full Mock Exam A (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> Placeholder? <br><input type="radio" name="advprog_eAq1"> A) Option 1 <input type="radio" name="advprog_eAq1"> B) Option 2 <input type="radio" name="advprog_eAq1"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Placeholder? <br><input type="radio" name="advprog_eAq2"> A) Option 1 <input type="radio" name="advprog_eAq2"> B) Option 2 <input type="radio" name="advprog_eAq2"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q3:</strong> Placeholder? <br><input type="radio" name="advprog_eAq3"> A) Option 1 <input type="radio" name="advprog_eAq3"> B) Option 2 <input type="radio" name="advprog_eAq3"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Placeholder? <br><input type="radio" name="advprog_eAq4"> A) Option 1 <input type="radio" name="advprog_eAq4"> B) Option 2 <input type="radio" name="advprog_eAq4"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Placeholder? <br><input type="radio" name="advprog_eAq5"> A) Option 1 <input type="radio" name="advprog_eAq5"> B) Option 2 <input type="radio" name="advprog_eAq5"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Placeholder? <br><input type="radio" name="advprog_eAq6"> A) Option 1 <input type="radio" name="advprog_eAq6"> B) Option 2 <input type="radio" name="advprog_eAq6"> C) Option 3</div>
+                    </div>
                 </div>
-            </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
-        </div><div class="exam-content " data-exam="B">
-            <h3 class="exam-header">Advanced Programming Apps (CCS2304) - Full Mock Exam B (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eBq1"> A) Option 1 <input type="radio" name="eBq1"> B) Option 2 <input type="radio" name="eBq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eBq2"> A) Option 1 <input type="radio" name="eBq2"> B) Option 2 <input type="radio" name="eBq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eBq3"> A) Option 1 <input type="radio" name="eBq3"> B) Option 2 <input type="radio" name="eBq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eBq4"> A) Option 1 <input type="radio" name="eBq4"> B) Option 2 <input type="radio" name="eBq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eBq5"> A) Option 1 <input type="radio" name="eBq5"> B) Option 2 <input type="radio" name="eBq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eBq6"> A) Option 1 <input type="radio" name="eBq6"> B) Option 2 <input type="radio" name="eBq6"> C) Option 3</div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Draw diagram.</p>
+                    <textarea class="exam-textarea" placeholder="Write your answer..."></textarea>
+                    <p><strong>Q8 (7 pts):</strong> Explain.</p>
+                    <textarea class="exam-textarea" placeholder="Write your explanation..."></textarea>
                 </div>
-            </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
-        </div><div class="exam-content " data-exam="C">
-            <h3 class="exam-header">Advanced Programming Apps (CCS2304) - Full Mock Exam C (40 Pts)</h3>
-            <div class="exam-section">
-                <h4>Part 1: Multiple Choice (12 Points)</h4>
-                <div class="mcq-grid">
-                    <div class="mcq-item"><strong>Q1:</strong> Which of the following is a primary characteristic of this subject? <br><input type="radio" name="eCq1"> A) Option 1 <input type="radio" name="eCq1"> B) Option 2 <input type="radio" name="eCq1"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q2:</strong> Identify the correct time complexity or fundamental principle: <br><input type="radio" name="eCq2"> A) Option 1 <input type="radio" name="eCq2"> B) Option 2 <input type="radio" name="eCq2"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q3:</strong> What is the main drawback of the standard approach? <br><input type="radio" name="eCq3"> A) Option 1 <input type="radio" name="eCq3"> B) Option 2 <input type="radio" name="eCq3"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q4:</strong> Select the correct syntax or definition. <br><input type="radio" name="eCq4"> A) Option 1 <input type="radio" name="eCq4"> B) Option 2 <input type="radio" name="eCq4"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q5:</strong> Which framework or model best suits this scenario? <br><input type="radio" name="eCq5"> A) Option 1 <input type="radio" name="eCq5"> B) Option 2 <input type="radio" name="eCq5"> C) Option 3</div>
-                    <div class="mcq-item"><strong>Q6:</strong> Which statement is FALSE regarding this topic? <br><input type="radio" name="eCq6"> A) Option 1 <input type="radio" name="eCq6"> B) Option 2 <input type="radio" name="eCq6"> C) Option 3</div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Implementation.</p>
+                    <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation..."></textarea>
                 </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam A!')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+            </div><div class="exam-content " data-exam="B">
+                <h3 class="exam-header">Advanced Programming Apps (CCS2304) - Full Mock Exam B (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> Placeholder? <br><input type="radio" name="advprog_eBq1"> A) Option 1 <input type="radio" name="advprog_eBq1"> B) Option 2 <input type="radio" name="advprog_eBq1"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Placeholder? <br><input type="radio" name="advprog_eBq2"> A) Option 1 <input type="radio" name="advprog_eBq2"> B) Option 2 <input type="radio" name="advprog_eBq2"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q3:</strong> Placeholder? <br><input type="radio" name="advprog_eBq3"> A) Option 1 <input type="radio" name="advprog_eBq3"> B) Option 2 <input type="radio" name="advprog_eBq3"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Placeholder? <br><input type="radio" name="advprog_eBq4"> A) Option 1 <input type="radio" name="advprog_eBq4"> B) Option 2 <input type="radio" name="advprog_eBq4"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Placeholder? <br><input type="radio" name="advprog_eBq5"> A) Option 1 <input type="radio" name="advprog_eBq5"> B) Option 2 <input type="radio" name="advprog_eBq5"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Placeholder? <br><input type="radio" name="advprog_eBq6"> A) Option 1 <input type="radio" name="advprog_eBq6"> B) Option 2 <input type="radio" name="advprog_eBq6"> C) Option 3</div>
+                    </div>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Draw diagram.</p>
+                    <textarea class="exam-textarea" placeholder="Write your answer..."></textarea>
+                    <p><strong>Q8 (7 pts):</strong> Explain.</p>
+                    <textarea class="exam-textarea" placeholder="Write your explanation..."></textarea>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Implementation.</p>
+                    <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation..."></textarea>
+                </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam B!')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+            </div><div class="exam-content " data-exam="C">
+                <h3 class="exam-header">Advanced Programming Apps (CCS2304) - Full Mock Exam C (40 Pts)</h3>
+                <div class="exam-section">
+                    <h4>Part 1: Multiple Choice (12 Points)</h4>
+                    <div class="mcq-grid">
+                        <div class="mcq-item"><strong>Q1:</strong> Placeholder? <br><input type="radio" name="advprog_eCq1"> A) Option 1 <input type="radio" name="advprog_eCq1"> B) Option 2 <input type="radio" name="advprog_eCq1"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Placeholder? <br><input type="radio" name="advprog_eCq2"> A) Option 1 <input type="radio" name="advprog_eCq2"> B) Option 2 <input type="radio" name="advprog_eCq2"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q3:</strong> Placeholder? <br><input type="radio" name="advprog_eCq3"> A) Option 1 <input type="radio" name="advprog_eCq3"> B) Option 2 <input type="radio" name="advprog_eCq3"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Placeholder? <br><input type="radio" name="advprog_eCq4"> A) Option 1 <input type="radio" name="advprog_eCq4"> B) Option 2 <input type="radio" name="advprog_eCq4"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Placeholder? <br><input type="radio" name="advprog_eCq5"> A) Option 1 <input type="radio" name="advprog_eCq5"> B) Option 2 <input type="radio" name="advprog_eCq5"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Placeholder? <br><input type="radio" name="advprog_eCq6"> A) Option 1 <input type="radio" name="advprog_eCq6"> B) Option 2 <input type="radio" name="advprog_eCq6"> C) Option 3</div>
+                    </div>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
+                    <p><strong>Q7 (7 pts):</strong> Draw diagram.</p>
+                    <textarea class="exam-textarea" placeholder="Write your answer..."></textarea>
+                    <p><strong>Q8 (7 pts):</strong> Explain.</p>
+                    <textarea class="exam-textarea" placeholder="Write your explanation..."></textarea>
+                </div>
+                <div class="exam-section">
+                    <h4>Part 3: Long Form (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Implementation.</p>
+                    <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation..."></textarea>
+                </div>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam C!')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
             </div>
-            <div class="exam-section">
-                <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                <p><strong>Q7 (7 pts):</strong> Draw the related diagram or write the core algorithm for the primary topic of chapter 2.</p>
-                <textarea class="exam-textarea" placeholder="Write your answer or code here..."></textarea>
-                <p><strong>Q8 (7 pts):</strong> Explain the difference between the two main paradigms discussed in class.</p>
-                <textarea class="exam-textarea" placeholder="Write your explanation here..."></textarea>
-            </div>
-            <div class="exam-section">
-                <h4>Part 3: Long Form / Coding (14 Points)</h4>
-                <p><strong>Q9 (14 pts):</strong> Write a complete implementation or perform a full mathematical trace of the advanced concept. Include edge cases.</p>
-                <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation here..."></textarea>
-            </div>
-            <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
-        </div>
         </div>
     </div>
     
@@ -3679,6 +3648,16 @@ class BankAccount {
             osc.start();
             osc.stop(ctx.currentTime + 0.5);
         }
+
+        // Save checkbox state
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.file-item-container input[type="checkbox"]').forEach(cb => {
+                if (localStorage.getItem(cb.id) === 'true') cb.checked = true;
+                cb.addEventListener('change', () => {
+                    localStorage.setItem(cb.id, cb.checked);
+                });
+            });
+        });
     </script>
 </body>
 </html>
