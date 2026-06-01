@@ -108,6 +108,15 @@
     </div>
 </div>
 <button class="nav-btn" onclick="openTab('se')"><i class="fa-solid fa-laptop-code"></i> Intro to Software Engineering</button><button class="nav-btn" onclick="openTab('web')"><i class="fa-solid fa-globe"></i> Web Programming</button><button class="nav-btn" onclick="openTab('dsa')"><i class="fa-solid fa-network-wired"></i> Data Structures & Algorithms</button><button class="nav-btn" onclick="openTab('cyber')"><i class="fa-solid fa-shield-halved"></i> Intro to Cybersecurity</button><button class="nav-btn" onclick="openTab('arch')"><i class="fa-solid fa-microchip"></i> Computer Architecture</button><button class="nav-btn" onclick="openTab('advprog')"><i class="fa-solid fa-code"></i> Advanced Programming Apps</button>
+<div class="sidebar-pomodoro">
+    <h4 style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;"><i class="fa-solid fa-stopwatch"></i> Focus Timer</h4>
+    <div class="timer-display" id="pomo-timer">25:00</div>
+    <div class="pomo-controls">
+        <button onclick="startTimer()">Start</button>
+        <button onclick="resetTimer()">Reset</button>
+    </div>
+</div>
+
     </div>
     <div class="main-content">
         
@@ -3399,53 +3408,45 @@ PC &lt;- X            // Simply overwrite the Program Counter with X!</code></pr
                 <div class="exam-section">
                     <h4>Part 1: Multiple Choice (12 Points)</h4>
                     <div class="mcq-grid">
-                        <div class="mcq-item"><strong>Q1:</strong> Placeholder? <br><input type="radio" name="arch_eBq1"> A) Option 1 <input type="radio" name="arch_eBq1"> B) Option 2 <input type="radio" name="arch_eBq1"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q2:</strong> Placeholder? <br><input type="radio" name="arch_eBq2"> A) Option 1 <input type="radio" name="arch_eBq2"> B) Option 2 <input type="radio" name="arch_eBq2"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q3:</strong> Placeholder? <br><input type="radio" name="arch_eBq3"> A) Option 1 <input type="radio" name="arch_eBq3"> B) Option 2 <input type="radio" name="arch_eBq3"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q4:</strong> Placeholder? <br><input type="radio" name="arch_eBq4"> A) Option 1 <input type="radio" name="arch_eBq4"> B) Option 2 <input type="radio" name="arch_eBq4"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q5:</strong> Placeholder? <br><input type="radio" name="arch_eBq5"> A) Option 1 <input type="radio" name="arch_eBq5"> B) Option 2 <input type="radio" name="arch_eBq5"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q6:</strong> Placeholder? <br><input type="radio" name="arch_eBq6"> A) Option 1 <input type="radio" name="arch_eBq6"> B) Option 2 <input type="radio" name="arch_eBq6"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q1:</strong> Which logic gate outputs 0 only when all inputs are 1? <br><input type='radio' name='arch_eBq1'> A) NAND &check; <input type='radio' name='arch_eBq1'> B) NOR <input type='radio' name='arch_eBq1'> C) XOR</div>
+                        <div class="mcq-item"><strong>Q2:</strong> According to De Morgan's Laws, NOT (A AND B) is equal to: <br><input type='radio' name='arch_eBq2'> A) NOT A AND NOT B <input type='radio' name='arch_eBq2'> B) NOT A OR NOT B &check; <input type='radio' name='arch_eBq2'> C) A OR B</div>
+                        <div class="mcq-item"><strong>Q3:</strong> A Half Adder circuit adds two bits and produces which outputs? <br><input type='radio' name='arch_eBq3'> A) Sum and Carry &check; <input type='radio' name='arch_eBq3'> B) Quotient and Remainder <input type='radio' name='arch_eBq3'> C) Sum and Quotient</div>
+                        <div class="mcq-item"><strong>Q4:</strong> How many select lines does a 4-to-1 Multiplexer (MUX) require? <br><input type='radio' name='arch_eBq4'> A) 1 <input type='radio' name='arch_eBq4'> B) 2 &check; <input type='radio' name='arch_eBq4'> C) 4</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Which sequential circuit element is triggered by a clock edge to store 1 bit of data? <br><input type='radio' name='arch_eBq5'> A) Decoder <input type='radio' name='arch_eBq5'> B) Flip-Flop &check; <input type='radio' name='arch_eBq5'> C) Multiplexer</div>
+                        <div class="mcq-item"><strong>Q6:</strong> What is the Boolean expression for an XOR gate with inputs A and B? <br><input type='radio' name='arch_eBq6'> A) A'B + AB' &check; <input type='radio' name='arch_eBq6'> B) AB + A'B' <input type='radio' name='arch_eBq6'> C) A + B</div>
                     </div>
                 </div>
                 <div class="exam-section">
                     <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                    <p><strong>Q7 (7 pts):</strong> Draw diagram.</p>
-                    <textarea class="exam-textarea" placeholder="Write your answer..."></textarea>
-                    <p><strong>Q8 (7 pts):</strong> Explain.</p>
-                    <textarea class="exam-textarea" placeholder="Write your explanation..."></textarea>
+                    <p><strong>Q7 (7 pts):</strong> Draw the truth table for a Full Adder. Write the Boolean expressions for the Sum and Carry-out outputs.</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> Explain why NAND and NOR gates are called 'Universal Gates'. Show how an OR gate can be constructed using only NAND gates.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
                 </div>
                 <div class="exam-section">
-                    <h4>Part 3: Long Form (14 Points)</h4>
-                    <p><strong>Q9 (14 pts):</strong> Implementation.</p>
-                    <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation..."></textarea>
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Minimize the Boolean function F(A, B, C, D) = Σ(0, 2, 5, 7, 8, 10, 13, 15) using a 4-variable Karnaugh Map (K-Map). Show the grid, group the adjacent 1s (octets, quads, pairs), and write the minimized sum-of-products (SOP) expression step-by-step.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full K-Map minimization process here...'></textarea>
                 </div>
-                <button class="action-btn" onclick="alert('Answers submitted for Exam B!')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
             </div><div class="exam-content " data-exam="C">
                 <h3 class="exam-header">Computer Architecture (CCS2103) - Full Mock Exam C (40 Pts)</h3>
                 <div class="exam-section">
                     <h4>Part 1: Multiple Choice (12 Points)</h4>
                     <div class="mcq-grid">
-                        <div class="mcq-item"><strong>Q1:</strong> Placeholder? <br><input type="radio" name="arch_eCq1"> A) Option 1 <input type="radio" name="arch_eCq1"> B) Option 2 <input type="radio" name="arch_eCq1"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q2:</strong> Placeholder? <br><input type="radio" name="arch_eCq2"> A) Option 1 <input type="radio" name="arch_eCq2"> B) Option 2 <input type="radio" name="arch_eCq2"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q3:</strong> Placeholder? <br><input type="radio" name="arch_eCq3"> A) Option 1 <input type="radio" name="arch_eCq3"> B) Option 2 <input type="radio" name="arch_eCq3"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q4:</strong> Placeholder? <br><input type="radio" name="arch_eCq4"> A) Option 1 <input type="radio" name="arch_eCq4"> B) Option 2 <input type="radio" name="arch_eCq4"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q5:</strong> Placeholder? <br><input type="radio" name="arch_eCq5"> A) Option 1 <input type="radio" name="arch_eCq5"> B) Option 2 <input type="radio" name="arch_eCq5"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q6:</strong> Placeholder? <br><input type="radio" name="arch_eCq6"> A) Option 1 <input type="radio" name="arch_eCq6"> B) Option 2 <input type="radio" name="arch_eCq6"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q1:</strong> Which cache mapping technique allows a main memory block to be placed in ANY cache line? <br><input type='radio' name='arch_eCq1'> A) Direct Mapping <input type='radio' name='arch_eCq1'> B) Fully Associative Mapping &check; <input type='radio' name='arch_eCq1'> C) Set-Associative Mapping</div>
+                        <div class="mcq-item"><strong>Q2:</strong> What type of locality is exploited when a CPU accesses consecutive elements of a 1D array? <br><input type='radio' name='arch_eCq2'> A) Temporal Locality <input type='radio' name='arch_eCq2'> B) Spatial Locality &check; <input type='radio' name='arch_eCq2'> C) Register Locality</div>
+                        <div class="mcq-item"><strong>Q3:</strong> In a pipelined CPU, a resource conflict where two instructions need the same hardware unit is a: <br><input type='radio' name='arch_eCq3'> A) Data Hazard <input type='radio' name='arch_eCq3'> B) Structural Hazard &check; <input type='radio' name='arch_eCq3'> C) Control Hazard</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Which cache replacement policy discards the block that has not been accessed for the longest time? <br><input type='radio' name='arch_eCq4'> A) FIFO <input type='radio' name='arch_eCq4'> B) LRU &check; <input type='radio' name='arch_eCq4'> C) LFU</div>
+                        <div class="mcq-item"><strong>Q5:</strong> What is the primary advantage of DMA (Direct Memory Access)? <br><input type='radio' name='arch_eCq5'> A) Fast cache hits <input type='radio' name='arch_eCq5'> B) Transfers data between I/O and RAM without CPU intervention &check; <input type='radio' name='arch_eCq5'> C) Multiplies clock speed</div>
+                        <div class="mcq-item"><strong>Q6:</strong> How does a write-through cache handle a write operation? <br><input type='radio' name='arch_eCq6'> A) Updates cache only <input type='radio' name='arch_eCq6'> B) Updates both cache and main memory simultaneously &check; <input type='radio' name='arch_eCq6'> C) Postpones the memory write</div>
                     </div>
                 </div>
                 <div class="exam-section">
                     <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                    <p><strong>Q7 (7 pts):</strong> Draw diagram.</p>
-                    <textarea class="exam-textarea" placeholder="Write your answer..."></textarea>
-                    <p><strong>Q8 (7 pts):</strong> Explain.</p>
-                    <textarea class="exam-textarea" placeholder="Write your explanation..."></textarea>
+                    <p><strong>Q7 (7 pts):</strong> A system has a main memory of 64MB and a cache of 128KB with 64-byte block size. For Direct Mapping, calculate the number of bits in the Tag, Line, and Word offset fields of a 26-bit address.</p><textarea class='exam-textarea' placeholder='Write your calculations here...'></textarea><p><strong>Q8 (7 pts):</strong> Explain the difference between temporal locality and spatial locality in cache design. Give a brief code example showing high spatial locality.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
                 </div>
                 <div class="exam-section">
-                    <h4>Part 3: Long Form (14 Points)</h4>
-                    <p><strong>Q9 (14 pts):</strong> Implementation.</p>
-                    <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation..."></textarea>
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Compare Direct Mapping, Fully Associative, and 4-way Set Associative Cache mapping. Walk through a sequence of memory block accesses: 0, 4, 8, 0, 4, 16 on a cache with 4 lines, showing hits, misses, and the final state of the cache for each method (assume LRU replacement policy).</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write comparison and step-by-step trace here...'></textarea>
                 </div>
-                <button class="action-btn" onclick="alert('Answers submitted for Exam C!')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
             </div>
         </div>
     </div>
@@ -3807,79 +3808,67 @@ class BankAccount {
                 <div class="exam-section">
                     <h4>Part 1: Multiple Choice (12 Points)</h4>
                     <div class="mcq-grid">
-                        <div class="mcq-item"><strong>Q1:</strong> Placeholder? <br><input type="radio" name="advprog_eAq1"> A) Option 1 <input type="radio" name="advprog_eAq1"> B) Option 2 <input type="radio" name="advprog_eAq1"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q2:</strong> Placeholder? <br><input type="radio" name="advprog_eAq2"> A) Option 1 <input type="radio" name="advprog_eAq2"> B) Option 2 <input type="radio" name="advprog_eAq2"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q3:</strong> Placeholder? <br><input type="radio" name="advprog_eAq3"> A) Option 1 <input type="radio" name="advprog_eAq3"> B) Option 2 <input type="radio" name="advprog_eAq3"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q4:</strong> Placeholder? <br><input type="radio" name="advprog_eAq4"> A) Option 1 <input type="radio" name="advprog_eAq4"> B) Option 2 <input type="radio" name="advprog_eAq4"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q5:</strong> Placeholder? <br><input type="radio" name="advprog_eAq5"> A) Option 1 <input type="radio" name="advprog_eAq5"> B) Option 2 <input type="radio" name="advprog_eAq5"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q6:</strong> Placeholder? <br><input type="radio" name="advprog_eAq6"> A) Option 1 <input type="radio" name="advprog_eAq6"> B) Option 2 <input type="radio" name="advprog_eAq6"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q1:</strong> Which exception is thrown when attempting to cast an object to a subclass of which it is not an instance? <br><input type='radio' name='adv_eAq1'> A) NullPointerException <input type='radio' name='adv_eAq1'> B) ClassCastException &check; <input type='radio' name='adv_eAq1'> C) IllegalArgumentException</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Which Java Collection does NOT allow duplicate elements? <br><input type='radio' name='adv_eAq2'> A) ArrayList <input type='radio' name='adv_eAq2'> B) HashSet &check; <input type='radio' name='adv_eAq2'> C) LinkedList</div>
+                        <div class="mcq-item"><strong>Q3:</strong> What is the average time complexity of looking up a key in a balanced HashMap? <br><input type='radio' name='adv_eAq3'> A) O(1) &check; <input type='radio' name='adv_eAq3'> B) O(log n) <input type='radio' name='adv_eAq3'> C) O(n)</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Which keyword is used in a method signature to declare that it might throw checked exceptions? <br><input type='radio' name='adv_eAq4'> A) throw <input type='radio' name='adv_eAq4'> B) throws &check; <input type='radio' name='adv_eAq4'> C) transient</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Which Collection class maintains its elements in sorted, natural ordering? <br><input type='radio' name='adv_eAq5'> A) HashSet <input type='radio' name='adv_eAq5'> B) TreeSet &check; <input type='radio' name='adv_eAq5'> C) LinkedHashSet</div>
+                        <div class="mcq-item"><strong>Q6:</strong> What is the function of the finally block in exception handling? <br><input type='radio' name='adv_eAq6'> A) Runs only on error <input type='radio' name='adv_eAq6'> B) Runs always to guarantee resource cleanup &check; <input type='radio' name='adv_eAq6'> C) Retries the execution</div>
                     </div>
                 </div>
                 <div class="exam-section">
                     <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                    <p><strong>Q7 (7 pts):</strong> Draw diagram.</p>
-                    <textarea class="exam-textarea" placeholder="Write your answer..."></textarea>
-                    <p><strong>Q8 (7 pts):</strong> Explain.</p>
-                    <textarea class="exam-textarea" placeholder="Write your explanation..."></textarea>
+                    <p><strong>Q7 (7 pts):</strong> Explain the difference between Checked and Unchecked exceptions in Java. Give a real-world code example of each.</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> Write a simple custom exception class named InvalidAgeException that extends Exception, and show how to throw it inside a checkAge(int age) method.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
                 </div>
                 <div class="exam-section">
-                    <h4>Part 3: Long Form (14 Points)</h4>
-                    <p><strong>Q9 (14 pts):</strong> Implementation.</p>
-                    <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation..."></textarea>
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Write a complete Java program that declares an ArrayList&lt;String&gt; of student names. Create two worker threads using Runnable that concurrently add names to a thread-safe list (using a synchronized block to prevent race conditions). Wait for both threads to finish using join(), and print the total count of names.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full Java implementation here...'></textarea>
                 </div>
-                <button class="action-btn" onclick="alert('Answers submitted for Exam A!')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam A! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam A</button>
             </div><div class="exam-content " data-exam="B">
                 <h3 class="exam-header">Advanced Programming Apps (CCS2304) - Full Mock Exam B (40 Pts)</h3>
                 <div class="exam-section">
                     <h4>Part 1: Multiple Choice (12 Points)</h4>
                     <div class="mcq-grid">
-                        <div class="mcq-item"><strong>Q1:</strong> Placeholder? <br><input type="radio" name="advprog_eBq1"> A) Option 1 <input type="radio" name="advprog_eBq1"> B) Option 2 <input type="radio" name="advprog_eBq1"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q2:</strong> Placeholder? <br><input type="radio" name="advprog_eBq2"> A) Option 1 <input type="radio" name="advprog_eBq2"> B) Option 2 <input type="radio" name="advprog_eBq2"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q3:</strong> Placeholder? <br><input type="radio" name="advprog_eBq3"> A) Option 1 <input type="radio" name="advprog_eBq3"> B) Option 2 <input type="radio" name="advprog_eBq3"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q4:</strong> Placeholder? <br><input type="radio" name="advprog_eBq4"> A) Option 1 <input type="radio" name="advprog_eBq4"> B) Option 2 <input type="radio" name="advprog_eBq4"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q5:</strong> Placeholder? <br><input type="radio" name="advprog_eBq5"> A) Option 1 <input type="radio" name="advprog_eBq5"> B) Option 2 <input type="radio" name="advprog_eBq5"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q6:</strong> Placeholder? <br><input type="radio" name="advprog_eBq6"> A) Option 1 <input type="radio" name="advprog_eBq6"> B) Option 2 <input type="radio" name="advprog_eBq6"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q1:</strong> In JavaFX, what is the main container class that represents a physical window? <br><input type='radio' name='adv_eBq1'> A) Scene <input type='radio' name='adv_eBq1'> B) Stage &check; <input type='radio' name='adv_eBq1'> C) BorderPane</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Which layout pane organizes nodes in a single horizontal row? <br><input type='radio' name='adv_eBq2'> A) VBox <input type='radio' name='adv_eBq2'> B) HBox &check; <input type='radio' name='adv_eBq2'> C) GridPane</div>
+                        <div class="mcq-item"><strong>Q3:</strong> In JavaFX, which method is overridden as the main execution entry point? <br><input type='radio' name='adv_eBq3'> A) main() <input type='radio' name='adv_eBq3'> B) start() &check; <input type='radio' name='adv_eBq3'> C) init()</div>
+                        <div class="mcq-item"><strong>Q4:</strong> Which control node is typically used to capture user text input? <br><input type='radio' name='adv_eBq4'> A) Label <input type='radio' name='adv_eBq4'> B) TextField &check; <input type='radio' name='adv_eBq4'> C) TextArea</div>
+                        <div class="mcq-item"><strong>Q5:</strong> How do you register a button click handler programmatically in JavaFX? <br><input type='radio' name='adv_eBq5'> A) btn.setOnClickListener <input type='radio' name='adv_eBq5'> B) btn.setOnAction &check; <input type='radio' name='adv_eBq5'> C) btn.addEvent</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which design tool is officially used to build FXML layouts visually? <br><input type='radio' name='adv_eBq6'> A) Scene Builder &check; <input type='radio' name='adv_eBq6'> B) Swing Designer <input type='radio' name='adv_eBq6'> C) Visual Studio Code</div>
                     </div>
                 </div>
                 <div class="exam-section">
                     <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                    <p><strong>Q7 (7 pts):</strong> Draw diagram.</p>
-                    <textarea class="exam-textarea" placeholder="Write your answer..."></textarea>
-                    <p><strong>Q8 (7 pts):</strong> Explain.</p>
-                    <textarea class="exam-textarea" placeholder="Write your explanation..."></textarea>
+                    <p><strong>Q7 (7 pts):</strong> Describe the hierarchical relationship of Stage, Scene, and Nodes (Scene Graph) in JavaFX. Illustrate with a text diagram.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea><p><strong>Q8 (7 pts):</strong> Write the complete JavaFX code to create a simple window with a Label that says 'Hello' and a Button that changes the label to 'Clicked!' when clicked.</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
                 </div>
                 <div class="exam-section">
-                    <h4>Part 3: Long Form (14 Points)</h4>
-                    <p><strong>Q9 (14 pts):</strong> Implementation.</p>
-                    <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation..."></textarea>
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Design the user interface for a basic Login Form in JavaFX. Write a complete, valid class extending Application that uses a GridPane to align a Username field, a Password field, and a Submit button. Include basic event handling that prints 'Login Successful' if credentials are admin/123.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full JavaFX code here...'></textarea>
                 </div>
-                <button class="action-btn" onclick="alert('Answers submitted for Exam B!')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam B! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam B</button>
             </div><div class="exam-content " data-exam="C">
                 <h3 class="exam-header">Advanced Programming Apps (CCS2304) - Full Mock Exam C (40 Pts)</h3>
                 <div class="exam-section">
                     <h4>Part 1: Multiple Choice (12 Points)</h4>
                     <div class="mcq-grid">
-                        <div class="mcq-item"><strong>Q1:</strong> Placeholder? <br><input type="radio" name="advprog_eCq1"> A) Option 1 <input type="radio" name="advprog_eCq1"> B) Option 2 <input type="radio" name="advprog_eCq1"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q2:</strong> Placeholder? <br><input type="radio" name="advprog_eCq2"> A) Option 1 <input type="radio" name="advprog_eCq2"> B) Option 2 <input type="radio" name="advprog_eCq2"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q3:</strong> Placeholder? <br><input type="radio" name="advprog_eCq3"> A) Option 1 <input type="radio" name="advprog_eCq3"> B) Option 2 <input type="radio" name="advprog_eCq3"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q4:</strong> Placeholder? <br><input type="radio" name="advprog_eCq4"> A) Option 1 <input type="radio" name="advprog_eCq4"> B) Option 2 <input type="radio" name="advprog_eCq4"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q5:</strong> Placeholder? <br><input type="radio" name="advprog_eCq5"> A) Option 1 <input type="radio" name="advprog_eCq5"> B) Option 2 <input type="radio" name="advprog_eCq5"> C) Option 3</div>
-                        <div class="mcq-item"><strong>Q6:</strong> Placeholder? <br><input type="radio" name="advprog_eCq6"> A) Option 1 <input type="radio" name="advprog_eCq6"> B) Option 2 <input type="radio" name="advprog_eCq6"> C) Option 3</div>
+                        <div class="mcq-item"><strong>Q1:</strong> Which JDBC class is used to execute precompiled parameterized queries securely? <br><input type='radio' name='adv_eCq1'> A) Statement <input type='radio' name='adv_eCq1'> B) PreparedStatement &check; <input type='radio' name='adv_eCq1'> C) ResultSet</div>
+                        <div class="mcq-item"><strong>Q2:</strong> Which method is called to execute a SELECT query in JDBC? <br><input type='radio' name='adv_eCq2'> A) executeUpdate() <input type='radio' name='adv_eCq2'> B) executeQuery() &check; <input type='radio' name='adv_eCq2'> C) executeSelect()</div>
+                        <div class="mcq-item"><strong>Q3:</strong> In the MVC pattern, which component represents the core business logic and database access? <br><input type='radio' name='adv_eCq3'> A) Model &check; <input type='radio' name='adv_eCq3'> B) View <input type='radio' name='adv_eCq3'> C) Controller</div>
+                        <div class="mcq-item"><strong>Q4:</strong> What does a ResultSet represent in JDBC database operations? <br><input type='radio' name='adv_eCq4'> A) The connection driver <input type='radio' name='adv_eCq4'> B) The tabular row data returned by a query &check; <input type='radio' name='adv_eCq4'> C) The SQL string</div>
+                        <div class="mcq-item"><strong>Q5:</strong> Which method is used to iterate through the rows returned in a ResultSet? <br><input type='radio' name='adv_eCq5'> A) next() &check; <input type='radio' name='adv_eCq5'> B) getRow() <input type='radio' name='adv_eCq5'> C) hasNext()</div>
+                        <div class="mcq-item"><strong>Q6:</strong> Which design pattern ensures that a database connection helper class has only ONE instance? <br><input type='radio' name='adv_eCq6'> A) Factory <input type='radio' name='adv_eCq6'> B) Singleton &check; <input type='radio' name='adv_eCq6'> C) Observer</div>
                     </div>
                 </div>
                 <div class="exam-section">
                     <h4>Part 2: Short Answer & Diagramming (14 Points)</h4>
-                    <p><strong>Q7 (7 pts):</strong> Draw diagram.</p>
-                    <textarea class="exam-textarea" placeholder="Write your answer..."></textarea>
-                    <p><strong>Q8 (7 pts):</strong> Explain.</p>
-                    <textarea class="exam-textarea" placeholder="Write your explanation..."></textarea>
+                    <p><strong>Q7 (7 pts):</strong> Walk through the 6 essential steps of executing a query using JDBC (from loading driver to closing connection).</p><textarea class='exam-textarea' placeholder='Write your answer here...'></textarea><p><strong>Q8 (7 pts):</strong> Explain how the MVC design pattern achieves 'separation of concerns' in a GUI application. What are the roles of the Model, View, and Controller?</p><textarea class='exam-textarea' placeholder='Write your explanation here...'></textarea>
                 </div>
                 <div class="exam-section">
-                    <h4>Part 3: Long Form (14 Points)</h4>
-                    <p><strong>Q9 (14 pts):</strong> Implementation.</p>
-                    <textarea class="exam-textarea" style="height: 150px;" placeholder="Write full implementation..."></textarea>
+                    <h4>Part 3: Long Form / Coding (14 Points)</h4>
+                    <p><strong>Q9 (14 pts):</strong> Write a complete JDBC Java method public void registerStudent(String name, double gpa) that connects to a local MySQL database university_db, prepares a secure INSERT statement using PreparedStatement to prevent SQL Injection, binds parameters, executes, and cleanly handles SQLExceptions inside a try-with-resources block.</p><textarea class='exam-textarea' style='height: 150px;' placeholder='Write full Java JDBC method here...'></textarea>
                 </div>
-                <button class="action-btn" onclick="alert('Answers submitted for Exam C!')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
+                <button class="action-btn" onclick="alert('Answers submitted for Exam C! Check the grading rubric.')"><i class="fa-solid fa-check-double"></i> Submit & Grade Exam C</button>
             </div>
         </div>
     </div>
