@@ -24,18 +24,7 @@ const subjectsData = {
             {title: "Agile & Scrum in 10 Minutes", id: "9TycLR0TqFA", embed: true},
             {title: "Software Testing Basics", id: "bKdOclW1b0Q", embed: true}
         ],
-        summary: `
-            <h4>1. Software Development Life Cycle (SDLC)</h4>
-            <p>The framework defining tasks performed at each step in the software development process. Key phases include: Requirements Analysis, Design, Implementation, Testing, Deployment, and Maintenance.</p>
-            <h4>2. Software Processes</h4>
-            <p><strong>Waterfall:</strong> Sequential, rigid. Good for well-defined requirements.<br>
-            <strong>Agile:</strong> Iterative, flexible, customer-focused. Uses sprints (e.g., Scrum).<br>
-            <strong>Incremental/Iterative:</strong> Builds the system in small, working pieces.</p>
-            <h4>3. UML (Unified Modeling Language)</h4>
-            <p><strong>Use Case Diagram:</strong> Shows actors and their interactions with the system (Include/Extend).<br>
-            <strong>Activity Diagram:</strong> Shows the flow of control or object flow with decision nodes, forks, and joins.<br>
-            <strong>Class Diagram:</strong> Shows system structure, classes, attributes, operations, and relationships (Inheritance, Association, Aggregation).</p>
-        `,
+        summary: `\n\n`,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: UML RELATIONSHIPS IN JAVA
@@ -90,18 +79,7 @@ public class University {
             {title: "PHP in 100 Seconds (Fireship)", id: "a7_WFUlFS94", embed: true},
             {title: "HTML Crash Course (Elzero - Arabic)", id: "q4jYm3FihgQ", embed: true}
         ],
-        summary: `
-            <h4>1. HTML5 & CSS3</h4>
-            <p><strong>Semantic HTML:</strong> Tags like &lt;header&gt;, &lt;article&gt;, &lt;section&gt; for accessibility and SEO.<br>
-            <strong>CSS Selectors & Layouts:</strong> Flexbox (1D layouts) and CSS Grid (2D layouts). Media queries for responsiveness.</p>
-            <h4>2. Vanilla JavaScript</h4>
-            <p><strong>DOM Manipulation:</strong> document.getElementById, querySelector, createElement.<br>
-            <strong>Event Listeners:</strong> addEventListener('click', function).<br>
-            <strong>ES6+:</strong> Let/Const, Arrow functions, Template literals.</p>
-            <h4>3. PHP Fundamentals</h4>
-            <p><strong>Superglobals:</strong> $_GET, $_POST, $_SESSION, $_COOKIE.<br>
-            <strong>Form Handling:</strong> Securely processing user input, avoiding XSS using htmlspecialchars().<br>
-        `,
+        summary: `\n\n`,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: SECURE PHP FORM REGISTRATION
@@ -182,18 +160,7 @@ document.getElementById('loadBtn').addEventListener('click', () => {
             {title: "🧠 VisuAlgo (Interactive Sorting)", url: "https://visualgo.net/en/sorting", embed: "link"},
             {title: "🧠 VisuAlgo (Interactive BST)", url: "https://visualgo.net/en/bst", embed: "link"}
         ],
-        summary: `
-            <h4>1. Linked Lists</h4>
-            <p>Linear collection of data where elements (nodes) contain a data field and a reference (link) to the next node. Types: Singly, Doubly, Circular. Excellent for dynamic sizing; poor for random access (O(n)).</p>
-            <h4>2. Trees</h4>
-            <p>Hierarchical structure with a root node and child nodes.<br>
-            <strong>Binary Search Tree (BST):</strong> Left child is smaller, right child is larger. Search/Insert/Delete is O(log n) average.<br>
-            <strong>Traversals:</strong> In-order (Left-Root-Right), Pre-order (Root-Left-Right), Post-order (Left-Right-Root).</p>
-            <h4>3. Graphs</h4>
-            <p>A set of vertices (nodes) and edges connecting them. Can be directed/undirected, weighted/unweighted.<br>
-            <strong>BFS (Breadth-First Search):</strong> Uses a Queue. Good for shortest path on unweighted graphs.<br>
-            <strong>DFS (Depth-First Search):</strong> Uses a Stack/Recursion. Good for exploring all paths.</p>
-        `,
+        summary: `\n\n`,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: BINARY SEARCH TREE (JAVA)
@@ -293,20 +260,7 @@ void merge(int arr[], int l, int m, int r) {
             {title: "Linux Basics", id: "sWbUDq4S6Y8", embed: true},
             {title: "Risk Management", id: "p0E6sLwUeY8", embed: true} 
         ],
-        summary: `
-            <h4>1. Core Concepts (CIA Triad)</h4>
-            <p><strong>Confidentiality:</strong> Preventing unauthorized disclosure (Encryption, Access Control).<br>
-            <strong>Integrity:</strong> Preventing unauthorized modification (Hashing, Digital Signatures).<br>
-            <strong>Availability:</strong> Ensuring authorized access (Backups, Redundancy, DDoS mitigation).</p>
-            <h4>2. Risk Management</h4>
-            <p>The process of identifying, assessing, and mitigating risks.<br>
-            <strong>Risk = Threat × Vulnerability × Impact.</strong><br>
-            Responses: Avoid, Transfer (Insurance), Mitigate (Controls), Accept.</p>
-            <h4>3. Cryptography</h4>
-            <p><strong>Symmetric:</strong> Same key to encrypt and decrypt (AES, DES). Fast, but key distribution is hard.<br>
-            <strong>Asymmetric:</strong> Public and Private key pair (RSA, ECC). Secure key exchange, but slower.<br>
-            <strong>Hashing:</strong> One-way function mapping arbitrary data to a fixed-size string (SHA-256). Used for password storage and data integrity checks.</p>
-        `,
+        summary: `\n\n`,
         codeVault: `
 # ==========================================
 # FULL CONTEXT: ESSENTIAL LINUX COMMANDS
@@ -346,19 +300,7 @@ $ cat /etc/passwd | cut -d: -f1              # List all user accounts on the sys
             {title: "Registers and RAM", id: "fpnE6UAfbtU", embed: true},
             {title: "Fetch-Execute Cycle", id: "cNN_tTXABUA", embed: true}
         ],
-        summary: `
-            <h4>1. Digital Logic & Gates</h4>
-            <p><strong>AND:</strong> Output 1 only if both inputs are 1.<br>
-            <strong>OR:</strong> Output 1 if at least one input is 1.<br>
-            <strong>NOT:</strong> Inverts the input.<br>
-            <strong>XOR:</strong> Output 1 if inputs are different. Essential for binary addition.</p>
-            <h4>2. Combinational vs. Sequential Logic</h4>
-            <p><strong>Combinational:</strong> Output depends solely on the current input (e.g., Adders, Multiplexers, Decoders). No memory.<br>
-            <strong>Sequential:</strong> Output depends on current input AND past state (e.g., Flip-flops, Registers, Counters). Has memory and usually requires a clock.</p>
-            <h4>3. MARIE Architecture & RTN</h4>
-            <p>A simple accumulator-based architecture. <br>
-            <strong>Registers:</strong> AC (Accumulator), PC (Program Counter), IR (Instruction Register), MAR (Memory Address Register), MBR (Memory Buffer Register).</p>
-        `,
+        summary: `\n\n`,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: CPU FETCH-DECODE-EXECUTE RTN
@@ -403,23 +345,7 @@ PC <- X            // Simply overwrite the Program Counter with X!
             {title: "Java JDBC Database", id: "e8g9eNnFMm0", embed: true},
             {title: "Java Threads in 10 Minutes", id: "WvA1e4y7o3I", embed: true}
         ],
-        summary: `
-            <h4>1. Exception Handling</h4>
-            <p>Exceptions handle runtime errors gracefully without crashing the app. <br>
-            <strong>Keywords:</strong> try (code that might fail), catch (handles the error), finally (executes regardless of outcome), throw (explicitly triggers an exception), throws (method signature warning).</p>
-            <h4>2. Threading & Concurrency</h4>
-            <p>Allows a program to perform multiple tasks simultaneously.<br>
-            Can be implemented by: 1) Extending the <code>Thread</code> class, or 2) Implementing the <code>Runnable</code> interface (preferred).<br>
-            <code>start()</code> begins execution, <code>join()</code> waits for a thread to finish.</p>
-            <h4>3. MVC (Model-View-Controller)</h4>
-            <p>A design pattern that separates application logic.<br>
-            <strong>Model:</strong> Data and business logic.<br>
-            <strong>View:</strong> The GUI (User Interface).<br>
-            <strong>Controller:</strong> Handles user input from the View, interacts with the Model, and updates the View.</p>
-            <h4>4. Java JDBC</h4>
-            <p>Java Database Connectivity. API for executing SQL queries.<br>
-            Steps: 1. Connect (DriverManager). 2. Create Statement (Statement or PreparedStatement). 3. Execute Query. 4. Process ResultSet. 5. Close Connection.</p>
-        `,
+        summary: `\n\n`,
         codeVault: `
 // ==========================================
 // FULL CONTEXT: MULTI-THREADING (RUNNABLE)
@@ -558,36 +484,12 @@ function generateExamsHtml(subjectTitle) {
 // Flashcard Generator Data
 function getFlashcardsData(id) {
     const data = {
-        se: [
-            {q: "What is the primary difference between Agile and Waterfall?", a: "Waterfall is rigid, sequential, and requires all planning upfront. Agile is flexible, iterative, and builds the software in small sprints based on continuous client feedback."},
-            {q: "What does an <<include>> relationship mean in a Use Case Diagram?", a: "It means the base use case MUST execute the included use case to complete successfully (e.g., 'Borrow Book' includes 'Login')."},
-            {q: "What is the difference between System Testing and Acceptance Testing?", a: "System Testing checks if the whole integrated system meets technical requirements. Acceptance Testing is done by the client to verify if it meets their business needs."}
-        ],
-        web: [
-            {q: "Why should we use htmlspecialchars() in PHP?", a: "To convert special characters to HTML entities. This prevents Cross-Site Scripting (XSS) attacks by stopping hackers from injecting malicious JavaScript into forms."},
-            {q: "What is the difference between $_GET and $_POST?", a: "$_GET appends data to the URL (visible, insecure, limited size). $_POST sends data in the HTTP body (hidden, secure for passwords, larger capacity)."},
-            {q: "What is AJAX?", a: "Asynchronous JavaScript and XML. It allows a web page to fetch data from the server and update a specific part of the page without refreshing the whole browser window."}
-        ],
-        dsa: [
-            {q: "What is the Time Complexity of Binary Search?", a: "O(log N). Because it cuts the search space in half at every step, making it incredibly fast for sorted arrays."},
-            {q: "What is the property of a Binary Search Tree (BST)?", a: "For any given node, all elements in its left subtree are smaller, and all elements in its right subtree are larger."},
-            {q: "What is the difference between BFS and DFS in Graphs?", a: "BFS explores level by level (like ripples in a pond) and uses a Queue. DFS explores as deep as possible before backtracking (like solving a maze) and uses a Stack or Recursion."}
-        ],
-        cyber: [
-            {q: "What are the three pillars of the CIA Triad?", a: "1. Confidentiality (Encryption). 2. Integrity (Hashing). 3. Availability (Backups/DDoS Protection)."},
-            {q: "How does Asymmetric Cryptography work?", a: "It uses two keys. A Public Key (shared with everyone) is used to encrypt messages. A Private Key (kept secret) is used to decrypt them. It solves the key-sharing problem of symmetric encryption."},
-            {q: "What does the command 'chmod 755' do in Linux?", a: "It sets permissions. 7 (Read+Write+Execute) for the Owner. 5 (Read+Execute) for the Group. 5 (Read+Execute) for Others."}
-        ],
-        arch: [
-            {q: "What is the difference between Combinational and Sequential Logic?", a: "Combinational logic has no memory; output depends purely on current inputs (e.g., Adder). Sequential logic has memory and a clock; output depends on inputs and past state (e.g., Registers)."},
-            {q: "What are the 4 steps of the Fetch Cycle in RTN?", a: "1. MAR <- PCn2. MBR <- M[MAR]n3. IR <- MBRn4. PC <- PC + 1"},
-            {q: "What is the role of the Program Counter (PC)?", a: "It is a specialized register that holds the memory address of the NEXT instruction to be fetched and executed."}
-        ],
-        advprog: [
-            {q: "What is the difference between 'throw' and 'throws'?", a: "'throw' is used inside a method to actually trigger an exception object. 'throws' is used in the method signature to warn callers that the method might throw exceptions."},
-            {q: "How do you implement Multithreading in Java?", a: "You can either extend the 'Thread' class or implement the 'Runnable' interface. Implementing 'Runnable' is highly preferred because Java doesn't support multiple class inheritance."},
-            {q: "Explain the MVC Pattern briefly.", a: "Model: Handles data and database logic. View: The User Interface. Controller: Listens to user inputs from the View, updates the Model, and refreshes the View."}
-        ]
+        se: [\n\n],
+        web: [\n\n],
+        dsa: [\n\n],
+        cyber: [\n\n],
+        arch: [\n\n],
+        advprog: [\n\n]
     };
     return data[id];
 }
