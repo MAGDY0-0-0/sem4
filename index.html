@@ -4226,6 +4226,36 @@ class BankAccount {
                 cb.addEventListener('change', () => localStorage.setItem(cb.id, cb.checked));
             });
         });
+
+        function openVideoModal(embedUrl, title, watchUrl) {
+            const overlay = document.getElementById('videoModalOverlay');
+            const iframe = document.getElementById('videoIframe');
+            const titleEl = document.getElementById('videoModalTitle');
+            const fallback = document.getElementById('videoFallbackLink');
+            if (!overlay || !iframe) return;
+            iframe.src = embedUrl;
+            if (titleEl) titleEl.innerHTML = '<i class="fa-brands fa-youtube" style="color:#f43f5e;margin-right:8px;"></i>' + title;
+            if (fallback) fallback.href = watchUrl;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal(e) {
+            const overlay = document.getElementById('videoModalOverlay');
+            const iframe = document.getElementById('videoIframe');
+            if (!overlay) return;
+            overlay.classList.remove('active');
+            if (iframe) iframe.src = '';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+                toggleTimer();
+            }
+            if (e.code === 'Escape') closeVideoModal();
+        });
     </script>
 
 <div class="video-modal-overlay" id="videoModalOverlay" onclick="closeVideoModal(event)">
