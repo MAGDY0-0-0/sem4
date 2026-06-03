@@ -1,382 +1,618 @@
-﻿[
-    {
-        "FullName":  "D:\\semester 4\\ADVANCED PROG\\Lec#1 revision.pdf",
-        "Name":  "Lec#1 revision.pdf",
-        "DirectoryName":  "D:\\semester 4\\ADVANCED PROG"
-    },
-    {
-        "FullName":  "D:\\semester 4\\ADVANCED PROG\\Lecture 03 - Exception Handling.pptx",
-        "Name":  "Lecture 03 - Exception Handling.pptx",
-        "DirectoryName":  "D:\\semester 4\\ADVANCED PROG"
-    },
-    {
-        "FullName":  "D:\\semester 4\\ADVANCED PROG\\Lecture 04 - JavaFX Part1.pptx",
-        "Name":  "Lecture 04 - JavaFX Part1.pptx",
-        "DirectoryName":  "D:\\semester 4\\ADVANCED PROG"
-    },
-    {
-        "FullName":  "D:\\semester 4\\ADVANCED PROG\\Lecture 05 - JavaFX Part2.pptx",
-        "Name":  "Lecture 05 - JavaFX Part2.pptx",
-        "DirectoryName":  "D:\\semester 4\\ADVANCED PROG"
-    },
-    {
-        "FullName":  "D:\\semester 4\\ADVANCED PROG\\Lecture 10 - Java JDBC.pptx",
-        "Name":  "Lecture 10 - Java JDBC.pptx",
-        "DirectoryName":  "D:\\semester 4\\ADVANCED PROG"
-    },
-    {
-        "FullName":  "D:\\semester 4\\ADVANCED PROG\\Lecture 11 -The_MVC_Blueprint.pptx",
-        "Name":  "Lecture 11 -The_MVC_Blueprint.pptx",
-        "DirectoryName":  "D:\\semester 4\\ADVANCED PROG"
-    },
-    {
-        "FullName":  "D:\\semester 4\\ADVANCED PROG\\Lecture 9 - Networking.pptx",
-        "Name":  "Lecture 9 - Networking.pptx",
-        "DirectoryName":  "D:\\semester 4\\ADVANCED PROG"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\book.pdf",
-        "Name":  "book.pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\CA_Sheet_2.pdf",
-        "Name":  "CA_Sheet_2.pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\ch 5 (1).pptx",
-        "Name":  "ch 5 (1).pptx",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\Ch07_ECOA3e_Alia.pdf",
-        "Name":  "Ch07_ECOA3e_Alia.pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\Ch1_CA.pdf",
-        "Name":  "Ch1_CA.pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\Ch4_CA (2).pdf",
-        "Name":  "Ch4_CA (2).pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\Ch4_CA (2).ppt",
-        "Name":  "Ch4_CA (2).ppt",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\Ch6_CA.pdf",
-        "Name":  "Ch6_CA.pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\CA_Sheet_2.pdf",
-        "Name":  "CA_Sheet_2.pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Section 05 .. Chapter 04 - MARIE An Introduction to a Simple Computer - Part 2.pdf",
-        "Name":  "Section 05 .. Chapter 04 - MARIE An Introduction to a Simple Computer - Part 2.pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Section 05.. Example RTN Tables.docx",
-        "Name":  "Section 05.. Example RTN Tables.docx",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\sheet #1.pdf",
-        "Name":  "sheet #1.pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Sheet #3.docx",
-        "Name":  "Sheet #3.docx",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Sheet #3_Ans.pdf",
-        "Name":  "Sheet #3_Ans.pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Sheet_2 - Solved.pdf",
-        "Name":  "Sheet_2 - Solved.pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Sheet_2.pdf",
-        "Name":  "Sheet_2.pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec"
-    },
-    {
-        "FullName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Sheet_3.pdf",
-        "Name":  "Sheet_3.pdf",
-        "DirectoryName":  "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec"
-    },
-    {
-        "FullName":  "D:\\semester 4\\DATA STRUCTURE\\CCS2401-Data Structures and Algorithms_Intro.pptx",
-        "Name":  "CCS2401-Data Structures and Algorithms_Intro.pptx",
-        "DirectoryName":  "D:\\semester 4\\DATA STRUCTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\DATA STRUCTURE\\CS-Fundamentals.pdf",
-        "Name":  "CS-Fundamentals.pdf",
-        "DirectoryName":  "D:\\semester 4\\DATA STRUCTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\DATA STRUCTURE\\CS143_Feb2019_13_Searching_Sorting.pdf",
-        "Name":  "CS143_Feb2019_13_Searching_Sorting.pdf",
-        "DirectoryName":  "D:\\semester 4\\DATA STRUCTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\DATA STRUCTURE\\CS212_Feb2020_02_LinkedLists_Single.pptx",
-        "Name":  "CS212_Feb2020_02_LinkedLists_Single.pptx",
-        "DirectoryName":  "D:\\semester 4\\DATA STRUCTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\DATA STRUCTURE\\CS212_Feb2020_06_Trees.pdf",
-        "Name":  "CS212_Feb2020_06_Trees.pdf",
-        "DirectoryName":  "D:\\semester 4\\DATA STRUCTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\DATA STRUCTURE\\CS212_Feb2020_07_Trees_2-Traversal-.pptx.pdf",
-        "Name":  "CS212_Feb2020_07_Trees_2-Traversal-.pptx.pdf",
-        "DirectoryName":  "D:\\semester 4\\DATA STRUCTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\DATA STRUCTURE\\CS212_Feb2020_08_Graphs.pdf",
-        "Name":  "CS212_Feb2020_08_Graphs.pdf",
-        "DirectoryName":  "D:\\semester 4\\DATA STRUCTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\DATA STRUCTURE\\linked list part1.pdf",
-        "Name":  "linked list part1.pdf",
-        "DirectoryName":  "D:\\semester 4\\DATA STRUCTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\DATA STRUCTURE\\Section3-Algortihm-.pdf",
-        "Name":  "Section3-Algortihm-.pdf",
-        "DirectoryName":  "D:\\semester 4\\DATA STRUCTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\DATA STRUCTURE\\sheet 1.pdf",
-        "Name":  "sheet 1.pdf",
-        "DirectoryName":  "D:\\semester 4\\DATA STRUCTURE"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\Cybersecurity_Playbook.pdf",
-        "Name":  "Cybersecurity_Playbook.pdf",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\Cybersecurity_Projects_Compendium V3.pdf",
-        "Name":  "Cybersecurity_Projects_Compendium V3.pdf",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\cybersec_crypto_Lec_5.pdf",
-        "Name":  "cybersec_crypto_Lec_5.pdf",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\Cybersec_Lec3.pdf",
-        "Name":  "Cybersec_Lec3.pdf",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\cybersec_secure_computer_Lec_4.pdf",
-        "Name":  "cybersec_secure_computer_Lec_4.pdf",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\E_commerce_cybersec.pdf",
-        "Name":  "E_commerce_cybersec.pdf",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\introduction_to_cybersec_Lec2.pdf",
-        "Name":  "introduction_to_cybersec_Lec2.pdf",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\lec1_cybersec.pdf",
-        "Name":  "lec1_cybersec.pdf",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\Risk_Management_Lect_11.pdf",
-        "Name":  "Risk_Management_Lect_11.pdf",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\xor_cipher_solution.pdf",
-        "Name":  "xor_cipher_solution.pdf",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\section exam\\Cybersceurity-Lab1.pptx",
-        "Name":  "Cybersceurity-Lab1.pptx",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER\\section exam"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\section exam\\Cybersceurity-Lab2.pptx",
-        "Name":  "Cybersceurity-Lab2.pptx",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER\\section exam"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\section exam\\Cybersceurity-Lab3 - Copy.pptx",
-        "Name":  "Cybersceurity-Lab3 - Copy.pptx",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER\\section exam"
-    },
-    {
-        "FullName":  "D:\\semester 4\\INTRO CYBER\\section exam\\linux commands light.pptx",
-        "Name":  "linux commands light.pptx",
-        "DirectoryName":  "D:\\semester 4\\INTRO CYBER\\section exam"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\7 th Exam.pdf",
-        "Name":  "7 th Exam.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\7 th Template (1).pdf",
-        "Name":  "7 th Template (1).pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\7 th Template.pdf",
-        "Name":  "7 th Template.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\Lecture 2  - Software Process.pdf",
-        "Name":  "Lecture 2  - Software Process.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\Lecture 3  - Software Process Requirements.pdf",
-        "Name":  "Lecture 3  - Software Process Requirements.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\Lecture 4  - Software Process Requirements.pdf",
-        "Name":  "Lecture 4  - Software Process Requirements.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\Lecture 5  - Software Process Requirements.pdf",
-        "Name":  "Lecture 5  - Software Process Requirements.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\Lecture 6  - Activity Diagram.pdf",
-        "Name":  "Lecture 6  - Activity Diagram.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\Lecture 7  - Use-Case Model.pdf",
-        "Name":  "Lecture 7  - Use-Case Model.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\Lecture 8-Developing Product.pdf",
-        "Name":  "Lecture 8-Developing Product.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\Lecture 9-Product Testing and Integration.pdf",
-        "Name":  "Lecture 9-Product Testing and Integration.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\Lecture-1.pdf",
-        "Name":  "Lecture-1.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\software_process_case_studies .pdf",
-        "Name":  "software_process_case_studies .pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\SECTION\\Section 11 INTRO TO SE.pdf",
-        "Name":  "Section 11 INTRO TO SE.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E\\SECTION"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\SECTION\\Section 6 INTRO TO SE.pdf",
-        "Name":  "Section 6 INTRO TO SE.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E\\SECTION"
-    },
-    {
-        "FullName":  "D:\\semester 4\\S.E\\SECTION\\Section 9 INTRO TO SE.pdf",
-        "Name":  "Section 9 INTRO TO SE.pdf",
-        "DirectoryName":  "D:\\semester 4\\S.E\\SECTION"
-    },
-    {
-        "FullName":  "D:\\semester 4\\WEB\\Lecture13 jQUERY CS33_CS644.pdf",
-        "Name":  "Lecture13 jQUERY CS33_CS644.pdf",
-        "DirectoryName":  "D:\\semester 4\\WEB"
-    },
-    {
-        "FullName":  "D:\\semester 4\\WEB\\PHP Intro variables and conditional statements.pdf",
-        "Name":  "PHP Intro variables and conditional statements.pdf",
-        "DirectoryName":  "D:\\semester 4\\WEB"
-    },
-    {
-        "FullName":  "D:\\semester 4\\WEB\\Week-1-Introduction to Web Development-edited.pdf",
-        "Name":  "Week-1-Introduction to Web Development-edited.pdf",
-        "DirectoryName":  "D:\\semester 4\\WEB"
-    },
-    {
-        "FullName":  "D:\\semester 4\\WEB\\Week-11- PHP Forms and Arrays.pdf",
-        "Name":  "Week-11- PHP Forms and Arrays.pdf",
-        "DirectoryName":  "D:\\semester 4\\WEB"
-    },
-    {
-        "FullName":  "D:\\semester 4\\WEB\\Week-12- AJAX-edited.pdf",
-        "Name":  "Week-12- AJAX-edited.pdf",
-        "DirectoryName":  "D:\\semester 4\\WEB"
-    },
-    {
-        "FullName":  "D:\\semester 4\\WEB\\Week-2-Introduction to HTML-edited.pdf",
-        "Name":  "Week-2-Introduction to HTML-edited.pdf",
-        "DirectoryName":  "D:\\semester 4\\WEB"
-    },
-    {
-        "FullName":  "D:\\semester 4\\WEB\\Week-3- HTML  Structure Elements-edited.pdf",
-        "Name":  "Week-3- HTML  Structure Elements-edited.pdf",
-        "DirectoryName":  "D:\\semester 4\\WEB"
-    },
-    {
-        "FullName":  "D:\\semester 4\\WEB\\Week-3- HTML  Tables-edited.pdf",
-        "Name":  "Week-3- HTML  Tables-edited.pdf",
-        "DirectoryName":  "D:\\semester 4\\WEB"
-    },
-    {
-        "FullName":  "D:\\semester 4\\WEB\\Week-4- CSS  Introduction-edited.pdf",
-        "Name":  "Week-4- CSS  Introduction-edited.pdf",
-        "DirectoryName":  "D:\\semester 4\\WEB"
-    },
-    {
-        "FullName":  "D:\\semester 4\\WEB\\Week-4- HTML Forms.pdf",
-        "Name":  "Week-4- HTML Forms.pdf",
-        "DirectoryName":  "D:\\semester 4\\WEB"
-    },
-    {
-        "FullName":  "D:\\semester 4\\WEB\\Week-6- CSS  colors, images, links-edited.pdf",
-        "Name":  "Week-6- CSS  colors, images, links-edited.pdf",
-        "DirectoryName":  "D:\\semester 4\\WEB"
-    },
-    {
-        "FullName":  "D:\\semester 4\\WEB\\Week-7- JavaScript  Introduction-updated-dr.mohamed-edited.pdf",
-        "Name":  "Week-7- JavaScript  Introduction-updated-dr.mohamed-edited.pdf",
-        "DirectoryName":  "D:\\semester 4\\WEB"
-    }
+[
+  {
+    "Name": "Lec#1 revision.pdf",
+    "FullName": "D:\\semester 4\\ADVANCED PROG\\Lec#1 revision.pdf",
+    "Subject": "ADVANCED PROG",
+    "Size": 568166,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Lecture 03 - Exception Handling.pptx",
+    "FullName": "D:\\semester 4\\ADVANCED PROG\\Lecture 03 - Exception Handling.pptx",
+    "Subject": "ADVANCED PROG",
+    "Size": 3786051,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "Lecture 04 - JavaFX Part1.pptx",
+    "FullName": "D:\\semester 4\\ADVANCED PROG\\Lecture 04 - JavaFX Part1.pptx",
+    "Subject": "ADVANCED PROG",
+    "Size": 10955353,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "Lecture 05 - JavaFX Part2.pptx",
+    "FullName": "D:\\semester 4\\ADVANCED PROG\\Lecture 05 - JavaFX Part2.pptx",
+    "Subject": "ADVANCED PROG",
+    "Size": 2160939,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "Lecture 10 - Java JDBC.pptx",
+    "FullName": "D:\\semester 4\\ADVANCED PROG\\Lecture 10 - Java JDBC.pptx",
+    "Subject": "ADVANCED PROG",
+    "Size": 24255956,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "Lecture 11 -The_MVC_Blueprint.pptx",
+    "FullName": "D:\\semester 4\\ADVANCED PROG\\Lecture 11 -The_MVC_Blueprint.pptx",
+    "Subject": "ADVANCED PROG",
+    "Size": 16264705,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "Lecture 9 - Networking.pptx",
+    "FullName": "D:\\semester 4\\ADVANCED PROG\\Lecture 9 - Networking.pptx",
+    "Subject": "ADVANCED PROG",
+    "Size": 22888941,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "book.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\book.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 15065947,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "CA_Sheet_2.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\CA_Sheet_2.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 149879,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "ch 5 (1).pptx",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\ch 5 (1).pptx",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 1895517,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "Ch07_ECOA3e_Alia.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\Ch07_ECOA3e_Alia.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 1842843,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Ch1_CA.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\Ch1_CA.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 1311144,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Ch4_CA (2).pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\Ch4_CA (2).pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 1468912,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Ch4_CA (2).ppt",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\Ch4_CA (2).ppt",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 2565632,
+    "Ext": ".ppt"
+  },
+  {
+    "Name": "Ch6_CA.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\Ch6_CA.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 890783,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "sheet 7_MA (1).pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\sheet 7_MA (1).pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 254064,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "CA_Sheet_2.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\CA_Sheet_2.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 149879,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Section 05 .. Chapter 04 - MARIE An Introduction to a Simple Computer - Part 2.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Section 05 .. Chapter 04 - MARIE An Introduction to a Simple Computer - Part 2.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 321608,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Section 05.. Example RTN Tables.docx",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Section 05.. Example RTN Tables.docx",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 46508,
+    "Ext": ".docx"
+  },
+  {
+    "Name": "sheet #1.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\sheet #1.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 239443,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Sheet #3.docx",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Sheet #3.docx",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 131425,
+    "Ext": ".docx"
+  },
+  {
+    "Name": "Sheet #3_Ans.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Sheet #3_Ans.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 418973,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "sheet 7_MA.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\sheet 7_MA.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 254064,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Sheet_2 - Solved.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Sheet_2 - Solved.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 282548,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Sheet_2.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Sheet_2.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 163957,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Sheet_3.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\sec\\Sheet_3.pdf",
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Size": 299135,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "CCS2401-Data Structures and Algorithms_Intro.pptx",
+    "FullName": "D:\\semester 4\\DATA STRUCTURE\\CCS2401-Data Structures and Algorithms_Intro.pptx",
+    "Subject": "DATA STRUCTURE",
+    "Size": 3047963,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "CS-Fundamentals.pdf",
+    "FullName": "D:\\semester 4\\DATA STRUCTURE\\CS-Fundamentals.pdf",
+    "Subject": "DATA STRUCTURE",
+    "Size": 3288380,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "CS143_Feb2019_13_Searching_Sorting.pdf",
+    "FullName": "D:\\semester 4\\DATA STRUCTURE\\CS143_Feb2019_13_Searching_Sorting.pdf",
+    "Subject": "DATA STRUCTURE",
+    "Size": 1436709,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "CS212_Feb2020_02_LinkedLists_Single.pptx",
+    "FullName": "D:\\semester 4\\DATA STRUCTURE\\CS212_Feb2020_02_LinkedLists_Single.pptx",
+    "Subject": "DATA STRUCTURE",
+    "Size": 1188693,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "CS212_Feb2020_06_Trees.pdf",
+    "FullName": "D:\\semester 4\\DATA STRUCTURE\\CS212_Feb2020_06_Trees.pdf",
+    "Subject": "DATA STRUCTURE",
+    "Size": 950282,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "CS212_Feb2020_07_Trees_2-Traversal-.pptx.pdf",
+    "FullName": "D:\\semester 4\\DATA STRUCTURE\\CS212_Feb2020_07_Trees_2-Traversal-.pptx.pdf",
+    "Subject": "DATA STRUCTURE",
+    "Size": 470188,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "CS212_Feb2020_08_Graphs.pdf",
+    "FullName": "D:\\semester 4\\DATA STRUCTURE\\CS212_Feb2020_08_Graphs.pdf",
+    "Subject": "DATA STRUCTURE",
+    "Size": 2477477,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "linked list part1.pdf",
+    "FullName": "D:\\semester 4\\DATA STRUCTURE\\linked list part1.pdf",
+    "Subject": "DATA STRUCTURE",
+    "Size": 1044304,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Section3-Algortihm-.pdf",
+    "FullName": "D:\\semester 4\\DATA STRUCTURE\\Section3-Algortihm-.pdf",
+    "Subject": "DATA STRUCTURE",
+    "Size": 141491,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "sheet 1.pdf",
+    "FullName": "D:\\semester 4\\DATA STRUCTURE\\sheet 1.pdf",
+    "Subject": "DATA STRUCTURE",
+    "Size": 197781,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Cybersecurity_Playbook.pdf",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\Cybersecurity_Playbook.pdf",
+    "Subject": "INTRO CYBER",
+    "Size": 14562191,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Cybersecurity_Projects_Compendium V3.pdf",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\Cybersecurity_Projects_Compendium V3.pdf",
+    "Subject": "INTRO CYBER",
+    "Size": 4350345,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "cybersec_crypto_Lec_5.pdf",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\cybersec_crypto_Lec_5.pdf",
+    "Subject": "INTRO CYBER",
+    "Size": 554518,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Cybersec_Lec3.pdf",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\Cybersec_Lec3.pdf",
+    "Subject": "INTRO CYBER",
+    "Size": 552827,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "cybersec_secure_computer_Lec_4.pdf",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\cybersec_secure_computer_Lec_4.pdf",
+    "Subject": "INTRO CYBER",
+    "Size": 519214,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "E_commerce_cybersec.pdf",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\E_commerce_cybersec.pdf",
+    "Subject": "INTRO CYBER",
+    "Size": 208913,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "introduction_to_cybersec_Lec2.pdf",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\introduction_to_cybersec_Lec2.pdf",
+    "Subject": "INTRO CYBER",
+    "Size": 161750,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "lec1_cybersec.pdf",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\lec1_cybersec.pdf",
+    "Subject": "INTRO CYBER",
+    "Size": 247675,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Risk_Management_Lect_11.pdf",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\Risk_Management_Lect_11.pdf",
+    "Subject": "INTRO CYBER",
+    "Size": 373521,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "xor_cipher_solution.pdf",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\xor_cipher_solution.pdf",
+    "Subject": "INTRO CYBER",
+    "Size": 343168,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Cybersceurity-Lab1.pptx",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\section exam\\Cybersceurity-Lab1.pptx",
+    "Subject": "INTRO CYBER",
+    "Size": 2049049,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "Cybersceurity-Lab2.pptx",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\section exam\\Cybersceurity-Lab2.pptx",
+    "Subject": "INTRO CYBER",
+    "Size": 1571365,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "Cybersceurity-Lab3 - Copy.pptx",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\section exam\\Cybersceurity-Lab3 - Copy.pptx",
+    "Subject": "INTRO CYBER",
+    "Size": 1484089,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "linux commands light.pptx",
+    "FullName": "D:\\semester 4\\INTRO CYBER\\section exam\\linux commands light.pptx",
+    "Subject": "INTRO CYBER",
+    "Size": 402330,
+    "Ext": ".pptx"
+  },
+  {
+    "Name": "7 th Exam.pdf",
+    "FullName": "D:\\semester 4\\S.E\\7 th Exam.pdf",
+    "Subject": "S.E",
+    "Size": 773244,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "7 th Template (1).pdf",
+    "FullName": "D:\\semester 4\\S.E\\7 th Template (1).pdf",
+    "Subject": "S.E",
+    "Size": 673492,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "7 th Template.pdf",
+    "FullName": "D:\\semester 4\\S.E\\7 th Template.pdf",
+    "Subject": "S.E",
+    "Size": 742472,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Lecture 2  - Software Process.pdf",
+    "FullName": "D:\\semester 4\\S.E\\Lecture 2  - Software Process.pdf",
+    "Subject": "S.E",
+    "Size": 2220007,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Lecture 3  - Software Process Requirements.pdf",
+    "FullName": "D:\\semester 4\\S.E\\Lecture 3  - Software Process Requirements.pdf",
+    "Subject": "S.E",
+    "Size": 2696146,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Lecture 4  - Software Process Requirements.pdf",
+    "FullName": "D:\\semester 4\\S.E\\Lecture 4  - Software Process Requirements.pdf",
+    "Subject": "S.E",
+    "Size": 2850794,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Lecture 5  - Software Process Requirements.pdf",
+    "FullName": "D:\\semester 4\\S.E\\Lecture 5  - Software Process Requirements.pdf",
+    "Subject": "S.E",
+    "Size": 2403262,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Lecture 6  - Activity Diagram.pdf",
+    "FullName": "D:\\semester 4\\S.E\\Lecture 6  - Activity Diagram.pdf",
+    "Subject": "S.E",
+    "Size": 3317394,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Lecture 7  - Use-Case Model.pdf",
+    "FullName": "D:\\semester 4\\S.E\\Lecture 7  - Use-Case Model.pdf",
+    "Subject": "S.E",
+    "Size": 1745198,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Lecture 8-Developing Product.pdf",
+    "FullName": "D:\\semester 4\\S.E\\Lecture 8-Developing Product.pdf",
+    "Subject": "S.E",
+    "Size": 907752,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Lecture 9-Product Testing and Integration.pdf",
+    "FullName": "D:\\semester 4\\S.E\\Lecture 9-Product Testing and Integration.pdf",
+    "Subject": "S.E",
+    "Size": 821629,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Lecture-1.pdf",
+    "FullName": "D:\\semester 4\\S.E\\Lecture-1.pdf",
+    "Subject": "S.E",
+    "Size": 625082,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "software_process_case_studies .pdf",
+    "FullName": "D:\\semester 4\\S.E\\software_process_case_studies .pdf",
+    "Subject": "S.E",
+    "Size": 86591,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "testing approaches (1).pdf",
+    "FullName": "D:\\semester 4\\S.E\\testing approaches (1).pdf",
+    "Subject": "S.E",
+    "Size": 712691,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Section 11 INTRO TO SE.pdf",
+    "FullName": "D:\\semester 4\\S.E\\SECTION\\Section 11 INTRO TO SE.pdf",
+    "Subject": "S.E",
+    "Size": 308704,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Section 6 INTRO TO SE.pdf",
+    "FullName": "D:\\semester 4\\S.E\\SECTION\\Section 6 INTRO TO SE.pdf",
+    "Subject": "S.E",
+    "Size": 640047,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Section 9 INTRO TO SE.pdf",
+    "FullName": "D:\\semester 4\\S.E\\SECTION\\Section 9 INTRO TO SE.pdf",
+    "Subject": "S.E",
+    "Size": 1222579,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Lecture13 jQUERY CS33_CS644.pdf",
+    "FullName": "D:\\semester 4\\WEB\\Lecture13 jQUERY CS33_CS644.pdf",
+    "Subject": "WEB",
+    "Size": 965482,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "PHP Intro variables and conditional statements.pdf",
+    "FullName": "D:\\semester 4\\WEB\\PHP Intro variables and conditional statements.pdf",
+    "Subject": "WEB",
+    "Size": 1640031,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Week-1-Introduction to Web Development-edited.pdf",
+    "FullName": "D:\\semester 4\\WEB\\Week-1-Introduction to Web Development-edited.pdf",
+    "Subject": "WEB",
+    "Size": 1740453,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Week-11- PHP Forms and Arrays.pdf",
+    "FullName": "D:\\semester 4\\WEB\\Week-11- PHP Forms and Arrays.pdf",
+    "Subject": "WEB",
+    "Size": 966453,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Week-12- AJAX-edited.pdf",
+    "FullName": "D:\\semester 4\\WEB\\Week-12- AJAX-edited.pdf",
+    "Subject": "WEB",
+    "Size": 582914,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Week-2-Introduction to HTML-edited.pdf",
+    "FullName": "D:\\semester 4\\WEB\\Week-2-Introduction to HTML-edited.pdf",
+    "Subject": "WEB",
+    "Size": 501277,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Week-3- HTML  Structure Elements-edited.pdf",
+    "FullName": "D:\\semester 4\\WEB\\Week-3- HTML  Structure Elements-edited.pdf",
+    "Subject": "WEB",
+    "Size": 568980,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Week-3- HTML  Tables-edited.pdf",
+    "FullName": "D:\\semester 4\\WEB\\Week-3- HTML  Tables-edited.pdf",
+    "Subject": "WEB",
+    "Size": 493502,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Week-4- CSS  Introduction-edited.pdf",
+    "FullName": "D:\\semester 4\\WEB\\Week-4- CSS  Introduction-edited.pdf",
+    "Subject": "WEB",
+    "Size": 805742,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Week-4- HTML Forms.pdf",
+    "FullName": "D:\\semester 4\\WEB\\Week-4- HTML Forms.pdf",
+    "Subject": "WEB",
+    "Size": 501311,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Week-6- CSS  colors, images, links-edited.pdf",
+    "FullName": "D:\\semester 4\\WEB\\Week-6- CSS  colors, images, links-edited.pdf",
+    "Subject": "WEB",
+    "Size": 1073813,
+    "Ext": ".pdf"
+  },
+  {
+    "Name": "Week-7- JavaScript  Introduction-updated-dr.mohamed-edited.pdf",
+    "FullName": "D:\\semester 4\\WEB\\Week-7- JavaScript  Introduction-updated-dr.mohamed-edited.pdf",
+    "Subject": "WEB",
+    "Size": 674380,
+    "Ext": ".pdf"
+  },
+  {
+    "Subject": "ADVANCED PROG",
+    "Name": "D:\\semester 4\\ADVANCED PROG\\New folder\\APA sheets\\Lec#2_ revision.pdf",
+    "FullName": "D:\\semester 4\\ADVANCED PROG\\New folder\\APA sheets\\Lec#2_ revision.pdf",
+    "Length": 1214493,
+    "CreationTime": "/Date(1780358487782)/"
+  },
+  {
+    "Subject": "ADVANCED PROG",
+    "Name": "D:\\semester 4\\ADVANCED PROG\\New folder\\APA sheets\\Lecture 08 - Threads.pdf",
+    "FullName": "D:\\semester 4\\ADVANCED PROG\\New folder\\APA sheets\\Lecture 08 - Threads.pdf",
+    "Length": 2111193,
+    "CreationTime": "/Date(1780358487818)/"
+  },
+  {
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Name": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\Sheet #6 ANSWERED.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\Sheet #6 ANSWERED.pdf",
+    "Length": 288995,
+    "CreationTime": "/Date(1780347791886)/"
+  },
+  {
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Name": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\sheet 10 ANSWERED.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\sheet 10 ANSWERED.pdf",
+    "Length": 244899,
+    "CreationTime": "/Date(1780347791889)/"
+  },
+  {
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Name": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\sheet 7 Answered.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\sheet 7 Answered.pdf",
+    "Length": 150706,
+    "CreationTime": "/Date(1780347791890)/"
+  },
+  {
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Name": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\sheet 7.docx",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\sheet 7.docx",
+    "Length": 22992,
+    "CreationTime": "/Date(1780347791893)/"
+  },
+  {
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Name": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\sheet 8 ANSWERED.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\sheet 8 ANSWERED.pdf",
+    "Length": 141321,
+    "CreationTime": "/Date(1780347791895)/"
+  },
+  {
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Name": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\sheet 8.1.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\sheet 8.1.pdf",
+    "Length": 109949,
+    "CreationTime": "/Date(1780347791897)/"
+  },
+  {
+    "Subject": "COMPUTER ARCHITECTURE",
+    "Name": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\sheet 9 ANSWERED.pdf",
+    "FullName": "D:\\semester 4\\COMPUTER ARCHITECTURE\\section\\CA Sheets\\sheet 9 ANSWERED.pdf",
+    "Length": 110385,
+    "CreationTime": "/Date(1780347791898)/"
+  }
 ]
